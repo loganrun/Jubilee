@@ -66,11 +66,11 @@ class ResponsiveDrawer extends React.Component {
       <div>
         <div className={classes.toolbar} />
         <Divider />
-        <List></List>
+        <List>Monthly Budget</List>
         <Divider />
-        <List></List>
+        <List>Break Down</List>
         <Divider />
-        <List></List>
+        <List>Transaction</List>
         <Divider />
         <List></List>
       </div>
@@ -122,7 +122,7 @@ class ResponsiveDrawer extends React.Component {
         </Hidden>
         <main className={classes.content}>
           <div className={classes.toolbar} />
-          <Typography noWrap>{'You think water moves fast? You should see ice.'}</Typography>
+          {this.props.children}
         </main>
       </div>
     );

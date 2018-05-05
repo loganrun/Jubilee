@@ -2,7 +2,27 @@ import React, { Component} from 'react'
 import Paper from 'material-ui/Paper'
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button'
-//import { withStyles } from 'material-ui/styles';
+import Grid from 'material-ui/Grid'
+//import InputLabel  from 'material-ui/Input';
+//import { MenuItem } from 'material-ui/Menu';
+//import FormHelperText from 'material-ui/Form'
+//import Select from 'material-ui/Select'
+import { withStyles } from 'material-ui/styles';
+
+const styles = {
+     marginLeft: 250
+ }
+
+// const styles = theme => ({
+//   button: {
+//     display: 'block',
+//     marginTop: theme.spacing.unit * 2,
+//   },
+//   formControl: {
+//     margin: theme.spacing.unit,
+//     minWidth: 120,
+//   },
+// });
 
 
 class BudgetItem extends Component {
@@ -31,13 +51,15 @@ onSubmit = e => {
     Amount: null,
     frequency: ''
     })
-    console.log()
 }
     render(){
 
         return(
+            <Grid item xs>
             <Paper>
-                <form  style = {{marginLeft: 400}}>
+            
+                <form style = {{styles}} >
+            
                 <div>
                 <TextField
                     label="id"
@@ -54,22 +76,24 @@ onSubmit = e => {
                     label="category"
                     id="margin-none"
                     defaultValue="category"
-                    helperText="Housing, Debts"
-                    name = "category"
+                    helperText="Housing, Debts, Etc"
                     value = {this.state.category} 
+                    name = "category"
                     onChange={e => this.change(e)}
                 />
+                  
                 </div>
-                <div>
+                 <div>
                 <TextField
                     label="amount"
                     id="margin-none"
                     defaultValue="amount"
-                    helperText="How much"
+                    helperText="Amount spent"
                     name = "amount"
                     value = {this.state.amount} 
                     onChange={e => this.change(e)}
                 />
+               
                 </div>
                 <div>
                 <TextField
@@ -105,10 +129,11 @@ onSubmit = e => {
                 />
                 </div>
                 <div>
-                <Button variant="raised" color="primary" Primary onClick={e => this.onSubmit(e)} type="submit">Submit</Button>
+                <Button variant="raised" color="primary" Primary style = {{styles}} onClick={e => this.onSubmit(e)} type="submit">Submit</Button>
                 </div>
                 </form>
                 </Paper>
+                </Grid>
             )
     }
 }
@@ -129,14 +154,22 @@ onSubmit = e => {
  
   
 
-export default  BudgetItem
+export default withStyles(styles)  (BudgetItem)
 
 
 //onSubmit= {(e) => {this.addBudgetItem(e)}}
 
 
 
-
+ // <TextField
+                //     label="amount"
+                //     id="margin-none"
+                //     defaultValue="amount"
+                //     helperText="How much"
+                //     name = "amount"
+                //     value = {this.state.amount} 
+                //     onChange={e => this.change(e)}
+                // />
 
 
 
