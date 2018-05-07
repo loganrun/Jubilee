@@ -17,8 +17,8 @@ const reducer = (state = initialState, action) => {
             return{
                 ...state,
                 budgetItem: {
-                    ...state.budgetitem,
-                    [action.itemName]: state.budgetItem[action.itemName]
+                    ...state.budgetItem,
+                    [action.item]: state.budgetItem[action.item]
                 }
             };
         case actionTypes.REMOVE_BUDGET_ITEM:
