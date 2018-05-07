@@ -5,6 +5,7 @@ import Table, { TableBody, TableCell, TableHead, TableRow, TableFooter } from 'm
 import Paper from 'material-ui/Paper';
 import Grid from 'material-ui/Grid'
 import blue from 'material-ui/colors/blue'
+//import IncomeFooter from './IncomeFooter'
 
 const CustomTableCell = withStyles(theme => ({
   head: {
@@ -33,6 +34,7 @@ const styles = theme => ({
 });
 
 
+
 const row = (x, i, header) =>
             <TableRow key={`tr-${i}`}>
               {
@@ -44,8 +46,9 @@ const row = (x, i, header) =>
               }
               </TableRow>;
 
-    const IncomeTable = ({data, header}) => {
-//   const { classes } = props;
+    const IncomeTable = ({data,header}) => {
+    console.log(data)
+   
 
   return (
     <Grid item xs>  
@@ -64,13 +67,23 @@ const row = (x, i, header) =>
         <TableBody>
           {data.map((x,i)=> row(x,i, header))}
         </TableBody>
-        <TableFooter>Total</TableFooter>
+       
       </Table>
     </Paper>
     </Grid>
   );
 }
 
+// 
+    // const incomeTotal = incomeStream.amount
+    // if(incomeTotal == null){
+    //         return incomeTotal
+    // }else{
+    //     incomeTotal.reduce(function (firstTotal,nextTotal) {
+    //     return firstTotal + nextTotal
+    //     }
+    // )}
 
 export default withStyles(styles)(IncomeTable);
 
+//<IncomeFooter data={data} />

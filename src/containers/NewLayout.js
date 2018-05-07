@@ -10,6 +10,7 @@ import IconButton from 'material-ui/IconButton';
 import Hidden from 'material-ui/Hidden';
 import Divider from 'material-ui/Divider';
 import MenuIcon from '@material-ui/icons/Menu';
+import purple from 'material-ui/colors/purple'
 //import { mailFolderListItems, otherMailFolderListItems } from './tileData';
 
 const drawerWidth = 240;
@@ -17,7 +18,7 @@ const drawerWidth = 240;
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    height: 430,
+    height: '100vh',
     zIndex: 1,
     overflow: 'hidden',
     position: 'relative',
@@ -45,9 +46,13 @@ const styles = theme => ({
   },
   content: {
     flexGrow: 1,
-    backgroundColor: theme.palette.background.default,
+    backgroundColor: theme.palette.background.default ,
     padding: theme.spacing.unit * 3,
   },
+  drawer: {
+    backgroundColor: purple[100]
+  
+  }
 });
 
 class ResponsiveDrawer extends React.Component {
@@ -89,10 +94,11 @@ class ResponsiveDrawer extends React.Component {
               <MenuIcon />
             </IconButton>
             <Typography variant="title" color="inherit" noWrap>
-              Responsive drawer
+              JUBILEE
             </Typography>
           </Toolbar>
         </AppBar>
+        <div style= {{backgroundColor: purple[100]}}>
         <Hidden mdUp>
           <Drawer
             variant="temporary"
@@ -105,21 +111,26 @@ class ResponsiveDrawer extends React.Component {
             ModalProps={{
               keepMounted: true, // Better open performance on mobile.
             }}
+            style= {{backgroundColor: purple[100]}}
           >
             {drawer}
           </Drawer>
         </Hidden>
         <Hidden smDown implementation="css">
+          <div style= {{backgroundColor: purple[100]}}>
           <Drawer
             variant="permanent"
             open
             classes={{
               paper: classes.drawerPaper,
             }}
+            style= {{backgroundColor: purple[100]}}
           >
             {drawer}
           </Drawer>
+          </div>
         </Hidden>
+        </div>
         <main className={classes.content}>
           <div className={classes.toolbar} />
           {this.props.children}
@@ -135,3 +146,5 @@ ResponsiveDrawer.propTypes = {
 };
 
 export default withStyles(styles, { withTheme: true })(ResponsiveDrawer);
+
+//theme.palette.background.default

@@ -7,7 +7,7 @@ const initialState = {
         category: '',
         type: '',
         frequency: '',
-        amount: null
+        amount: 0
     }
 }
 
@@ -18,7 +18,7 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 budgetItem: {
                     ...state.budgetitem,
-                    [action.expenseName]: state.budgetItem[action.expenseName]
+                    [action.itemName]: state.budgetItem[action.itemName]
                 }
             };
         case actionTypes.REMOVE_BUDGET_ITEM:

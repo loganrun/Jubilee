@@ -4,6 +4,7 @@ import Grid from 'material-ui/Grid'
 //import { income, expense } from '../../store.js'
 import Aux from '../../hoc/Aux';
 import BudetItem from '../Forms/BudgetItem'
+import ResponsiveDialog from '../Forms/DialogBox'
 //import Header from '../../components/layouts/Header/header'
 //import NewLayout from '../NewLayout';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -47,20 +48,24 @@ class Monthlybudget extends Component{
 
     
  render(){
-     
      const incomeStream = this.state.data.filter(incomeObject =>{
         return incomeObject.type === 'income'
     })
-     
+    
+    
      const expenseStream = this.state.data.filter(incomeObject =>{
         return incomeObject.type === 'expense'
     })
+    //  const expenseTotal = this.state.data.reduce(function (firstTotal,nextTotal) {
+    //      return firstTotal + nextTotal
+    // })
     
      return(
          <MuiThemeProvider>
          <Aux>
          <Grid container spacing={24}>
         <IncomeTable    data={incomeStream}
+                        
                         header={[
                             {
                             name: "Category",
@@ -85,6 +90,7 @@ class Monthlybudget extends Component{
                             ]}
         />
         <ExpenseTable    data={expenseStream}
+                        
                         header={[
                             {
                             name: "Category",
@@ -112,8 +118,8 @@ class Monthlybudget extends Component{
                             data: [...this.state.data, submission]
         })}
         />
+        <ResponsiveDialog/>
         </Grid>
-    
         </Aux>
         </MuiThemeProvider>
          
