@@ -27,7 +27,7 @@ export const income = [
         frequency: 'Monthly', //monthly income or expense yes or no
         amount:'2,000'
     },
-    ]
+    ];
     
 export const expense = [
     {
@@ -118,4 +118,4 @@ export const expense = [
         frequency: 'Monthly', //monthly income or expense yes or no
         amount:'300'
     }
-    ]
+    ];

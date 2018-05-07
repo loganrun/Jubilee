@@ -15,22 +15,20 @@ import {bindactionCreators} from 'redux'
 import IncomeTable from '../Forms/IncomeTable';
 import ExpenseTable from '../Forms/ExpenseTable';
 import './MonthlyBudget.css'
+import { addBudgetItem } from '../store/actions';
 
 
  
 class Monthlybudget extends Component{
-    state = {
-        data: [],
-    }
-    
+
  render(){
      const incomeStream = this.props.budget.filter(incomeObject =>{
-        return incomeObject.type === 'income'
+        return incomeObject.type === 'Income'
     })
     
     
      const expenseStream = this.props.budget.filter(incomeObject =>{
-        return incomeObject.type === 'expense'
+        return incomeObject.type === 'Expense'
     })
     
      return(
@@ -87,10 +85,7 @@ class Monthlybudget extends Component{
                             }
                             ]}
         />
-        <BudetItem onSubmit={submission => this.setState({
-                            data: [...this.state.data, submission]
-        })}
-        />
+        <BudetItem onSubmit={values => this.props.dispatch(addBudgetItem(values))}/>
         <ResponsiveDialog/>
         </Grid>
         </Aux>
@@ -101,22 +96,13 @@ class Monthlybudget extends Component{
  }   
 }
 function mapStateToProps(state){
-    budget: state.budget
-}
-
-function mapDispatchToProps = dispatch => {
-    return{
-        
+    return {
+      budget: state.budget.budget
     }
 }
- 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Monthlybudget);
+export default connect(mapStateToProps)(Monthlybudget);
 
-
-
- 
-//<Header/>
 
 
 

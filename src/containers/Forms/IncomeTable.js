@@ -35,44 +35,55 @@ const styles = theme => ({
 
 
 
-const row = (x, i, header) =>
-            <TableRow key={`tr-${i}`}>
-              {
-                  header.map((y,k) =>(
-            <CustomTableCell key={`trc-${k}`}>
-            {x[y.prop]}
-            </CustomTableCell>
-                      )) 
-              }
-              </TableRow>;
+  const
+  row = (x, i, header) =>
+      <TableRow key={`tr-${i}`}>
+        {
+          header.map((y, k) => (
+              <CustomTableCell key={`trc-${k}`}>
+                {x[y.prop]}
+              </CustomTableCell>
+          ))
+        }
+      </TableRow>;
 
-    const IncomeTable = ({data,header}) => {
+  const IncomeTable = ({data, header}) => {
     console.log(data)
-   
 
-  return (
-    <Grid item xs>  
-    <Paper>
-      <Table>
-      <TableHead>Income</TableHead>
-        <TableHead>
-          <TableRow>
-            {header.map((x,i) => 
-              
-              <CustomTableCell key={`thc-${i}`}>{x.name} </CustomTableCell>      
-                
-            )}
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {data.map((x,i)=> row(x,i, header))}
-        </TableBody>
-       
-      </Table>
-    </Paper>
-    </Grid>
-  );
-}
+
+    return (
+        <Grid item xs>
+          <Paper>
+            <Table>
+              <TableHead>Income</TableHead>
+              <TableHead>
+                <TableRow>
+                  {header.map((x, i) =>
+
+                      <CustomTableCell key={`thc-${i}`}>{x.name} </CustomTableCell>
+                  )}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {data.map(n => {
+                  return (
+                      <TableRow key={n.id}>
+                        <CustomTableCell>{n.category}</CustomTableCell>
+                        <CustomTableCell>{n.title}</CustomTableCell>
+                        <CustomTableCell>{n.type}</CustomTableCell>
+                        <CustomTableCell>{n.frequency}</CustomTableCell>
+                        <CustomTableCell numeric>{n.amount}</CustomTableCell>
+                      </TableRow>
+                  );
+                })}
+              </TableBody>
+
+            </Table>
+          </Paper>
+        </Grid>
+    );
+  }
+
 
 // 
     // const incomeTotal = incomeStream.amount

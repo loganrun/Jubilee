@@ -8,6 +8,7 @@ import Grid from 'material-ui/Grid'
 //import FormHelperText from 'material-ui/Form'
 //import Select from 'material-ui/Select'
 import { withStyles } from 'material-ui/styles';
+import { Field, reduxForm } from 'redux-form';
 
 const styles = {
      marginLeft: 250
@@ -26,110 +27,69 @@ const styles = {
 
 
 class BudgetItem extends Component {
-state = {
-    id: '',
-    category: '',
-    type: '',
-    title: '',
-    Amount: null,
-    frequency: ''
-}
 
-change = e =>{
-    this.setState({
-        [e.target.name]: e.target.value
-    })
-}
-onSubmit = e => {
-    e.preventDefault();
-    this.props.onSubmit(this.state)
-    this.setState({
-        id: '',
-    category: '',
-    type: '',
-    title: '',
-    Amount: null,
-    frequency: ''
-    })
-}
     render(){
+
+        const { handleSubmit } = this.props;
+
+        const renderTextField = ({input, label}) => (
+            <TextField
+                label={label} defaultValue="" {...input}
+            />
+        );
 
         return(
             <Grid item xs>
             <Paper>
             
-                <form style = {{styles}} >
+                <form style = {{styles}} onSubmit = {handleSubmit}>
             
                 <div>
-                <TextField
+                <Field
                     label="id"
-                    id="margin-none"
-                    defaultValue="id"
-                    helperText="Some important text"
-                    value = {this.state.id} 
                     name = "id"
-                    onChange={e => this.change(e)}
+                    component={renderTextField}
                 />
                 </div>
                 <div>
-                <TextField
+                <Field
                     label="category"
-                    id="margin-none"
-                    defaultValue="category"
-                    helperText="Housing, Debts, Etc"
-                    value = {this.state.category} 
                     name = "category"
-                    onChange={e => this.change(e)}
+                    component={renderTextField}
                 />
                   
                 </div>
                  <div>
-                <TextField
+                <Field
                     label="amount"
-                    id="margin-none"
-                    defaultValue="amount"
-                    helperText="Amount spent"
                     name = "amount"
-                    value = {this.state.amount} 
-                    onChange={e => this.change(e)}
+                    component={renderTextField}
                 />
                
                 </div>
                 <div>
-                <TextField
+                <Field
                     label="title"
-                    id="margin-none"
-                    defaultValue="title"
-                    helperText="name"
                     name = "title"
-                    value = {this.state.title} 
-                    onChange={e => this.change(e)}
+                    component={renderTextField}
                 />
                 </div>
                 <div>
-                <TextField
+                <Field
                     label="frequency"
-                    id="margin-none"
-                    defaultValue="frequency"
-                    helperText="How often"
                     name = "frequency"
-                    value = {this.state.frequency} 
-                    onChange={e => this.change(e)}
+                    component={renderTextField}
                 />
                 </div>
                 <div>
-                <TextField
+                <Field
                     label="type"
-                    id="margin-none"
-                    defaultValue="type"
-                    helperText="Income/Expense"
                     name = "type"
-                    value = {this.state.type} 
-                    onChange={e => this.change(e)}
+                    component={renderTextField}
                 />
                 </div>
                 <div>
-                <Button variant="raised" color="primary" Primary style = {{styles}} onClick={e => this.onSubmit(e)} type="submit">Submit</Button>
+                <Button variant="raised" color="primary" Primary style = {{styles}} type="submit">Submit</Button>
                 </div>
                 </form>
                 </Paper>
@@ -137,24 +97,12 @@ onSubmit = e => {
             )
     }
 }
-
-// const mapStateToProps = (state) => {
-//      return {
-//          income: state.income,
-//          expense: state.expense
-//      };
-//  }
-
-//  const mapDispatchToProps = (dispatch) => {
-//      return{
-//                   addBudgetItem: (values) => dispatch({type: actionTypes.ADD_BUDGET_ITEM, values })
-        
-//      }
-//  }
  
-  
+ const BudgetForm = reduxForm({
+   form: 'budget'
+ })(BudgetItem);
 
-export default withStyles(styles)  (BudgetItem)
+export default withStyles(styles)(BudgetForm);
 
 
 //onSubmit= {(e) => {this.addBudgetItem(e)}}
