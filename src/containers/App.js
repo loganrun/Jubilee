@@ -16,6 +16,7 @@ class App extends Component {
     return (
       <div>
       <MuiThemeProvider>
+     
         <NewLayout>
           <Switch>
               <Route exact path="/" component={Monthlybudget} />

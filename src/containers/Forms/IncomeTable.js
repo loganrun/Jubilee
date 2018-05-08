@@ -55,19 +55,27 @@ const row = (x, i, header) =>
     <Paper>
       <Table>
       <TableHead>Income</TableHead>
-        <TableHead>
-          <TableRow>
-            {header.map((x,i) => 
-              
-              <CustomTableCell key={`thc-${i}`}>{x.name} </CustomTableCell>      
-                
-            )}
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {data.map((x,i)=> row(x,i, header))}
-        </TableBody>
-       
+              <TableHead>
+                <TableRow>
+                  {header.map((x, i) =>
+
+                      <CustomTableCell key={`thc-${i}`}>{x.name} </CustomTableCell>
+                  )}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {data.map(n => {
+                  return (
+                      <TableRow key={n.id}>
+                        <CustomTableCell>{n.category}</CustomTableCell>
+                        <CustomTableCell>{n.title}</CustomTableCell>
+                        <CustomTableCell>{n.type}</CustomTableCell>
+                        <CustomTableCell>{n.frequency}</CustomTableCell>
+                        <CustomTableCell numeric>{n.amount}</CustomTableCell>
+                      </TableRow>
+                  );
+                })}
+              </TableBody>
       </Table>
     </Paper>
     </Grid>
@@ -87,3 +95,17 @@ const row = (x, i, header) =>
 export default withStyles(styles)(IncomeTable);
 
 //<IncomeFooter data={data} />
+
+// <TableHead>Income</TableHead>
+//         <TableHead>
+//           <TableRow>
+//             {header.map((x,i) => 
+              
+//               <CustomTableCell key={`thc-${i}`}>{x.name} </CustomTableCell>      
+                
+//             )}
+//           </TableRow>
+//         </TableHead>
+//         <TableBody>
+//           {data.map((x,i)=> row(x,i, header))}
+//         </TableBody>

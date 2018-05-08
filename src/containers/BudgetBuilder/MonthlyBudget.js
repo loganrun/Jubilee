@@ -11,17 +11,15 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import * as actionTypes from '../store/actions'
 import {connect} from 'react-redux'
-import {bindactionCreators} from 'redux'
+//import {bindactionCreators} from 'redux'
 import IncomeTable from '../Forms/IncomeTable';
 import ExpenseTable from '../Forms/ExpenseTable';
+import {addBudgetItem} from '../store/actions'
 import './MonthlyBudget.css'
 
 
  
 class Monthlybudget extends Component{
-    state = {
-        data: [],
-    }
     
  render(){
      const incomeStream = this.props.budget.filter(incomeObject =>{
@@ -87,10 +85,7 @@ class Monthlybudget extends Component{
                             }
                             ]}
         />
-        <BudetItem onSubmit={submission => this.setState({
-                            data: [...this.state.data, submission]
-        })}
-        />
+        <BudetItem onSubmit={values => this.props.dispatch(addBudgetItem(values))}/>
         <ResponsiveDialog/>
         </Grid>
         </Aux>
@@ -101,17 +96,15 @@ class Monthlybudget extends Component{
  }   
 }
 function mapStateToProps(state){
-    budget: state.budget
-}
-
-function mapDispatchToProps = dispatch => {
-    return{
-        
+    return {
+        budget: state.budget.budget
     }
 }
+
+
  
 
-export default connect(mapStateToProps, mapDispatchToProps)(Monthlybudget);
+export default connect(mapStateToProps)(Monthlybudget);
 
 
 

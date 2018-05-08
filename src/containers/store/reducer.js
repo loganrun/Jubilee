@@ -8,21 +8,26 @@ const initialState = {
         type: '',
         frequency: '',
         amount: 0
-    }
+    },
+    
+    budget:[]
+
 }
+
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.ADD_BUDGET_ITEM:
             return{
                 ...state,
-                budgetItem: {
-                    ...state.budgetItem,
-                    [action.item]: state.budgetItem[action.item]
-                }
+                budget: [...state.budget, action.newItem]
+                
             };
+            
         case actionTypes.REMOVE_BUDGET_ITEM:
             return{
+                ...state,
+                budget: [...state.budget, action.newItem]
                 
             };
         default:
