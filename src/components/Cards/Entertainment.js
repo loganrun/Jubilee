@@ -4,7 +4,9 @@ import { withStyles } from 'material-ui/styles';
 import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
-import Entertainment from '../../assets/Images/entertainment.jpeg'
+import Entertainment from '../../assets/Images/entertainment.jpg'
+import AddIcon from '@material-ui/icons/Add';
+import TransTable from '../../containers/Forms/TransTable'
 
 const styles = {
   card: {
@@ -24,23 +26,17 @@ function EntertainmentCard(props) {
         <CardMedia
           className={classes.media}
           image={Entertainment}
-          title="Contemplative Reptile"
+          title="Entertainment"
         />
         <CardContent>
           <Typography gutterBottom variant="headline" component="h2">
-            Lizard
+            Entertainment
           </Typography>
-          <Typography component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-            across all continents except Antarctica
-          </Typography>
+          <TransTable/>
         </CardContent>
         <CardActions>
-          <Button size="small" color="primary">
-            Share
-          </Button>
-          <Button size="small" color="primary">
-            Learn More
+          <Button variant= "fab" mini color="primary">
+            <AddIcon />
           </Button>
         </CardActions>
       </Card>

@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import Grid from 'material-ui/Grid'
 import Aux from '../../hoc/Aux';
-import BudetItem from '../Forms/BudgetItem'
-import ResponsiveDialog from '../Forms/DialogBox'
+//import BudetItem from '../Forms/BudgetItem'
+import BudetItem from '../Forms/DialogBox'
 //import Header from '../../components/layouts/Header/header'
 //import NewLayout from '../NewLayout';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -86,7 +86,7 @@ class Monthlybudget extends Component{
                             ]}
         />
         <BudetItem onSubmit={values => this.props.dispatch(addBudgetItem(values))}/>
-        <ResponsiveDialog/>
+       
         </Grid>
         </Aux>
         </MuiThemeProvider>
@@ -106,7 +106,7 @@ function mapStateToProps(state){
 
 export default connect(mapStateToProps)(Monthlybudget);
 
-
+ //<ResponsiveDialog/>
 
  
 //<Header/>

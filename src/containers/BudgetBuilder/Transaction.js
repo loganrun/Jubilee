@@ -5,7 +5,7 @@ import GroceryCard from '../../components/Cards/GroceryCard'
 import FastFoodCard from '../../components/Cards/FastFoodCard'
 import TransportationCard from '../../components/Cards/Transportation'
 import ShoppingCard from '../../components/Cards/Shopping'
-import EntertainmentCard from '../../components/Cards/Shopping'
+import EntertainmentCard from '../../components/Cards/Entertainment'
 import Grid from 'material-ui/Grid'
 
 class Transaction extends Component {

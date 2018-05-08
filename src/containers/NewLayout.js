@@ -105,8 +105,9 @@ class ResponsiveDrawer extends React.Component {
             anchor={theme.direction === 'rtl' ? 'right' : 'left'}
             open={this.state.mobileOpen}
             onClose={this.handleDrawerToggle}
+            style={{styles}}
             classes={{
-              paper: classes.drawerPaper,
+              paper: classes.drawerPaper
             }}
             ModalProps={{
               keepMounted: true, // Better open performance on mobile.

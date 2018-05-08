@@ -2,64 +2,45 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
-import Table, { TableBody, TableCell, TableHead, TableRow, TableFooter } from 'material-ui/Table';
 import Button from 'material-ui/Button';
-import Aux from '../../hoc/Aux';
-import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 import Grocery from '../../assets/Images/othergroceries.jpeg'
-//import Typography from 'material-ui/Typography';
+import AddIcon from '@material-ui/icons/Add';
+import TransTable from '../../containers/Forms/TransTable'
 
 const styles = {
   card: {
     maxWidth: 345,
   },
   media: {
-    height: 10,
+    height: 0,
     paddingTop: '56.25%', // 16:9
   },
-  img: {
-      height: 32
-  }
 };
 
 function GroceryCard(props) {
   const { classes } = props;
   return (
-    <Aux>
     <div>
       <Card className={classes.card}>
         <CardMedia
           className={classes.media}
-          image= {Grocery}
-          title="Contemplative Reptile">
-          
-        </CardMedia>
+          image={Grocery}
+          title="Groceries"
+        />
         <CardContent>
-           <Table>
-      <TableHead>Expense</TableHead>
-        <TableHead>
-          <TableRow>
-            info
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          info
-        </TableBody>
-        <TableFooter>Total</TableFooter>
-      </Table>
+        <Typography gutterBottom variant="headline" component="h2">
+            Groceries
+          </Typography>
+          <TransTable/>
         </CardContent>
         <CardActions>
-          <Button size="small" color="primary">
-            Share
-          </Button>
-          <Button size="small" color="primary">
-            Learn More
+         <Button variant= "fab" mini color="primary">
+            <AddIcon />
           </Button>
         </CardActions>
       </Card>
     </div>
-    </Aux>
   );
 }
 

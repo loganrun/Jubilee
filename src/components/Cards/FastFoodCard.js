@@ -5,6 +5,9 @@ import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 import FastFood from '../../assets/Images/fastfood.jpeg'
+import AddIcon from '@material-ui/icons/Add';
+import TransTable from '../../containers/Forms/TransTable'
+
 
 const styles = {
   card: {
@@ -24,23 +27,17 @@ function FastFoodCard(props) {
         <CardMedia
           className={classes.media}
           image={FastFood}
-          title="Contemplative Reptile"
+          title="Dining Out"
         />
         <CardContent>
-          <Typography gutterBottom variant="headline" component="h2">
-            Lizard
+        <Typography gutterBottom variant="headline" component="h2">
+            Dining Out
           </Typography>
-          <Typography component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-            across all continents except Antarctica
-          </Typography>
+          <TransTable/>
         </CardContent>
         <CardActions>
-          <Button size="small" color="primary">
-            Share
-          </Button>
-          <Button size="small" color="primary">
-            Learn More
+          <Button variant= "fab" mini color="primary">
+            <AddIcon />
           </Button>
         </CardActions>
       </Card>
