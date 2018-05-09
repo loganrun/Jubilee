@@ -33,29 +33,19 @@ const styles = theme => ({
 });
 
 class SimpleModal extends React.Component {
-  state = {
-    open: false,
-  };
 
-  handleOpen = () => {
-    this.setState({ open: true });
-  };
-
-  handleClose = () => {
-    this.setState({ open: false });
-  };
 
   render() {
     const { classes } = this.props;
 
     return (
       <div>
-        <Button variant="fab" color="primary" onClick={this.handleOpen}><AddIcon /></Button>
+        <Button variant="fab" color="primary" onClick={this.props.handleOpen}><AddIcon /></Button>
         <Modal
           aria-labelledby="simple-modal-title"
           aria-describedby="simple-modal-description"
-          open={this.state.open}
-          onClose={this.handleClose}
+          open={this.props.open}
+          onClose={this.props.handleClose}
         >
           <div style={getModalStyle()} className={classes.paper}>
             {this.props.children}

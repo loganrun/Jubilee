@@ -1,18 +1,11 @@
 import React, { Component} from 'react'
-import Paper from 'material-ui/Paper'
-import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button'
 import Grid from 'material-ui/Grid'
-import {connect} from 'react-redux'
-import * as actionTypes from '../store/actions'
-//import InputLabel  from 'material-ui/Input';
-//import { MenuItem } from 'material-ui/Menu';
-//import FormHelperText from 'material-ui/Form'
-//import Select from 'material-ui/Select'
 import { withStyles } from 'material-ui/styles';
 import { Field, reduxForm} from 'redux-form'
 import Modal from './Modal'
 import MenuItem from 'material-ui/Menu/MenuItem';
+import { Select, TextField } from 'redux-form-material-ui';
 
 
 const styles = theme => ({
@@ -51,81 +44,62 @@ const categories = [
 
 
 class TransactionItem extends Component {
-    
-    constructor(props){
-        super(props)
-        
-        this.state = {
-            
-        }
-    }
-    handleChange = name => event => {
-        this.setState({
-        [name]: event.target.value,
-        });
-     };
+
+  state = {
+    open: false,
+  };
+
+  handleOpen = () => {
+    this.setState({ open: true });
+  };
+
+  handleClose = () => {
+    this.setState({ open: false });
+  };
+
+
+  submit(e) {
+    e.preventDefault();
+    this.handleClose();
+    this.props.handleSubmit();
+  }
+
     render(){
         
         const { classes } = this.props;
 
 
     const { handleSubmit } = this.props;
-    
-    const renderTextField = ({input, label}) =>(
-        <TextField
-        label={label} defaultValue="" {...input} styles={styles}/>
-        );
-    const renderCategory = ({input, label}) =>(
-        <TextField
-          id="select-category"
-          select label={label}
-          defaultValue= "" {...input}
-          value = {this.state.category}
-          className={classes.textField}
-          onChange={this.handleChange('category')}
-          SelectProps={{
-            MenuProps: {
-              className: classes.menu,
-            },
-          }}
-          helperText="Please Select Category"
-          margin="normal"
-        >
-          {categories.map(option => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
-        )
         
         return(
             <Grid item xs>
-            <Modal>
+            <Modal handleOpen={() => this.handleOpen()} handleClose = {() => this.handleClose()} open = {this.state.open}>
         
             
-                <form style={{styles}} onSubmit= {handleSubmit}>
+                <form style={{styles}} onSubmit= {e => this.submit(e)}>
+
+                  <Field name="plan" component={Select} placeholder="Select a plan">
+                    <MenuItem value="monthly">Monthly</MenuItem>
+                    <MenuItem value="yearly">Yearly</MenuItem>
+                    <MenuItem value="lifetime">Lifetime</MenuItem>
+                  </Field>
             
                 <div>
                 <Field
                     label="id"
                     name = "id"
-                    component={renderTextField}
+                    component={TextField}
                 />
                 </div>
                 <div>
-                <Field
-                    label="category"
-                    name = "category"
-                    component={renderCategory}
-                />
+
                   
                 </div>
                  <div>
                 <Field
                     label="amount"
                     name = "amount"
-                    component={renderTextField}
+                    component={TextField}
                 />
                
                 </div>
@@ -133,21 +107,21 @@ class TransactionItem extends Component {
                 <Field
                     label="title"
                     name = "title"
-                    component={renderTextField}
+                    component={TextField}
                 />
                 </div>
                 <div>
                 <Field
                     label="frequency"
                     name = "frequency"
-                    component={renderTextField}
+                    component={TextField}
                 />
                 </div>
                 <div>
                 <Field
                     label="type"
                     name = "type"
-                    component={renderTextField}
+                    component={TextField}
                 />
 
                 </div>

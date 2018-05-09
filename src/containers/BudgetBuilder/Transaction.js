@@ -11,7 +11,10 @@ import Grid from 'material-ui/Grid'
 
 class Transaction extends Component {
 
-
+    doSomething(values){
+        //these are the values of teh form
+       console.log(values);
+    }
     
     render(){
         return(
@@ -33,7 +36,7 @@ class Transaction extends Component {
             <Grid item xs>
             <EntertainmentCard/>
             </Grid>
-            <TransactionItem/>
+            <TransactionItem onSubmit={values => this.doSomething(values)}/>
             </Grid>
             </Aux>
             </MuiThemeProvider>
