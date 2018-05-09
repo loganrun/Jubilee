@@ -6,6 +6,7 @@ import FastFoodCard from '../../components/Cards/FastFoodCard'
 import TransportationCard from '../../components/Cards/Transportation'
 import ShoppingCard from '../../components/Cards/Shopping'
 import EntertainmentCard from '../../components/Cards/Entertainment'
+import TransactionItem from '../Forms/TransactionItem'
 import Grid from 'material-ui/Grid'
 
 class Transaction extends Component {
@@ -32,6 +33,7 @@ class Transaction extends Component {
             <Grid item xs>
             <EntertainmentCard/>
             </Grid>
+            <TransactionItem/>
             </Grid>
             </Aux>
             </MuiThemeProvider>

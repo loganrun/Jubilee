@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
-import Button from 'material-ui/Button';
+//import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 import Transport from '../../assets/Images/transport.jpeg'
-import AddIcon from '@material-ui/icons/Add';
+
 import TransTable from '../../containers/Forms/TransTable'
 
 const styles = {
@@ -35,9 +35,7 @@ function TransportationCard(props) {
           <TransTable/>
         </CardContent>
         <CardActions>
-          <Button variant= "fab" mini color="primary">
-            <AddIcon />
-          </Button>
+          
         </CardActions>
       </Card>
     </div>

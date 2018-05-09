@@ -1,15 +1,15 @@
 import React, {Component} from 'react';
 import Grid from 'material-ui/Grid'
 import Aux from '../../hoc/Aux';
-//import BudetItem from '../Forms/BudgetItem'
-import BudetItem from '../Forms/DialogBox'
+import BudetItem from '../Forms/BudgetItem'
+//import Dialog from '../Forms/DialogBox'
 //import Header from '../../components/layouts/Header/header'
 //import NewLayout from '../NewLayout';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 //import ExpenseStream from '../../components/layouts/Main/ExpenseStream'
 //import IncomeStream from '../../components/layouts/Main/IncomeStream'
 
-import * as actionTypes from '../store/actions'
+//import * as actionTypes from '../store/actions'
 import {connect} from 'react-redux'
 //import {bindactionCreators} from 'redux'
 import IncomeTable from '../Forms/IncomeTable';
@@ -86,7 +86,6 @@ class Monthlybudget extends Component{
                             ]}
         />
         <BudetItem onSubmit={values => this.props.dispatch(addBudgetItem(values))}/>
-       
         </Grid>
         </Aux>
         </MuiThemeProvider>
@@ -111,7 +110,7 @@ export default connect(mapStateToProps)(Monthlybudget);
  
 //<Header/>
 
-
+//
 
 
 

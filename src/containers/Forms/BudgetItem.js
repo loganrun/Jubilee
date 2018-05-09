@@ -3,12 +3,15 @@ import Paper from 'material-ui/Paper'
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button'
 import Grid from 'material-ui/Grid'
+import {connect} from 'react-redux'
+import * as actionTypes from '../store/actions'
 //import InputLabel  from 'material-ui/Input';
 //import { MenuItem } from 'material-ui/Menu';
 //import FormHelperText from 'material-ui/Form'
 //import Select from 'material-ui/Select'
 import { withStyles } from 'material-ui/styles';
 import { Field, reduxForm} from 'redux-form'
+import Modal from './Modal'
 
 const styles = {
      marginLeft: 250
@@ -39,7 +42,8 @@ class BudgetItem extends Component {
         
         return(
             <Grid item xs>
-            <Paper>
+            <Modal>
+        
             
                 <form style={{styles}} onSubmit= {handleSubmit}>
             
@@ -92,31 +96,33 @@ class BudgetItem extends Component {
                 <Button variant="raised" color="primary" Primary style = {{styles}} type="submit">Submit</Button>
                 </div>
                 </form>
-                </Paper>
+                </Modal>
                 </Grid>
             )
     }
 }
 
-// const mapStateToProps = (state) => {
-//      return {
-//          income: state.income,
-//          expense: state.expense
-//      };
-//  }
 
-//  const mapDispatchToProps = (dispatch) => {
-//      return{
-//                   addBudgetItem: (values) => dispatch({type: actionTypes.ADD_BUDGET_ITEM, values })
-        
-//      }
-//  }
  
   const BudgetForm = reduxForm({
       form: 'budget'
   }) (BudgetItem)
+  
+//   const mapStateToProps = (state) => {
+//       return {
+//           income: state.income,
+//           expense: state.expense
+//       };
+//   }
 
-export default withStyles(styles)(BudgetForm)
+// const mapDispatchToProps = (dispatch) => {
+//       return{
+//                   addBudgetItem: (values) => dispatch({type: actionTypes.ADD_BUDGET_ITEM, values })
+        
+//       }
+//   }
+
+export default withStyles(styles) (BudgetForm)
 
 
 //onSubmit= {(e) => {this.addBudgetItem(e)}}
