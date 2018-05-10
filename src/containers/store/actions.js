@@ -8,3 +8,8 @@ export const addBudgetItem = (newItem) => ({
   type: ADD_BUDGET_ITEM,
   newItem
 });
+
+export const addTransactionItem = (newItem) => ({
+  type: ADD_TRANSACTION,
+  newItem
+});

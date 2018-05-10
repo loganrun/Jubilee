@@ -11,7 +11,8 @@ import * as actionTypes from '../store/actions'
 //import Select from 'material-ui/Select'
 import { withStyles } from 'material-ui/styles';
 import { Field, reduxForm} from 'redux-form'
-import Modal from './Modal'
+//import Modal from './Modal'
+import DialogBox from './DialogBox'
 
 const styles = {
      marginLeft: 250
@@ -30,6 +31,26 @@ const styles = {
 
 
 class BudgetItem extends Component {
+    
+    state = { 
+        open: false,
+        //selectedDate: new Date(),
+    };
+    
+    handleOpen = () => {
+      this.setState({ open: true});  
+    };
+    
+    handleClose = () => {
+    this.setState({ open: false });
+    };
+
+    
+    // submit(e) {
+    //     e.preventDefault();
+    //     this.props.handleSubmit();
+    //     this.handleClose();
+    // }
 
     render(){
 
@@ -42,8 +63,8 @@ class BudgetItem extends Component {
         
         return(
             <Grid item xs>
-            <Modal>
-        
+            
+        <DialogBox>
             
                 <form style={{styles}} onSubmit= {handleSubmit}>
             
@@ -96,7 +117,7 @@ class BudgetItem extends Component {
                 <Button variant="raised" color="primary" Primary style = {{styles}} type="submit">Submit</Button>
                 </div>
                 </form>
-                </Modal>
+                </DialogBox>     
                 </Grid>
             )
     }
@@ -142,7 +163,7 @@ export default withStyles(styles) (BudgetForm)
 
 
 
-
+//<Modal  handleOpen={() => this.handleOpen()} handleClose = {() => this.handleClose()} open = {this.state.open}> </Modal>
 
 
 

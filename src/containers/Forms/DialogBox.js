@@ -8,8 +8,8 @@ import Dialog, {
   DialogTitle,
   withMobileDialog,
 } from 'material-ui/Dialog';
-
-import BudgetItem from './BudgetItem'
+import AddIcon from '@material-ui/icons/Add';
+//import BudgetItem from './BudgetItem'
 
 class ResponsiveDialog extends React.Component {
   state = {
@@ -29,7 +29,7 @@ class ResponsiveDialog extends React.Component {
 
     return (
       <div>
-        <Button onClick={this.handleClickOpen}>Open responsive dialog</Button>
+        <Button variant="fab" color="primary" onClick={this.handleClickOpen}><AddIcon /></Button>
         <Dialog
           fullScreen={fullScreen}
           open={this.state.open}
@@ -38,15 +38,11 @@ class ResponsiveDialog extends React.Component {
         >
           <DialogTitle id="responsive-dialog-title">{"No More Budget Items? Hit finish to close"}</DialogTitle>
           <DialogContent>
-          <BudgetItem/>
-            
+            {this.props.children}
           </DialogContent>
           <DialogActions>
             <Button onClick={this.handleClose} color="primary">
               FINISHED
-            </Button>
-            <Button onClick={this.handleClose} color="primary" autoFocus>
-              Agree
             </Button>
           </DialogActions>
         </Dialog>

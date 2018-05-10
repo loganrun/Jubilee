@@ -40,6 +40,8 @@ const styles = theme => ({
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
     width: drawerWidth,
+    backgroundColor: purple[100],
+    color: 'fff',
     [theme.breakpoints.up('md')]: {
       position: 'relative',
     },
@@ -50,7 +52,7 @@ const styles = theme => ({
     padding: theme.spacing.unit * 3,
   },
   drawer: {
-    backgroundColor: purple[100]
+    
   
   }
 });
@@ -98,7 +100,7 @@ class ResponsiveDrawer extends React.Component {
             </Typography>
           </Toolbar>
         </AppBar>
-        <div style= {{backgroundColor: purple[100]}}>
+        <div >
         <Hidden mdUp>
           <Drawer
             variant="temporary"
@@ -112,20 +114,20 @@ class ResponsiveDrawer extends React.Component {
             ModalProps={{
               keepMounted: true, // Better open performance on mobile.
             }}
-            style= {{backgroundColor: purple[100]}}
+            
           >
             {drawer}
           </Drawer>
         </Hidden>
         <Hidden smDown implementation="css">
-          <div style= {{backgroundColor: purple[100]}}>
+          <div >
           <Drawer
             variant="permanent"
             open
             classes={{
               paper: classes.drawerPaper,
             }}
-            style= {{backgroundColor: purple[100]}}
+            
           >
             {drawer}
           </Drawer>
