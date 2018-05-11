@@ -10,7 +10,13 @@ import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsPr
 import DateFnsUtils from 'material-ui-pickers/utils/date-fns-utils';
 import { DatePicker } from 'material-ui-pickers';
 import {connect} from 'react-redux'
+import DateTimePicker from 'react-widgets/lib/DateTimePicker'
+import moment from 'moment'
+import momentLocaliser from 'react-widgets-moment'
 
+import 'react-widgets/dist/css/react-widgets.css'
+
+momentLocaliser(moment)
 
 const styles = theme => ({
   button: {
@@ -38,8 +44,27 @@ state = {
         
         const { classes } = this.props;
         const { selectedDate } = this.state;
-
-
+    
+    const renderDatePicker = ({input, label}) =>(
+        <DatePicker
+                    label="date"
+                    showTodayButton
+                    disableFuture
+                    maxDateMessage="Date must be less than today"
+                    value={selectedDate}
+                    onChange={this.handleDateChange}
+                    animateYearScrolling={false}
+                  />
+     );
+     
+     const renderDateTimePicker = ({ input: { onChange, value }, showTime }) =>(
+  <DateTimePicker
+    onChange={onChange}
+    format="DD MMM YYYY"
+    time={showTime}
+    value={!value ? null : new Date(value)}
+  />
+)
     const { handleSubmit } = this.props;
         
         return(
@@ -54,17 +79,16 @@ state = {
                     component={TextField}
                 />
                 </div>
+                <Field
+                  name="date"
+                  showTime={false}
+                  component={renderDateTimePicker}
+                />
                 <div className="picker">
-                  <DatePicker
-                    label=""
-                    showTodayButton
-                    disableFuture
-                    maxDateMessage="Date must be less than today"
-                    value={selectedDate}
-                    onChange={this.handleDateChange}
-                    animateYearScrolling={false}
-                  />
-              
+                <Field
+                label="date"
+                component={renderDatePicker}
+                />
                 </div>
                 <div>
                  <Field name="category" component={Select} placeholder="Pick a Category">
@@ -117,6 +141,9 @@ state = {
 
 export default withStyles(styles) (TransactionForm)
 
+
+// const required = value => value ? undefined : 'Required'
+//         const number = value => value && isNaN(Number(value)) ? 'Must be a number' : undefined
 // import React, { Component} from 'react'
 // //import Paper from 'material-ui/Paper'
 // //import TextField from 'material-ui/TextField';

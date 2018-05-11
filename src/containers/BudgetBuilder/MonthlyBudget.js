@@ -31,6 +31,7 @@ class Monthlybudget extends Component{
         return incomeObject.type === 'expense'
     })
     
+    console.log(expenseStream)
      return(
          <MuiThemeProvider>
          <Aux>
@@ -43,8 +44,8 @@ class Monthlybudget extends Component{
                             prop: "category"
                             },
                             {
-                            name:   "Title",
-                            prop:   "title"
+                            name:   "name",
+                            prop:   "name"
                             },
                             {
                             name:   "Type",
@@ -68,8 +69,8 @@ class Monthlybudget extends Component{
                             prop: "category"
                             },
                             {
-                            name:   "Title",
-                            prop:   "title"
+                            name:   "Name",
+                            prop:   "name"
                             },
                             {
                             name:   "Type",

@@ -68,7 +68,7 @@ const row = (x, i, header) =>
                   return (
                       <TableRow key={n.id}>
                         <CustomTableCell>{n.category}</CustomTableCell>
-                        <CustomTableCell>{n.title}</CustomTableCell>
+                        <CustomTableCell>{n.name}</CustomTableCell>
                         <CustomTableCell>{n.type}</CustomTableCell>
                         <CustomTableCell>{n.frequency}</CustomTableCell>
                         <CustomTableCell numeric>{n.amount}</CustomTableCell>

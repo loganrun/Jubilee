@@ -8,18 +8,29 @@ import ShoppingCard from '../../components/Cards/Shopping'
 import EntertainmentCard from '../../components/Cards/Entertainment'
 import TransactionItem from '../Forms/TransactionItem'
 import Grid from 'material-ui/Grid'
+import {connect} from 'react-redux'
+import {addTransactionItem} from '../store/actions'
 
 class Transaction extends Component {
-
+    
 
     
     render(){
+        const groceryStream = this.props.transaction.filter(groceryObject =>{
+        
+        return groceryObject.category === 'groceries'
+    })
+        
+        // const groceryItem = this.props.transaction;
+        // console.log(groceryItem)
+        console.log(groceryStream);
+        
         return(
             <MuiThemeProvider>
             <Aux>
             <Grid container spacing={24}>
             <Grid item xs>
-            <GroceryCard/>
+            <GroceryCard data={groceryStream}/>
             </Grid>
              <Grid item xs>
             <FastFoodCard/>
@@ -33,7 +44,7 @@ class Transaction extends Component {
             <Grid item xs>
             <EntertainmentCard/>
             </Grid>
-            <TransactionItem/>
+            <TransactionItem onSubmit={values => this.props.dispatch(addTransactionItem(values))}/>
             </Grid>
             </Aux>
             </MuiThemeProvider>
@@ -42,4 +53,10 @@ class Transaction extends Component {
     }
 }
 
-export default Transaction;
+function mapStateToProps(state){
+    return{
+        transaction: state.budget.transaction
+    }
+}
+
+export default connect(mapStateToProps)(Transaction);

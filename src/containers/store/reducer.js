@@ -3,14 +3,16 @@ import * as actionTypes from './actions';
 
 const initialState = {
     budgetItem : {
-        title: '',
+        name: '',
         category: '',
         type: '',
         frequency: '',
-        amount: 0
+        amount: 0,
+        date: ''
     },
     
-    budget:[]
+    budget:[],
+    transaction: []
 
 }
 
@@ -24,10 +26,10 @@ const reducer = (state = initialState, action) => {
                 
             };
             
-        case actionTypes.REMOVE_BUDGET_ITEM:
+        case actionTypes.ADD_TRANSACTION:
             return{
                 ...state,
-                budget: [...state.budget, action.newItem]
+                transaction: [...state.transaction, action.newItem]
                 
             };
         default:

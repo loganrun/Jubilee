@@ -93,8 +93,8 @@ class BudgetItem extends Component {
                 </div>
                 <div>
                 <Field
-                    label="title"
-                    name = "title"
+                    label="name"
+                    name = "name"
                     component={renderTextField}
                 />
                 </div>

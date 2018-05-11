@@ -5,7 +5,8 @@ import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
 //import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 import Grocery from '../../assets/Images/othergroceries.jpeg'
-import TransTable from '../../containers/Forms/TransTable'
+//import TransTable from '../../containers/Forms/TransTable'
+import Table, { TableBody, TableCell, TableRow } from 'material-ui/Table';
 
 const styles = {
   card: {
@@ -16,6 +17,7 @@ const styles = {
     paddingTop: '56.25%', // 16:9
   },
 };
+
 
 function GroceryCard(props) {
   const { classes } = props;
@@ -31,7 +33,20 @@ function GroceryCard(props) {
         <Typography gutterBottom variant="headline" component="h2">
             Groceries
           </Typography>
-          <TransTable/>
+          <Table className={classes.table}>
+        <TableBody>
+          {props.data.map(n => {
+            return (
+              <TableRow key={n.date}>
+                <TableCell>{n.name}</TableCell>
+                <TableCell>{n.date}</TableCell>
+                <TableCell numeric>{n.amount}</TableCell>
+              </TableRow>
+            );
+          })}
+        </TableBody>
+      </Table>
+
         </CardContent>
         <CardActions>
         </CardActions>
