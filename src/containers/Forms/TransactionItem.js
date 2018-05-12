@@ -57,14 +57,14 @@ state = {
                   />
      );
      
-     const renderDateTimePicker = ({ input: { onChange, value }, showTime }) =>(
-  <DateTimePicker
-    onChange={onChange}
-    format="DD MMM YYYY"
-    time={showTime}
-    value={!value ? null : new Date(value)}
-  />
-)
+//      const renderDateTimePicker = ({ input: { onChange, value }, showTime }) =>(
+//   <DateTimePicker
+//     onChange={onChange}
+//     format="DD MMM YYYY"
+//     time={showTime}
+//     value={!value ? null : new Date(value)}
+//   />
+//)
     const { handleSubmit } = this.props;
         
         return(
@@ -79,11 +79,7 @@ state = {
                     component={TextField}
                 />
                 </div>
-                <Field
-                  name="date"
-                  showTime={false}
-                  component={renderDateTimePicker}
-                />
+                
                 <div className="picker">
                 <Field
                 label="date"
@@ -91,12 +87,15 @@ state = {
                 />
                 </div>
                 <div>
-                 <Field name="category" component={Select} placeholder="Pick a Category">
+                 <Field name="category" label="category" component={Select} placeholder="Pick a Category">
                    <MenuItem value="groceries">Groceries</MenuItem>
                    <MenuItem value="dining">Dining Out</MenuItem>
                    <MenuItem value="transportation">Transportation</MenuItem>
                    <MenuItem value="shopping">Shopping</MenuItem>
                    <MenuItem value="entertainment">Entertainment</MenuItem>
+                   <MenuItem value="income">Income</MenuItem>
+                   <MenuItem value="housing">Housing</MenuItem>
+                   <MenuItem value="utilities">Utilities</MenuItem>
                  </Field>
                  
                  </div>
@@ -140,6 +139,12 @@ state = {
 //   }
 
 export default withStyles(styles) (TransactionForm)
+
+// <Field
+                //   name="date"
+                //   showTime={false}
+                //   component={renderDateTimePicker}
+                // />
 
 
 // const required = value => value ? undefined : 'Required'

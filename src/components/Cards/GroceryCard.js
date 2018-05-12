@@ -7,6 +7,7 @@ import Typography from 'material-ui/Typography';
 import Grocery from '../../assets/Images/othergroceries.jpeg'
 //import TransTable from '../../containers/Forms/TransTable'
 import Table, { TableBody, TableCell, TableRow } from 'material-ui/Table';
+import Moment from 'moment'
 
 const styles = {
   card: {
@@ -35,12 +36,12 @@ function GroceryCard(props) {
           </Typography>
           <Table className={classes.table}>
         <TableBody>
-          {props.data.map(n => {
+          {props.data.map((n,i) => {
             return (
-              <TableRow key={n.date}>
+              <TableRow key={n.i}>
                 <TableCell>{n.name}</TableCell>
-                <TableCell>{n.date}</TableCell>
                 <TableCell numeric>{n.amount}</TableCell>
+                 <TableCell>{Moment(n.purchasedate).format("MM/DD/YY")}</TableCell>
               </TableRow>
             );
           })}

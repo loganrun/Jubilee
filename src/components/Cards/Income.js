@@ -1,11 +1,12 @@
 import React from 'react';
-//import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
+//import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
-import FastFood from '../../assets/Images/fastfood.jpeg'
+import Grocery from '../../assets/Images/othergroceries.jpeg'
+//import TransTable from '../../containers/Forms/TransTable'
 import Table, { TableBody, TableCell, TableRow } from 'material-ui/Table';
-import Moment from 'moment'
 
 const styles = {
   card: {
@@ -18,28 +19,28 @@ const styles = {
 };
 
 
-function FastFoodCard(props) {
+function GroceryCard(props) {
   const { classes } = props;
   return (
     <div>
       <Card className={classes.card}>
         <CardMedia
           className={classes.media}
-          image={FastFood}
-          title="Dining Out"
+          image={Grocery}
+          title="Groceries"
         />
         <CardContent>
         <Typography gutterBottom variant="headline" component="h2">
-            Dining Out
+            Groceries
           </Typography>
           <Table className={classes.table}>
         <TableBody>
-          {props.data.map((n,i) => {
+          {props.data.map(n => {
             return (
-              <TableRow key={n.i}>
+              <TableRow key={n.date}>
                 <TableCell>{n.name}</TableCell>
-                <TableCell numeric>$ {n.amount}</TableCell>
-                 <TableCell>{Moment(n.purchasedate).format("MM/DD/YY")}</TableCell>
+                <TableCell>{n.purchasedate}</TableCell>
+                <TableCell numeric>{n.amount}</TableCell>
               </TableRow>
             );
           })}
@@ -54,9 +55,8 @@ function FastFoodCard(props) {
   );
 }
 
-// FastFood.propTypes = {
-//   classes: PropTypes.object.isRequired,
-// };
+GroceryCard.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 
-export default withStyles(styles)(FastFoodCard);
-
+export default withStyles(styles)(GroceryCard);

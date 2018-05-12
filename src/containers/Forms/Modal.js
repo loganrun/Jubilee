@@ -50,7 +50,7 @@ class SimpleModal extends React.Component {
 
     return (
       <div>
-        <Button variant="fab" color="primary" onClick={this.props.handleOpen}><AddIcon /></Button>
+        <Button variant="fab" color="secondary" onClick={this.props.handleOpen}><AddIcon /></Button>
         <Modal
           aria-labelledby="simple-modal-title"
           aria-describedby="simple-modal-description"

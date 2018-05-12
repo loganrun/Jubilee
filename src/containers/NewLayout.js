@@ -4,13 +4,16 @@ import { withStyles } from 'material-ui/styles';
 import Drawer from 'material-ui/Drawer';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
-import List from 'material-ui/List';
+//import List from 'material-ui/List';
 import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
 import Hidden from 'material-ui/Hidden';
 import Divider from 'material-ui/Divider';
 import MenuIcon from '@material-ui/icons/Menu';
-import purple from 'material-ui/colors/purple'
+//import purple from 'material-ui/colors/purple'
+import deepOrange from 'material-ui/colors/deepOrange'
+//import grey from 'material-ui/colors/grey'
+import Navigation from '../components/layouts/Navigation/Navigation'
 //import { mailFolderListItems, otherMailFolderListItems } from './tileData';
 
 const drawerWidth = 240;
@@ -18,7 +21,7 @@ const drawerWidth = 240;
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    height: '100vh',
+    height: '100%',
     zIndex: 1,
     //overflow: 'hidden',
     position: 'relative',
@@ -40,7 +43,7 @@ const styles = theme => ({
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
     width: drawerWidth,
-    backgroundColor: purple[100],
+    backgroundColor: deepOrange[500],
     color: 'fff',
     [theme.breakpoints.up('md')]: {
       position: 'relative',
@@ -71,15 +74,7 @@ class ResponsiveDrawer extends React.Component {
 
     const drawer = (
       <div>
-        <div className={classes.toolbar} />
-        <Divider />
-        <List>Monthly Budget</List>
-        <Divider />
-        <List>Break Down</List>
-        <Divider />
-        <List>Transaction</List>
-        <Divider />
-        <List></List>
+      <Navigation/>  
       </div>
     );
 
@@ -151,3 +146,14 @@ ResponsiveDrawer.propTypes = {
 export default withStyles(styles, { withTheme: true })(ResponsiveDrawer);
 
 //theme.palette.background.default
+// <nav>
+//         <div className={classes.toolbar} />
+//         <Divider />
+//         <NavLink to="/">Monthly Budget</NavLink>
+//         <Divider />
+//         <NavLink to="/budgetitems">BreakDown</NavLink>
+//         <Divider />
+//       <NavLink to="/spending">Daily Transactions</NavLink>
+//         <Divider />
+//         <List></List>
+//         </nav>
