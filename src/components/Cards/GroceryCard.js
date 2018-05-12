@@ -7,6 +7,7 @@ import Typography from 'material-ui/Typography';
 import Grocery from '../../assets/Images/othergroceries.jpeg'
 //import TransTable from '../../containers/Forms/TransTable'
 import Table, { TableBody, TableCell, TableRow } from 'material-ui/Table';
+//import {connect} from 'react-redux'
 import Moment from 'moment'
 
 const styles = {
@@ -60,6 +61,13 @@ GroceryCard.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(GroceryCard);
+// function mapStateToProps(state){
+//     return{
+//         transaction: state.budget.transaction
+//     }
+// }
+
+export default withStyles(styles) (GroceryCard);
 
 //<img src={Grocery} alt={''} style={styles}/>
+//connect(mapStateToProps)

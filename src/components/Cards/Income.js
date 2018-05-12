@@ -4,9 +4,10 @@ import { withStyles } from 'material-ui/styles';
 import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
 //import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
-import Grocery from '../../assets/Images/othergroceries.jpeg'
+import Money from '../../assets/Images/money.jpeg'
 //import TransTable from '../../containers/Forms/TransTable'
 import Table, { TableBody, TableCell, TableRow } from 'material-ui/Table';
+import Moment from 'moment'
 
 const styles = {
   card: {
@@ -19,19 +20,19 @@ const styles = {
 };
 
 
-function GroceryCard(props) {
+function IncomeCard(props) {
   const { classes } = props;
   return (
     <div>
       <Card className={classes.card}>
         <CardMedia
           className={classes.media}
-          image={Grocery}
-          title="Groceries"
+          image={Money}
+          title="Income"
         />
         <CardContent>
         <Typography gutterBottom variant="headline" component="h2">
-            Groceries
+            Income
           </Typography>
           <Table className={classes.table}>
         <TableBody>
@@ -39,8 +40,8 @@ function GroceryCard(props) {
             return (
               <TableRow key={n.date}>
                 <TableCell>{n.name}</TableCell>
-                <TableCell>{n.purchasedate}</TableCell>
-                <TableCell numeric>{n.amount}</TableCell>
+                <TableCell numeric>${n.amount}</TableCell>
+                <TableCell>{Moment(n.purchasedate).format("MM/DD/YY")}</TableCell>
               </TableRow>
             );
           })}
@@ -55,8 +56,8 @@ function GroceryCard(props) {
   );
 }
 
-GroceryCard.propTypes = {
+IncomeCard.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(GroceryCard);
+export default withStyles(styles)(IncomeCard);

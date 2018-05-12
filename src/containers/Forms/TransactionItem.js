@@ -69,6 +69,7 @@ state = {
         
         return(
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            
             <Grid item xs>
             <DialogBox>
                 <form style={{styles}} onSubmit= {handleSubmit}>
@@ -88,14 +89,14 @@ state = {
                 </div>
                 <div>
                  <Field name="category" label="category" component={Select} placeholder="Pick a Category">
+                   <MenuItem value="income">Income</MenuItem>
                    <MenuItem value="groceries">Groceries</MenuItem>
                    <MenuItem value="dining">Dining Out</MenuItem>
+                   <MenuItem value="housing">Housing</MenuItem>
                    <MenuItem value="transportation">Transportation</MenuItem>
+                   <MenuItem value="utilities">Utilities</MenuItem>
                    <MenuItem value="shopping">Shopping</MenuItem>
                    <MenuItem value="entertainment">Entertainment</MenuItem>
-                   <MenuItem value="income">Income</MenuItem>
-                   <MenuItem value="housing">Housing</MenuItem>
-                   <MenuItem value="utilities">Utilities</MenuItem>
                  </Field>
                  
                  </div>
@@ -113,6 +114,7 @@ state = {
                 </form>
                 </DialogBox>
                 </Grid>
+                
                 </MuiPickersUtilsProvider>
             )
     }

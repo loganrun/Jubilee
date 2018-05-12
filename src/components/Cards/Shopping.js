@@ -4,9 +4,10 @@ import { withStyles } from 'material-ui/styles';
 import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
 //import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
-
 import Shopping from '../../assets/Images/shopping.jpeg'
-import TransTable from '../../containers/Forms/TransTable'
+//import TransTable from '../../containers/Forms/TransTable'
+import Table, { TableBody, TableCell, TableRow } from 'material-ui/Table';
+import Moment from 'moment'
 
 const styles = {
   card: {
@@ -17,6 +18,7 @@ const styles = {
     paddingTop: '56.25%', // 16:9
   },
 };
+
 
 function ShoppingCard(props) {
   const { classes } = props;
@@ -29,13 +31,25 @@ function ShoppingCard(props) {
           title="Shopping"
         />
         <CardContent>
-          <Typography gutterBottom variant="headline" component="h2">
+        <Typography gutterBottom variant="headline" component="h2">
             Shopping
           </Typography>
-          <TransTable/>
+          <Table className={classes.table}>
+        <TableBody>
+          {props.data.map(n => {
+            return (
+              <TableRow key={n.date}>
+                <TableCell>{n.name}</TableCell>
+                <TableCell numeric>${n.amount}</TableCell>
+                <TableCell>{Moment(n.purchasedate).format("MM/DD/YY")}</TableCell>
+              </TableRow>
+            );
+          })}
+        </TableBody>
+      </Table>
+
         </CardContent>
         <CardActions>
-          
         </CardActions>
       </Card>
     </div>

@@ -2,13 +2,13 @@ import React, {Component} from 'react';
 import Aux from '../../hoc/Aux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import GroceryCard from '../../components/Cards/GroceryCard'
-//import FastFoodCard from '../../components/Cards/FastFoodCard'
+import FastFoodCard from '../../components/Cards/FastFoodCard'
 import TransportationCard from '../../components/Cards/Transportation'
 import ShoppingCard from '../../components/Cards/Shopping'
 import EntertainmentCard from '../../components/Cards/Entertainment'
-//import UtilitiesCard from '../../components/Cards/Utilities'
-//import HousingCard from '../../components/Cards/Housing'
-//import IncomeCard from '../../components/Cards/Income'
+import UtilitiesCard from '../../components/Cards/Utilities'
+import HousingCard from '../../components/Cards/Housing'
+import IncomeCard from '../../components/Cards/Income'
 import TransactionItem from '../Forms/TransactionItem'
 import Grid from 'material-ui/Grid'
 import {connect} from 'react-redux'
@@ -23,27 +23,60 @@ class Transaction extends Component {
         const groceryStream = this.props.transaction.filter(groceryObject =>{
         return groceryObject.category === 'groceries'
     })
+    
+        const incomeStream = this.props.transaction.filter(incomeObject =>{
+        return incomeObject.category === 'income'
+    })
+        const fastfoodStream = this.props.transaction.filter(foodObject =>{
+        return foodObject.category === 'dining'
+    })
+         const housingStream = this.props.transaction.filter(housingObject =>{
+        return housingObject.category === 'housing'
+    })
+      const transportStream = this.props.transaction.filter(transportObject =>{
+        return transportObject.category === 'transportation'
+    })
+    
+      const utilityStream = this.props.transaction.filter(utilityObject =>{
+        return utilityObject.category === 'utilities'
+    })  
+    
+    const shoppingStream = this.props.transaction.filter(shoppingObject =>{
+        return shoppingObject.category === 'shopping'
+    })  
+    const entertainmentStream = this.props.transaction.filter(entertainmentObject =>{
+        return entertainmentObject.category === 'entertainment'
+    })  
         
-        console.log(groceryStream);
         
         return(
             <MuiThemeProvider>
             <Aux>
             <Typography className="title" variant="display3" gutterBottom>Daily Spending / Income </Typography>
             <Grid container spacing={24}>
-            
+            <Grid item xs>
+             <IncomeCard data={incomeStream}/>
+             </Grid>
             <Grid item xs>
             <GroceryCard data={groceryStream}/>
             </Grid>
-            
              <Grid item xs>
-            <TransportationCard/>
+             <FastFoodCard data={fastfoodStream}/>
+             </Grid>
+             <Grid item xs>
+                 <HousingCard data={housingStream}/>
+             </Grid>
+             <Grid item xs>
+            <TransportationCard data={transportStream}/>
             </Grid>
             <Grid item xs>
-            <ShoppingCard/>
+                 <UtilitiesCard data={utilityStream}/>
+             </Grid>
+            <Grid item xs>
+            <ShoppingCard data={shoppingStream}/>
             </Grid>
             <Grid item xs>
-            <EntertainmentCard/>
+            <EntertainmentCard data={entertainmentStream}/>
             </Grid>
             
             
@@ -73,6 +106,4 @@ export default connect(mapStateToProps)(Transaction);
 // <Grid item xs>
 //             <HousingCard/>
 //             </Grid>
-// <Grid item xs>
-//             <IncomeCard/>
-//             </Grid>
+// 
