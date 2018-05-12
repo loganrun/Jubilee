@@ -8,8 +8,8 @@ function Navigation() {
   return (
     <ul className="navigation" >
       <NavLink className='NavLink' activeClassName= "active-link" exact to="/">Monthly Budget</NavLink>
-      <NavLink className='NavLink' activeClassName= "active-link" to="/budgetitems">BreakDown</NavLink>
-      <NavLink className='NavLink' activeClassName= "active-link" to="/spending">Daily spending</NavLink>
+      <NavLink className='NavLink' activeClassName= "active-link" to="/budgetitems">Budget Creator</NavLink>
+      <NavLink className='NavLink' activeClassName= "active-link" to="/spending">Daily Spending</NavLink>
     </ul>
   );
 }

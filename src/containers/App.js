@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 //import Layout from '../components/layouts/Layout';
 import Monthlybudget from './BudgetBuilder/MonthlyBudget';
 import Transaction from './BudgetBuilder/Transaction'
-import BudgetItems from './BudgetBuilder/BudgetItems'
+import BudgetSummary from './BudgetBuilder/BudgetSummary'
 import { Route, Switch } from 'react-router-dom';
 import NewLayout from './NewLayout';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -19,8 +19,8 @@ class App extends Component {
      
         <NewLayout>
           <Switch>
-              <Route exact path="/" component={Monthlybudget} />
-              <Route path="/budgetitems" component={BudgetItems} />
+              <Route exact path="/" component={BudgetSummary} />
+              <Route path="/budgetitems" component={Monthlybudget} />
               <Route path="/spending" component={Transaction} />
            </Switch>
          </NewLayout>
