@@ -26,6 +26,11 @@ class Monthlybudget extends Component{
         return incomeObject.type === 'income'
     })
     
+    const tStream = incomeStream.map(function(b){return b.amount}).reduce(function(p,c){return p + c})
+    //const totStream = tStream.map(function(val){ return +val })
+    console.log(tStream)
+  
+  
     
      const expenseStream = this.props.budget.filter(incomeObject =>{
         return incomeObject.type === 'expense'

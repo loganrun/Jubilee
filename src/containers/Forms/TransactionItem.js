@@ -90,6 +90,7 @@ state = {
                 <div>
                  <Field name="category" label="category" component={Select} placeholder="Pick a Category">
                    <MenuItem value="income">Income</MenuItem>
+                    <MenuItem value="debt">Debt</MenuItem>
                    <MenuItem value="groceries">Groceries</MenuItem>
                    <MenuItem value="dining">Dining Out</MenuItem>
                    <MenuItem value="housing">Housing</MenuItem>
@@ -142,6 +143,24 @@ state = {
 
 export default withStyles(styles) (TransactionForm)
 
+// componentDidUpdate () {
+//         if ( this.props.id ) {
+//             if ( !this.state.loadedPost || (this.state.loadedPost && this.state.loadedPost.id !== this.props.id) ) {
+//                 axios.get( 'https://jsonplaceholder.typicode.com/posts/' + this.props.id )
+//                     .then( response => {
+//                         // console.log(response);
+//                         this.setState( { loadedPost: response.data } );
+//                     } );
+//             }
+//         }
+//     }
+
+//     deletePostHandler = () => {
+//         axios.delete('https://jsonplaceholder.typicode.com/posts/' + this.props.id)
+//             .then(response => {
+//                 console.log(response);
+//             });
+//     }
 // <Field
                 //   name="date"
                 //   showTime={false}

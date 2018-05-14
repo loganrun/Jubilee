@@ -1,51 +1,35 @@
 import React, {Component} from 'react';
 import Grid from 'material-ui/Grid'
-//import Paper from 'material-ui/Paper'
-//import { income, expense } from '../../store.js'
+import axios from 'axios';
 import Aux from '../../hoc/Aux';
-//import BudetItem from '../Forms/BudgetItem'
-//import ResponsiveDialog from '../Forms/DialogBox'
-//import Header from '../../components/layouts/Header/header'
-//import NewLayout from '../NewLayout';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {connect} from 'react-redux'
-//import ExpenseStream from '../../components/layouts/Main/ExpenseStream'
-//import IncomeStream from '../../components/layouts/Main/IncomeStream'
-//import BudgetMonth from '../../components/layouts/Main/BudgetMonth'
-//import ActualMonth from '../../components/layouts/Main/ActualMonth'
-//import IconButton from 'material-ui/IconButton';
-//import { FormControl, FormHelperText } from 'material-ui/Form';
-//import * as actionTypes from '../store/actions'
-//import {connect} from 'react-redux'
-//import TextField from 'material-ui/TextField';
-//import Table, { TableCell, TableHead, TableRow, TableFooter } from 'material-ui/Table';
-//import { withStyles } from 'material-ui/styles';
 import SummaryTable from '../Forms/SummaryTable';
-//import createMuiTheme from 'material-ui/styles'
-//import MenuItem from 'material-ui/Menu/MenuItem';
-//import Visibility from '@material-ui/icons/Visibility';
-//import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import Typography from 'material-ui/Typography';
 import './MonthlyBudget.css'
 
-//import LayoutBudget from '../../components/layouts/LayoutBudget'
-//import BudgetCategories from '../../components/Budget/BudgetCategories/Budgetcategories'
 
-
-// const muiTheme = createMuiTheme ({
-//     palette: {
-//         primary1Color: 'orange500',
-//         accentColor: 'deepOrange500',
-//     }
-//})
  
 class BudgetSummary extends Component{
-    state = {
-        data: [],
+ 
+  componentDidMount () {
+        axios.get( 'https://jsonplaceholder.typicode.com/posts' )
+            .then( response => {
+                const posts = response.data.slice(0, 4);
+                const updatedPosts = posts.map(post => {
+                    return {
+                        ...post,
+                        author: 'Max'
+                    }
+                });
+                this.setState({posts: updatedPosts});
+                // console.log( response );
+            } )
+            .catch(error => {
+                // console.log(error);
+                this.setState({error: true});
+            });
     }
-    
-    
-    
-
     
  render(){
      
@@ -56,10 +40,16 @@ class BudgetSummary extends Component{
     //  const expenseStream = this.state.data.filter(incomeObject =>{
     //     return incomeObject.type === 'expense'
     // })
+    const bud = this.props.budget
+    console.log(bud)
+    
+    const trans = this.props.transaction
+    console.log(trans)
     
      return(
          <MuiThemeProvider>
          <Aux>
+         <Typography className="title" variant="display3" gutterBottom>Actual Spending / Income </Typography>
          <Grid container spacing={24}>
         <SummaryTable/>
         

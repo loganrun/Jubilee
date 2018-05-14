@@ -9,7 +9,9 @@ import EntertainmentCard from '../../components/Cards/Entertainment'
 import UtilitiesCard from '../../components/Cards/Utilities'
 import HousingCard from '../../components/Cards/Housing'
 import IncomeCard from '../../components/Cards/Income'
+import DebtCard from '../../components/Cards/Debt'
 import TransactionItem from '../Forms/TransactionItem'
+
 import Grid from 'material-ui/Grid'
 import {connect} from 'react-redux'
 import {addTransactionItem} from '../store/actions'
@@ -46,7 +48,10 @@ class Transaction extends Component {
     })  
     const entertainmentStream = this.props.transaction.filter(entertainmentObject =>{
         return entertainmentObject.category === 'entertainment'
-    })  
+    })
+    const debtStream = this.props.transaction.filter(debtObject =>{
+        return debtObject.category === 'debt'
+    })
         
         
         return(
@@ -57,6 +62,9 @@ class Transaction extends Component {
             <Grid item xs>
              <IncomeCard data={incomeStream}/>
              </Grid>
+             <Grid item xs>
+            <DebtCard data={debtStream}/>
+            </Grid>
             <Grid item xs>
             <GroceryCard data={groceryStream}/>
             </Grid>
@@ -97,13 +105,3 @@ function mapStateToProps(state){
 
 export default connect(mapStateToProps)(Transaction);
 
-//  <Grid item xs>
-//             <FastFoodCard/>
-//             </Grid>
-// <Grid item xs>
-//             <UtilitiesCard/>
-//             </Grid>
-// <Grid item xs>
-//             <HousingCard/>
-//             </Grid>
-// 
