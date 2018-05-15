@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import Grid from 'material-ui/Grid'
-import axios from 'axios';
 import Aux from '../../hoc/Aux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {connect} from 'react-redux'
 import SummaryTable from '../Forms/SummaryTable';
 import Typography from 'material-ui/Typography';
+import {fetchBudget} from '../store/actions'
 import './MonthlyBudget.css'
 
 
@@ -13,22 +13,8 @@ import './MonthlyBudget.css'
 class BudgetSummary extends Component{
  
   componentDidMount () {
-        axios.get( 'https://jsonplaceholder.typicode.com/posts' )
-            .then( response => {
-                const posts = response.data.slice(0, 4);
-                const updatedPosts = posts.map(post => {
-                    return {
-                        ...post,
-                        author: 'Max'
-                    }
-                });
-                this.setState({posts: updatedPosts});
-                // console.log( response );
-            } )
-            .catch(error => {
-                // console.log(error);
-                this.setState({error: true});
-            });
+       
+        this.props.fetchBudget();
     }
     
  render(){
@@ -69,4 +55,22 @@ function mapStateToProps(state){
 }
  
 
-export default connect(mapStateToProps)(BudgetSummary);
+export default connect(mapStateToProps, {fetchBudget})(BudgetSummary);
+
+
+ // axios.get( 'https://jsonplaceholder.typicode.com/posts' )
+        //     .then( response => {
+        //         const posts = response.data.slice(0, 4);
+        //         const updatedPosts = posts.map(post => {
+        //             return {
+        //                 ...post,
+        //                 author: 'Max'
+        //             }
+        //         });
+        //         this.setState({posts: updatedPosts});
+        //         // console.log( response );
+        //     } )
+        //     .catch(error => {
+        //         // console.log(error);
+        //         this.setState({error: true});
+        //     });

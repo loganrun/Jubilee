@@ -12,6 +12,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 //import * as actionTypes from '../store/actions'
 import {connect} from 'react-redux'
 //import {bindactionCreators} from 'redux'
+import Typography from 'material-ui/Typography';
 import IncomeTable from '../Forms/IncomeTable';
 import ExpenseTable from '../Forms/ExpenseTable';
 import {addBudgetItem} from '../store/actions'
@@ -40,6 +41,7 @@ class Monthlybudget extends Component{
      return(
          <MuiThemeProvider>
          <Aux>
+         <Typography className="title" variant="display3" gutterBottom>Budget Creator </Typography>
          <Grid container spacing={24}>
         <IncomeTable    data={incomeStream}
                         

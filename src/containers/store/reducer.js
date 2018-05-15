@@ -2,6 +2,7 @@ import * as actionTypes from './actions';
 
 
 const initialState = {
+    errorMessage: "",
     budgetItem : {
         name: '',
         category: '',
@@ -23,11 +24,11 @@ const initialState = {
     
     {
         id: '38974732',
-        name: 'Amazon',
+        name: 'Office',
         category: 'Employment', //Debts, Housing, Food, Transportation
         type: 'income', //income,expense
         frequency: 'Monthly', //monthly income or expense yes or no
-        amount: 4000 //how much
+        amount: 8000 //how much
         
     },
     {
@@ -139,11 +140,11 @@ const initialState = {
     
     {
         id: '38974732',
-        name: 'Amazon',
+        name: 'Office',
         category: 'income', //Debts, Housing, Food, Transportation
         type: 'income', //income,expense
         date: '5/12/18', //monthly income or expense yes or no
-        amount:4000//how much
+        amount:8000//how much
         
     },
     {
@@ -262,6 +263,17 @@ const reducer = (state = initialState, action) => {
                 transaction: [...state.transaction, action.newItem]
                 
             };
+        case actionTypes.FETCHING_BUDGET_REQUEST:
+            return state;
+        case actionTypes.FETCHING_BUDGET_FAILURE:
+            return{
+                ...state, errorMessage: action.payload
+            }
+        case actionTypes.FETCHING_BUDGET_SUCCESS:
+            return{
+                ...state,
+                budget: [...state.budget, action.payload]
+            }
         default:
             return state;
         

@@ -7,7 +7,8 @@ import App from './containers/App';
 import registerServiceWorker from './registerServiceWorker';
 
 import {Provider} from 'react-redux'
-import {createStore, combineReducers} from 'redux'
+import {createStore, applyMiddleware, combineReducers} from 'redux'
+import thunk from 'redux-thunk';
  import {reducer as formReducer} from 'redux-form'
  import BudgetReducer from './containers/store/reducer'
 
@@ -16,7 +17,7 @@ import {createStore, combineReducers} from 'redux'
      form: formReducer,
  })
 
- const store = createStore(rootReducer);
+ const store = applyMiddleware(thunk)(createStore)(rootReducer);
 const app = (
         <Provider store={store}><BrowserRouter><App /></BrowserRouter></Provider>
     )

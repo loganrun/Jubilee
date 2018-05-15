@@ -9,10 +9,12 @@ import DialogBox from './DialogBox'
 import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider';
 import DateFnsUtils from 'material-ui-pickers/utils/date-fns-utils';
 import { DatePicker } from 'material-ui-pickers';
-import {connect} from 'react-redux'
+//import {connect} from 'react-redux'
 import DateTimePicker from 'react-widgets/lib/DateTimePicker'
+//import DropdownList from 'react-widgets/lib/DropdownList'
 import moment from 'moment'
 import momentLocaliser from 'react-widgets-moment'
+import Typography from 'material-ui/Typography';
 
 import 'react-widgets/dist/css/react-widgets.css'
 
@@ -43,7 +45,7 @@ state = {
     render(){
         
         const { classes } = this.props;
-        const { selectedDate } = this.state;
+       const { selectedDate } = this.state;
     
     const renderDatePicker = ({input, label}) =>(
         <DatePicker
@@ -57,14 +59,17 @@ state = {
                   />
      );
      
-//      const renderDateTimePicker = ({ input: { onChange, value }, showTime }) =>(
-//   <DateTimePicker
-//     onChange={onChange}
-//     format="DD MMM YYYY"
-//     time={showTime}
-//     value={!value ? null : new Date(value)}
-//   />
-//)
+     const renderDateTimePicker = ({ input: { onChange, value }, showTime }) =>(
+          <DateTimePicker
+            onChange={onChange}
+            format="DD MMM YYYY"
+            time={showTime}
+            value={!value ? null : new Date(value)}
+          />
+)
+
+    
+        
     const { handleSubmit } = this.props;
         
         return(
@@ -75,16 +80,16 @@ state = {
                 <form style={{styles}} onSubmit= {handleSubmit}>
                 <div>
                 <Field
+                  name="date"
+                  showTime={false}
+                  component={renderDateTimePicker}
+                />
+                </div>
+                <div>
+                <Field
                     label="name"
                     name = "name"
                     component={TextField}
-                />
-                </div>
-                
-                <div className="picker">
-                <Field
-                label="date"
-                component={renderDatePicker}
                 />
                 </div>
                 <div>
@@ -99,7 +104,7 @@ state = {
                    <MenuItem value="shopping">Shopping</MenuItem>
                    <MenuItem value="entertainment">Entertainment</MenuItem>
                  </Field>
-                 
+                  <Typography variant="subheading" gutterBottom>Categories</Typography>
                  </div>
                  <div>
                 <Field
@@ -107,8 +112,8 @@ state = {
                     name = "amount"
                     component={TextField}
                 />
-               
                 </div>
+                
                  <div>
                 <Button variant="raised" color="primary" Primary style = {{styles}} type="submit">Submit</Button>
                 </div>
@@ -142,6 +147,13 @@ state = {
 //   }
 
 export default withStyles(styles) (TransactionForm)
+
+ // <div className="picker">
+                // <Field
+                // label="date"
+                // component={renderDatePicker}
+                // />
+                // </div>
 
 // componentDidUpdate () {
 //         if ( this.props.id ) {
