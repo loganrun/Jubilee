@@ -13,6 +13,7 @@ import { withStyles } from 'material-ui/styles';
 import { Field, reduxForm} from 'redux-form'
 //import Modal from './Modal'
 import DialogBox from './DialogBox'
+import aux from '../../hoc/Aux'
 
 const styles = {
      marginLeft: 250
@@ -29,6 +30,22 @@ const styles = {
 //   },
 // });
 
+const required = value => value ? undefined : 'Required'
+const maxLength = max => value =>
+  value && value.length > max ? `Must be ${max} characters or less` : undefined
+const maxLength15 = maxLength(15)
+const number = value => value && isNaN(Number(value)) ? 'Must be a number' : undefined
+const minValue = min => value =>
+  value && value < min ? `Must be at least ${min}` : undefined
+const minValue18 = minValue(18)
+const email = value =>
+  value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value) ?
+  'Invalid email address' : undefined
+const tooOld = value =>
+  value && value > 65 ? 'You might be too old for this' : undefined
+const aol = value =>
+  value && /.+@aol\.com/.test(value) ?
+  'Really? You still use AOL for your email?' : undefined
 
 class BudgetItem extends Component {
     
@@ -55,11 +72,18 @@ class BudgetItem extends Component {
     render(){
 
     const { handleSubmit } = this.props;
+    const lower = value => value && value.toLowerCase()
     
-    const renderTextField = ({input, label}) =>(
-        <TextField
-        label={label} defaultValue="" {...input}/>
-        );
+    const renderTextField = ({ input, label, type, meta: { touched, error, warning } }) => (
+        <aux>
+        <TextField label={label} defaultValue="" {...input}  />
+        {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
+         
+  
+        </aux>
+ 
+
+)
         
         return(
             <Grid item xs>
@@ -67,42 +91,42 @@ class BudgetItem extends Component {
         <DialogBox>
             
                 <form style={{styles}} onSubmit= {handleSubmit}>
-            
                 <div>
                 <Field
-                    label="id"
-                    name = "id"
+                    label="name"
+                    name = "name"
                     component={renderTextField}
+                    validate={[ required]}
                 />
+                </div>
+                 <div>
+                
+                <Field
+                    label="amount"
+                    name = "amount"
+                    type="number"
+                    component={renderTextField}
+                    validate={[ required, number]}
+                />
+               
                 </div>
                 <div>
                 <Field
                     label="category"
                     name = "category"
                     component={renderTextField}
+                    validate={[ required]}
                 />
                   
                 </div>
-                 <div>
-                <Field
-                    label="amount"
-                    name = "amount"
-                    component={renderTextField}
-                />
-               
-                </div>
-                <div>
-                <Field
-                    label="name"
-                    name = "name"
-                    component={renderTextField}
-                />
-                </div>
+                
+                
                 <div>
                 <Field
                     label="frequency"
                     name = "frequency"
                     component={renderTextField}
+                    validate={[required]}
                 />
                 </div>
                 <div>
@@ -110,6 +134,8 @@ class BudgetItem extends Component {
                     label="type"
                     name = "type"
                     component={renderTextField}
+                    validate={[ required]}
+                    normalize={lower}
                 />
 
                 </div>
@@ -144,6 +170,18 @@ class BudgetItem extends Component {
 //   }
 
 export default withStyles(styles) (BudgetForm)
+
+// <div>
+//                 <Field
+//                     label="id"
+//                     name = "id"
+//                     component={renderField}
+//                     validate={[ required]}
+//                 />
+//                 </div>
+
+        // <TextField
+        // label={label} defaultValue="" {...input}/>
 
 
 //onSubmit= {(e) => {this.addBudgetItem(e)}}

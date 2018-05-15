@@ -1,18 +1,37 @@
-import React from 'react'
+import React, {Component} from 'react'
 import TableFooter from 'material-ui/Table'
+//import { withStyles } from 'material-ui/styles';
+import {connect} from 'react-redux'
+import './IncomeFooter.css'
 
-
-const incomeFooter = (data) =>{
-    console.log(data)     
+class incomeFooter extends Component {
+    
+    
+    
+    render(){
+        const incomeStream = this.props.budget.filter(incomeObject =>{
+        return incomeObject.type === 'income'
+    })
+    
+    const incomeTotal = incomeStream.map(function(b){return b.amount}).reduce(function(p,c){return p + c}
+    
+    )
+       
     return(
-       <TableFooter>
-         Total = {data.amount.reduce(function (firstTotal,nextTotal){
-          return firstTotal + nextTotal
-       }
-       )} 
-         </TableFooter>
+       <TableFooter className="incomeTableFooter"> Total = {incomeTotal} </TableFooter>
         
     )
+    }
 }
 
-export default incomeFooter
+function mapStateToProps(state){
+    return {
+        budget: state.budget.budget
+    }
+}
+
+
+ 
+
+export default connect(mapStateToProps)(incomeFooter);
+

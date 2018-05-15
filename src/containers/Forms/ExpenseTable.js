@@ -1,10 +1,11 @@
 import React from 'react';
 //import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import Table, { TableBody, TableCell, TableHead, TableRow, TableFooter } from 'material-ui/Table';
+import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table';
 import Paper from 'material-ui/Paper';
 import Grid from 'material-ui/Grid'
 import red from 'material-ui/colors/red';
+import ExpenseFooter from './ExpenseFooter'
 
 const CustomTableCell = withStyles(theme => ({
   head: {
@@ -79,7 +80,7 @@ const row = (x, i, header) =>
         <TableBody>
           {data.map((x,i)=> row(x,i, header))}
         </TableBody>
-        <TableFooter>Total</TableFooter>
+        <ExpenseFooter/>
       </Table>
     </Paper>
     </Grid>

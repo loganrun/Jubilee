@@ -36,9 +36,9 @@ function DebtCard(props) {
           </Typography>
           <Table className={classes.table}>
         <TableBody>
-          {props.data.map(n => {
+          {props.data.map((n,i) => {
             return (
-              <TableRow key={n.date}>
+              <TableRow key={n.i}>
                 <TableCell>{n.name}</TableCell>
                 <TableCell numeric>${n.amount}</TableCell>
                 <TableCell>{Moment(n.date).format('MM/DD/YY')}</TableCell>

@@ -12,6 +12,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 //import * as actionTypes from '../store/actions'
 import {connect} from 'react-redux'
 //import {bindactionCreators} from 'redux'
+//import IncomeFooter from '../Forms/IncomeFooter'
 import Typography from 'material-ui/Typography';
 import IncomeTable from '../Forms/IncomeTable';
 import ExpenseTable from '../Forms/ExpenseTable';
@@ -27,14 +28,14 @@ class Monthlybudget extends Component{
         return incomeObject.type === 'income'
     })
     
-    const tStream = incomeStream.map(function(b){return b.amount}).reduce(function(p,c){return p + c})
-    //const totStream = tStream.map(function(val){ return +val })
-    console.log(tStream)
+    const incomeTotal = incomeStream.map(function(b){return b.amount}).reduce(function(p,c){return p + c}
+    
+    )
   
   
     
      const expenseStream = this.props.budget.filter(incomeObject =>{
-        return incomeObject.type === 'expense'
+        return incomeObject.type === 'expense' 
     })
     
     console.log(expenseStream)
@@ -42,8 +43,9 @@ class Monthlybudget extends Component{
          <MuiThemeProvider>
          <Aux>
          <Typography className="title" variant="display3" gutterBottom>Budget Creator </Typography>
+         <Typography className="title" variant="subheading" gutterBottom>Use this tool to create your monthly budget.</Typography>
          <Grid container spacing={24}>
-        <IncomeTable    data={incomeStream}
+        <IncomeTable    data={incomeStream} income={incomeTotal}
                         
                         header={[
                             {

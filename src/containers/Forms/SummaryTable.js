@@ -3,10 +3,13 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table';
 import Paper from 'material-ui/Paper';
+import Grid from 'material-ui/Grid'
+import lightGreen from 'material-ui/colors/lightGreen'
+//import {connect} from 'react-redux'
 
 const CustomTableCell = withStyles(theme => ({
   head: {
-    backgroundColor: theme.palette.common.black,
+    backgroundColor: lightGreen[500],
     color: theme.palette.common.white,
   },
   body: {
@@ -48,15 +51,17 @@ function SummaryTable(props) {
   const { classes } = props;
 
   return (
+    <Grid item xs>
     <Paper className={classes.root}>
       <Table className={classes.table}>
         <TableHead>
           <TableRow>
-            <CustomTableCell>Dessert (100g serving)</CustomTableCell>
-            <CustomTableCell numeric>Calories</CustomTableCell>
-            <CustomTableCell numeric>Fat (g)</CustomTableCell>
-            <CustomTableCell numeric>Carbs (g)</CustomTableCell>
-            <CustomTableCell numeric>Protein (g)</CustomTableCell>
+            <CustomTableCell>Name</CustomTableCell>
+            <CustomTableCell>Type</CustomTableCell>
+            <CustomTableCell>Category</CustomTableCell>
+            <CustomTableCell>Frequency</CustomTableCell>
+            <CustomTableCell>Budgeted Amount</CustomTableCell>
+            <CustomTableCell>Actual Amount</CustomTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -75,7 +80,9 @@ function SummaryTable(props) {
           })}
         </TableBody>
       </Table>
+      
     </Paper>
+    </Grid>
   );
 }
 

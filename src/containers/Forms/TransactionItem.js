@@ -9,9 +9,7 @@ import DialogBox from './DialogBox'
 import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider';
 import DateFnsUtils from 'material-ui-pickers/utils/date-fns-utils';
 import { DatePicker } from 'material-ui-pickers';
-//import {connect} from 'react-redux'
 import DateTimePicker from 'react-widgets/lib/DateTimePicker'
-//import DropdownList from 'react-widgets/lib/DropdownList'
 import moment from 'moment'
 import momentLocaliser from 'react-widgets-moment'
 import Typography from 'material-ui/Typography';
@@ -31,33 +29,40 @@ const styles = theme => ({
   },
 });
 
+const required = value => value ? undefined : 'Required'
+//const maxLength = max => value =>
+ // value && value.length > max ? `Must be ${max} characters or less` : undefined
+//const maxLength15 = maxLength(15)
+const number = value => value && isNaN(Number(value)) ? 'Must be a number' : undefined
+//const minValue = min => value =>
+  //value && value < min ? `Must be at least ${min}` : undefined
 
 class TransactionItem extends Component {
 
-state = {
-    selectedDate: new Date(),
-  }
+// state = {
+//     selectedDate: new Date(),
+//   }
 
-  handleDateChange = (date) => {
-    this.setState({ selectedDate: date });
-  }
+//   handleDateChange = (date) => {
+//     this.setState({ selectedDate: date });
+//   }
 
     render(){
         
-        const { classes } = this.props;
-       const { selectedDate } = this.state;
+    //     const { classes } = this.props;
+    //   const { selectedDate } = this.state;
     
-    const renderDatePicker = ({input, label}) =>(
-        <DatePicker
-                    label="date"
-                    showTodayButton
-                    disableFuture
-                    maxDateMessage="Date must be less than today"
-                    value={selectedDate}
-                    onChange={this.handleDateChange}
-                    animateYearScrolling={false}
-                  />
-     );
+    // const renderDatePicker = ({input, label}) =>(
+    //     <DatePicker
+    //                 label="date"
+    //                 showTodayButton
+    //                 disableFuture
+    //                 maxDateMessage="Date must be less than today"
+    //                 value={selectedDate}
+    //                 onChange={this.handleDateChange}
+    //                 animateYearScrolling={false}
+    //               />
+    //  );
      
      const renderDateTimePicker = ({ input: { onChange, value }, showTime }) =>(
           <DateTimePicker
@@ -66,6 +71,17 @@ state = {
             time={showTime}
             value={!value ? null : new Date(value)}
           />
+    )
+    
+    const renderTextField = ({ input, label, type, meta: { touched, error, warning } }) => (
+        <aux>
+        <TextField label={label} defaultValue="" {...input}  />
+        {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
+         
+  
+        </aux>
+ 
+
 )
 
     
@@ -83,17 +99,19 @@ state = {
                   name="date"
                   showTime={false}
                   component={renderDateTimePicker}
+                  validate={[ required]}
                 />
                 </div>
                 <div>
                 <Field
                     label="name"
                     name = "name"
-                    component={TextField}
+                    component={renderTextField}
+                    validate={[ required]}
                 />
                 </div>
                 <div>
-                 <Field name="category" label="category" component={Select} placeholder="Pick a Category">
+                 <Field name="category" label="category" component={Select} placeholder="Pick a Category" validate={[ required]}>
                    <MenuItem value="income">Income</MenuItem>
                     <MenuItem value="debt">Debt</MenuItem>
                    <MenuItem value="groceries">Groceries</MenuItem>
@@ -110,7 +128,10 @@ state = {
                 <Field
                     label="amount"
                     name = "amount"
-                    component={TextField}
+                    type="number"
+                    component={renderTextField}
+                    validate={[ required, number]}
+                    
                 />
                 </div>
                 

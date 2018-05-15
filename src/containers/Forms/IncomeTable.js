@@ -1,11 +1,11 @@
 import React from 'react';
 //import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import Table, { TableBody, TableCell, TableHead, TableRow, TableFooter } from 'material-ui/Table';
+import Table, { TableBody, TableCell, TableHead, TableRow} from 'material-ui/Table';
 import Paper from 'material-ui/Paper';
 import Grid from 'material-ui/Grid'
 import blue from 'material-ui/colors/blue'
-//import IncomeFooter from './IncomeFooter'
+import IncomeFooter from './IncomeFooter'
 
 const CustomTableCell = withStyles(theme => ({
   head: {
@@ -33,7 +33,7 @@ const styles = theme => ({
   },
 });
 
-
+//const footerTotal = this.props.incomeTotal
 
 const row = (x, i, header) =>
             <TableRow key={`tr-${i}`}>
@@ -47,7 +47,6 @@ const row = (x, i, header) =>
               </TableRow>;
 
     const IncomeTable = ({data,header}) => {
-    console.log(data)
    
 
   return (
@@ -75,38 +74,17 @@ const row = (x, i, header) =>
                       </TableRow>
                   );
                 })}
+                <IncomeFooter/>
               </TableBody>
-              <TableFooter>Total</TableFooter>
+             
       </Table>
     </Paper>
     </Grid>
   );
 }
 
-// 
-    // const incomeTotal = incomeStream.amount
-    // if(incomeTotal == null){
-    //         return incomeTotal
-    // }else{
-    //     incomeTotal.reduce(function (firstTotal,nextTotal) {
-    //     return firstTotal + nextTotal
-    //     }
-    // )}
+
 
 export default withStyles(styles)(IncomeTable);
 
-//<IncomeFooter data={data} />
-
-// <TableHead>Income</TableHead>
-//         <TableHead>
-//           <TableRow>
-//             {header.map((x,i) => 
-              
-//               <CustomTableCell key={`thc-${i}`}>{x.name} </CustomTableCell>      
-                
-//             )}
-//           </TableRow>
-//         </TableHead>
-//         <TableBody>
-//           {data.map((x,i)=> row(x,i, header))}
-//         </TableBody>
+ //<TableFooter>Total {footerTotal}</TableFooter>
