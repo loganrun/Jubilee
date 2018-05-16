@@ -7,14 +7,14 @@ import {Doughnut} from 'react-chartjs-2';
 const ActualChart = (props)=> {
     
 const actualIncome = props.data.filter(incomeObject =>{
-        return incomeObject.type === 'income'
+        return incomeObject.category === 'income'
     })
  const incomeTotal = actualIncome.map(function(b){return b.amount}).reduce(function(p,c){return p + c}
     
     )
     
 const actualExpense = props.data.filter(expenseObject =>{
-        return expenseObject.type === 'expense'
+        return expenseObject.category !== 'income'
     })
     
     const expenseTotal = actualExpense.map(function(b){return b.amount}).reduce(function(p,c){return p + c}

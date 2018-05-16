@@ -22,8 +22,8 @@ class BudgetSummary extends Component{
     
  render(){
      
-     const budgetProjection = this.props.budget
-     const actualSpending = this.props.transaction
+    //  const budgetProjection = totalBudget
+    //  const actualSpending = totalTransactions
      
      const incomeStream = this.props.budget.filter(incomeObject =>{
          return incomeObject.type === 'income'
@@ -39,12 +39,15 @@ class BudgetSummary extends Component{
     console.log(totalBudget)
     
     const incomeTransaction = this.props.transaction.filter(incomeObject =>{
-        return incomeObject.type ==='income'
+        return incomeObject.category ==='income'
     })
     
+    console.log(incomeTransaction)
+    
     const expenseTransaction = this.props.transaction.filter(incomeObject =>{
-          return incomeObject.type === 'expense'
+          return incomeObject.category !== 'income'
       })
+      console.log(expenseTransaction)
       
     const totalTransactions = incomeTransaction.concat(expenseTransaction)
     console.log(totalTransactions)
@@ -53,12 +56,15 @@ class BudgetSummary extends Component{
          <MuiThemeProvider>
          <Aux>
          <Typography className="title" variant="display3" gutterBottom>Actual Spending / Income </Typography>
-         
-         <Grid container spacing={24}>
-         <Grid item xs>
-         <BudgetChart data={budgetProjection}/>
-         <ActualBudget data ={actualSpending}/>
+         <Grid container spacing={12}>
+         <Grid item xs='5' >
+         <BudgetChart data={totalBudget}/>
          </Grid>
+         <Grid item xs='5'>
+         <ActualBudget data ={totalTransactions}/>
+         </Grid>
+         </Grid>
+         <Grid container spacing={24}>
          <Grid item xs>
         <SummaryTable data={totalBudget}/>
         </Grid>

@@ -59,7 +59,7 @@ function ActualTable(props) {
             <CustomTableCell>Name</CustomTableCell>
             <CustomTableCell>Type</CustomTableCell>
             <CustomTableCell>Category</CustomTableCell>
-            <CustomTableCell>Budgeted Amount</CustomTableCell>
+            <CustomTableCell>Actual Amount</CustomTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
