@@ -47,7 +47,7 @@ const styles = theme => ({
 //   createData('Gingerbread', 356, 16.0, 49, 3.9),
 // ];
 
-function SummaryTable(props) {
+function ActualTable(props) {
   const { classes } = props;
 
   return (
@@ -59,7 +59,6 @@ function SummaryTable(props) {
             <CustomTableCell>Name</CustomTableCell>
             <CustomTableCell>Type</CustomTableCell>
             <CustomTableCell>Category</CustomTableCell>
-            <CustomTableCell>Frequency</CustomTableCell>
             <CustomTableCell>Budgeted Amount</CustomTableCell>
           </TableRow>
         </TableHead>
@@ -72,7 +71,6 @@ function SummaryTable(props) {
                 </CustomTableCell>
                 <CustomTableCell numeric>{n.type}</CustomTableCell>
                 <CustomTableCell numeric>{n.category}</CustomTableCell>
-                <CustomTableCell numeric>{n.frequency}</CustomTableCell>
                 <CustomTableCell numeric>{n.amount}</CustomTableCell>
               </TableRow>
             );
@@ -85,8 +83,8 @@ function SummaryTable(props) {
   );
 }
 
-SummaryTable.propTypes = {
+ActualTable.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SummaryTable);
+export default withStyles(styles)(ActualTable);

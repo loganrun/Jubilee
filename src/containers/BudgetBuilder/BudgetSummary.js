@@ -6,7 +6,10 @@ import {connect} from 'react-redux'
 import SummaryTable from '../Forms/SummaryTable';
 import Typography from 'material-ui/Typography';
 import {fetchBudget} from '../store/actions'
-import './MonthlyBudget.css'
+import ActualTable from '../Forms/ActualTable'
+//import './MonthlyBudget.css'
+import BudgetChart from '../Charts/BudgetChart.js'
+import ActualBudget from '../Charts/ActualBudget.js'
 
 
  
@@ -19,26 +22,49 @@ class BudgetSummary extends Component{
     
  render(){
      
-    //  const incomeStream = this.state.data.filter(incomeObject =>{
-    //     return incomeObject.type === 'income'
-    // })
+     const budgetProjection = this.props.budget
+     const actualSpending = this.props.transaction
      
-    //  const expenseStream = this.state.data.filter(incomeObject =>{
-    //     return incomeObject.type === 'expense'
-    // })
-    const bud = this.props.budget
-    console.log(bud)
+     const incomeStream = this.props.budget.filter(incomeObject =>{
+         return incomeObject.type === 'income'
+     })
+     
+     console.log(incomeStream)
+     
+      const expenseStream = this.props.budget.filter(incomeObject =>{
+          return incomeObject.type === 'expense'
+      })
     
-    const trans = this.props.transaction
-    console.log(trans)
+    const totalBudget = incomeStream.concat(expenseStream)
+    console.log(totalBudget)
+    
+    const incomeTransaction = this.props.transaction.filter(incomeObject =>{
+        return incomeObject.type ==='income'
+    })
+    
+    const expenseTransaction = this.props.transaction.filter(incomeObject =>{
+          return incomeObject.type === 'expense'
+      })
+      
+    const totalTransactions = incomeTransaction.concat(expenseTransaction)
+    console.log(totalTransactions)
     
      return(
          <MuiThemeProvider>
          <Aux>
          <Typography className="title" variant="display3" gutterBottom>Actual Spending / Income </Typography>
+         
          <Grid container spacing={24}>
-        <SummaryTable/>
-        
+         <Grid item xs>
+         <BudgetChart data={budgetProjection}/>
+         <ActualBudget data ={actualSpending}/>
+         </Grid>
+         <Grid item xs>
+        <SummaryTable data={totalBudget}/>
+        </Grid>
+        <Grid item xs>
+        <ActualTable data={totalTransactions}/>
+        </Grid>
         </Grid>
         </Aux>
         </MuiThemeProvider>

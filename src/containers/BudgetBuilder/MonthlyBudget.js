@@ -28,9 +28,6 @@ class Monthlybudget extends Component{
         return incomeObject.type === 'income'
     })
     
-    const incomeTotal = incomeStream.map(function(b){return b.amount}).reduce(function(p,c){return p + c}
-    
-    )
   
   
     
@@ -38,14 +35,13 @@ class Monthlybudget extends Component{
         return incomeObject.type === 'expense' 
     })
     
-    console.log(expenseStream)
      return(
          <MuiThemeProvider>
          <Aux>
          <Typography className="title" variant="display3" gutterBottom>Budget Creator </Typography>
          <Typography className="title" variant="subheading" gutterBottom>Use this tool to create your monthly budget.</Typography>
          <Grid container spacing={24}>
-        <IncomeTable    data={incomeStream} income={incomeTotal}
+        <IncomeTable    data={incomeStream} 
                         
                         header={[
                             {

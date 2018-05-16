@@ -126,6 +126,7 @@ class TransactionItem extends Component {
                  </div>
                  <div>
                 <Field
+                    parse={value => Number(value)}
                     label="amount"
                     name = "amount"
                     type="number"
