@@ -11,32 +11,33 @@ import {createStore, applyMiddleware, combineReducers, compose} from 'redux'
 import thunk from 'redux-thunk';
 import {reducer as formReducer} from 'redux-form'
 import BudgetReducer from './containers/store/reducer'
-//import {reactReduxFirebase,firebaseReducer} from 'react-redux-firebase'
-//import firebase from 'firebase'
+import {reactReduxFirebase,firebaseReducer} from 'react-redux-firebase'
+import firebase from 'firebase'
 //import {firebaseApp} from './config/firebase'
 
-// const firebaseConfig = { apiKey: "AIzaSyBW_sPqfpdIw_B0cJXhYhVxhFAmA2-_DrM",
-//     authDomain: "jubilee2018-34a0a.firebaseapp.com",
-//     databaseURL: "https://jubilee2018-34a0a.firebaseio.com",
-//     projectId: "jubilee2018-34a0a",
-//     storageBucket: "",
-//     messagingSenderId: "471910822129"}
+const firebaseConfig = { apiKey: "AIzaSyBW_sPqfpdIw_B0cJXhYhVxhFAmA2-_DrM",
+    authDomain: "jubilee2018-34a0a.firebaseapp.com",
+    databaseURL: "https://jubilee2018-34a0a.firebaseio.com",
+    projectId: "jubilee2018-34a0a",
+    storageBucket: "",
+    messagingSenderId: "471910822129"}
     
-//     firebase.initializeApp(firebaseConfig)
+    firebase.initializeApp(firebaseConfig)
 
-//const rrconfig = {
-//     userProfile: 'users'
-// }
+const rrconfig = {
+    userProfile: 'users'
+}
     
-//const createStoreWithFirebase = compose(reactReduxFirebase(firebase, rrconfig))
+const createStoreWithFirebase = compose(applyMiddleware(thunk),
+reactReduxFirebase(firebase, rrconfig))(createStore)
 
  const rootReducer = combineReducers({
      budget: BudgetReducer,
      form: formReducer,
-    // firebase: firebaseReducer
+    firebase: firebaseReducer
  })
 
- const store = applyMiddleware(thunk)(createStore)(rootReducer);
+ const store = createStoreWithFirebase(rootReducer);
 const app = (
         <Provider store={store}><BrowserRouter><Main /></BrowserRouter></Provider>
     )

@@ -4,12 +4,14 @@ import React, {Component} from 'react';
 
 //import { userActions } from '../_actions';
 import UserDialog from './UserDialog'
+
+
 class LoginPage extends Component {
     constructor(props) {
         super(props);
 
     //     // reset login status
-    //     this.props.dispatch(userActions.logout());
+        //this.props.dispatch(userActions.logout());
 
         this.state = {
             username: '',

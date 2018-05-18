@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
-//import { Link } from 'react-router-dom';
-//import { connect } from 'react-redux';
+import {withFirebase} from 'react-redux-firebase'
 
-//import { userActions } from '../_actions';
 import SignBox from './SignBox'
 class SignUpPage extends Component {
     constructor(props) {
@@ -36,12 +34,16 @@ class SignUpPage extends Component {
     handleSubmit(event) {
         event.preventDefault();
 
-    //     this.setState({ submitted: true });
-    //     const { user } = this.state;
-    //     const { dispatch } = this.props;
-    //     if (user.firstName && user.lastName && user.username && user.password) {
-    //         dispatch(userActions.register(user));
-    //     }
+        this.setState({ submitted: true });
+        const { user } = this.state;
+        const { dispatch } = this.props;
+        if (user.firstName && user.lastName && user.email && user.password) {
+           // dispatch(userActions.register(user));
+           const  data = {credentials:user}
+           this.props.firebase.createUser(user).then(
+               auth => console.log(auth)
+               )
+        }
      }
 
     render() {
@@ -100,8 +102,13 @@ class SignUpPage extends Component {
 // }
 
 
-export default SignUpPage;
+export default withFirebase(SignUpPage);
 //const connectedRegisterPage = connect(mapStateToProps)(RegisterPage);
 //<Link to="/login" className="btn btn-link">Cancel</Link>
 //{registering &&<img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
                        // }
+                       
+//import { Link } from 'react-router-dom';
+//import { connect } from 'react-redux';
+
+//import { userActions } from '../_actions';
