@@ -55,7 +55,7 @@ class BudgetSummary extends Component{
      return(
          <MuiThemeProvider>
          <Aux>
-         <Typography className="title" variant="display3" gutterBottom>Actual Spending / Income </Typography>
+         <Typography className="title" variant="display3" gutterBottom>Budget vs. Actual </Typography>
          <Grid container spacing={12}>
          <Grid item xs='5' >
          <BudgetChart data={totalBudget}/>

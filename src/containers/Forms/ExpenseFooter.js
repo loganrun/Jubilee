@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import TableFooter from 'material-ui/Table'
+import { TableFooter, TableCell, TableRow} from 'material-ui/Table';
 //import { withStyles } from 'material-ui/styles';
 import {connect} from 'react-redux'
 import './IncomeFooter.css'
@@ -18,7 +18,7 @@ class expenseFooter extends Component {
     )
        
     return(
-       <TableFooter className="expenseTableFooter"> Total = {expenseTotal} </TableFooter>
+        <TableFooter className="incomeTableFooter"><TableRow><TableCell colSpan = {5} className="incomeFooterCell">Total = {expenseTotal}</TableCell> </TableRow></TableFooter>
         
     )
     }

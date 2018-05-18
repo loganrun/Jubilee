@@ -1,4 +1,9 @@
 .title{
     text-align: center;
-    color: '#FF5722'
+    color: '#FF5722';
+    margin-bottom: 10px !important;
+}
+
+.Monthlybudget_table{
+    margin-top: 10px;
 }

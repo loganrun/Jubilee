@@ -74,9 +74,9 @@ const row = (x, i, header) =>
                       </TableRow>
                   );
                 })}
-                <IncomeFooter/>
+                
               </TableBody>
-             
+             <IncomeFooter/>
       </Table>
     </Paper>
     </Grid>

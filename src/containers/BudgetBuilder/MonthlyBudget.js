@@ -40,6 +40,7 @@ class Monthlybudget extends Component{
          <Aux>
          <Typography className="title" variant="display3" gutterBottom>Budget Creator </Typography>
          <Typography className="title" variant="subheading" gutterBottom>Use this tool to create your monthly budget.</Typography>
+         <div className="Monthlybudget_table">
          <Grid container spacing={24}>
         <IncomeTable    data={incomeStream} 
                         
@@ -93,6 +94,7 @@ class Monthlybudget extends Component{
         />
         <BudetItem onSubmit={values => this.props.dispatch(addBudgetItem(values))}/>
         </Grid>
+        </div>
         </Aux>
         </MuiThemeProvider>
          

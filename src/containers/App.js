@@ -13,15 +13,16 @@ import './App.css';
 
 class App extends Component {
   render() {
+    const { match } = this.props
     return (
       <div>
       <MuiThemeProvider>
      
         <NewLayout>
           <Switch>
-              <Route exact path="/" component={BudgetSummary} />
-              <Route path="/budgetitems" component={Monthlybudget} />
-              <Route path="/spending" component={Transaction} />
+              <Route exact path={`${match.url}/`} component={BudgetSummary} />
+              <Route exact path={`${match.url}/budgetitems`} component={Monthlybudget} />
+              <Route exact path={`${match.url}/spending`} component={Transaction} />
            </Switch>
          </NewLayout>
         </MuiThemeProvider>
