@@ -9,7 +9,7 @@ import Dialog, {
   withMobileDialog,
 } from 'material-ui/Dialog';
 //import AddIcon from '@material-ui/icons/Add';
-//import './UserDialog.css'
+import './SignBox.css'
 //import BudgetItem from './BudgetItem'
 
 class ResponsiveDialog extends React.Component {
@@ -30,7 +30,7 @@ class ResponsiveDialog extends React.Component {
 
     return (
       <div className="dialog-button">
-        <Button variant="raised" color="primary" onClick={this.handleClickOpen} className="Sign Up">Sign Up</Button>
+        <Button variant="raised" color="primary" onClick={this.handleClickOpen} className="Sign-Up">Sign Up</Button>
         <Dialog
           fullScreen={fullScreen}
           open={this.state.open}
