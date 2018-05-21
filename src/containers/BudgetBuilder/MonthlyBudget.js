@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+//import axios from 'axios'
 import Grid from 'material-ui/Grid'
 import Aux from '../../hoc/Aux';
 import BudetItem from '../Forms/BudgetItem'
@@ -11,17 +12,23 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 //import * as actionTypes from '../store/actions'
 import {connect} from 'react-redux'
+import * as actions from '../store/Actions'
 //import {bindactionCreators} from 'redux'
 //import IncomeFooter from '../Forms/IncomeFooter'
 import Typography from 'material-ui/Typography';
 import IncomeTable from '../Forms/IncomeTable';
 import ExpenseTable from '../Forms/ExpenseTable';
-import {addBudgetItem} from '../store/actions'
+import {addBudgetItem} from '../store/Actions'
+import {getBudget} from '../store/Actions'
 import './MonthlyBudget.css'
 
 
  
 class Monthlybudget extends Component{
+ 
+ //   componentDidMount() {
+ //    this.props.onGetBudget()
+ //   }
     
  render(){
      const incomeStream = this.props.budget.filter(incomeObject =>{
@@ -108,10 +115,15 @@ function mapStateToProps(state){
     }
 }
 
+const mapDispatchToProps = dispatch =>{
+ return{
+  onGetBudget: () => dispatch(getBudget() )
+ }
+}
 
  
 
-export default connect(mapStateToProps)(Monthlybudget);
+export default connect(mapStateToProps, mapDispatchToProps)(Monthlybudget);
 
  //<ResponsiveDialog/>
 

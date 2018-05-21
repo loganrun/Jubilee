@@ -4,12 +4,13 @@ import * as firebase from 'firebase';
     authDomain: "jubilee2018-34a0a.firebaseapp.com",
     databaseURL: "https://jubilee2018-34a0a.firebaseio.com",
     projectId: "jubilee2018-34a0a",
-    storageBucket: "",
+    storageBucket: "jubilee2018-34a0a.appspot.com",
     messagingSenderId: "471910822129"
   };
   
   export const firebaseApp = firebase.initializeApp(config);
+  export const database = firebase.database()
   
-  export const userdb = firebase.database().ref('user/');
+  export const budgetdb = firebase.database().ref('budget/');
   export const auth = firebase.auth();
   export const storage = firebase.storage().ref();

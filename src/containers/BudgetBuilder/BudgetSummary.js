@@ -10,6 +10,7 @@ import ActualTable from '../Forms/ActualTable'
 //import './MonthlyBudget.css'
 import BudgetChart from '../Charts/BudgetChart.js'
 import ActualBudget from '../Charts/ActualBudget.js'
+import Expenses from '../Charts/Expenses'
 
 
  
@@ -57,11 +58,14 @@ class BudgetSummary extends Component{
          <Aux>
          <Typography className="title" variant="display3" gutterBottom>Budget vs. Actual </Typography>
          <Grid container spacing={12}>
-         <Grid item xs='5' >
+         <Grid item xs='4' >
          <BudgetChart data={totalBudget}/>
          </Grid>
-         <Grid item xs='5'>
+         <Grid item xs='4'>
          <ActualBudget data ={totalTransactions}/>
+         </Grid>
+         <Grid item xs='4' >
+         <Expenses data={totalTransactions}/>
          </Grid>
          </Grid>
          <Grid container spacing={24}>

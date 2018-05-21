@@ -14,7 +14,7 @@ import TransactionItem from '../Forms/TransactionItem'
 
 import Grid from 'material-ui/Grid'
 import {connect} from 'react-redux'
-import {addTransactionItem} from '../store/actions'
+import {addTransactionItem} from '../store/Actions'
 import Typography from 'material-ui/Typography';
 import './Transaction.css'
 

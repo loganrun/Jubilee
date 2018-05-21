@@ -16,6 +16,7 @@ const actualIncome = props.data.filter(incomeObject =>{
 const actualExpense = props.data.filter(expenseObject =>{
         return expenseObject.category !== 'income'
     })
+    console.log(actualExpense)
     
     const expenseTotal = actualExpense.map(function(b){return b.amount}).reduce(function(p,c){return p + c}
     

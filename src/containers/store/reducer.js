@@ -1,4 +1,4 @@
-import * as actionTypes from './actions';
+import * as actionTypes from './Actions/ActionTypes';
 
 
 const initialState = {
@@ -13,121 +13,73 @@ const initialState = {
     },
     
     budget:[
-        {
+         {
         id: '1232',
         name: 'Westside',
-        category: 'Employment', //Debts, Housing, Food, Transportation
+        category: 'income', //Debts, Housing, Food, Transportation
         type: 'income', //income,expense
-        frequency: 'Monthly', //monthly income or expense yes or no,
-        amount: 5000 //how much
+        date: '5/12/18',
+        amount: 5000//how much
     },
     
     {
         id: '38974732',
         name: 'Office',
-        category: 'Employment', //Debts, Housing, Food, Transportation
+        category: 'income', //Debts, Housing, Food, Transportation
         type: 'income', //income,expense
-        frequency: 'Monthly', //monthly income or expense yes or no
-        amount: 8000 //how much
+        date: '5/12/18', //monthly income or expense yes or no
+        amount:8000//how much
         
     },
     {
         id: '2682362816',
         name: 'Real Estate',
-        category: 'Investment', //Debts, Housing, Food, Transportation
+        category: 'income', //Debts, Housing, Food, Transportation
         type: 'income', //income,expense
-        frequency: 'Monthly', //monthly income or expense yes or no
+         date: '5/12/18', //monthly income or expense yes or no
         amount: 2000
     },
     {
         id: '4234',
         name: 'Visa',
-        category: 'Debt', //Debts, Housing, Food, Transportation
+        category: 'debt', //Debts, Housing, Food, Transportation
         type: 'expense', //income,expense
-        frequency: 'Monthly', //monthly income or expense yes or no
+         date: '5/12/18', //monthly income or expense yes or no
         amount: 500
     },
     {
         id: '6755',
         name: 'Master Card',
-        category: 'Debt', //Debts, Housing, Food, Transportation
+        category: 'debt', //Debts, Housing, Food, Transportation
         type: 'expense', //income,expense
-        frequency: 'Monthly', //monthly income or expense yes or no
+         date: '5/12/18', //monthly income or expense yes or no
         amount: 500
     },
     {
         id: '34534534',
-       name: 'Student Loan',
-        category: 'Debt', //Debts, Housing, Food, Transportation
+        name: 'Student Loan',
+        category: 'debt', //Debts, Housing, Food, Transportation
         type: 'expense', //income,expense
-        frequency: 'Monthly', //monthly income or expense yes or no
+         date: '5/12/18', //monthly income or expense yes or no
         amount: 600
     },
     {
         id: '12321321',
         name: 'Rent',
-        category: 'Housing', //Debts, Housing, Food, Transportation
+        category: 'housing', //Debts, Housing, Food, Transportation
         type: 'expense', //income,expense
-        frequency: 'Monthly', //monthly income or expense yes or no
+         date: '5/12/18', //monthly income or expense yes or no
         amount: 2000
     },
     {
         id: '34324324',
-       name: 'Car Note',
-        category: 'Transportation', //Debts, Housing, Food, Transportation
+        name: 'Car Note',
+        category: 'transportation', //Debts, Housing, Food, Transportation
         type: 'expense', //income,expense
-        frequency: 'Monthly', //monthly income or expense yes or no
+         date: '5/12/18', //monthly income or expense yes or no
         amount: 350
-    },
-     {
-        id: '23432423',
-        name: 'groceries',
-        category: 'Food', //Debts, Housing, Food, Transportation
-        type: 'expense', //income,expense
-        frequency: 'Monthly', //monthly income or expense yes or no
-        amount: 500
-    },
-     {
-        id: '23542343',
-        name: 'Clothes',
-        category: 'Personal', //Debts, Housing, Food, Transportation
-        type: 'expense', //income,expense
-        frequency: 'Monthly', //monthly income or expense yes or no
-        amount: 100
-    },
-     {
-        id: '3432432434',
-        name: 'fast food',
-        category: 'Food', //Debts, Housing, Food, Transportation
-        type: 'expense', //income,expense
-        frequency: 'Monthly', //monthly income or expense yes or no
-        amount: 200
-    },
-     {
-        id: '34324uiy324',
-        name: 'Car Insurance',
-        category: 'Transportation', //Debts, Housing, Food, Transportation
-        type: 'expense', //income,expense
-        frequency: 'Monthly', //monthly income or expense yes or no
-        amount: 120
-    },
-     {
-        id: '3432434324324',
-        name: 'Gas Bill',
-        category: 'Utilities', //Debts, Housing, Food, Transportation
-        type: 'expense', //income,expense
-        frequency: 'Monthly', //monthly income or expense yes or no
-        amount: 120
-    },
-     {
-        id: '34324323432424',
-        name: 'Entertainment',
-        category: 'Personal', //Debts, Housing, Food, Transportation
-        type: 'expense', //income,expense
-        frequency: 'Monthly', //monthly income or expense yes or no
-        amount: 300
     }
-    ],
+        ],
     transaction: [
         {
         id: '1232',
@@ -270,10 +222,16 @@ const reducer = (state = initialState, action) => {
                 ...state, errorMessage: action.payload
             }
         case actionTypes.FETCHING_BUDGET_SUCCESS:
-            return{
-                ...state,
-                budget: [...state.budget, action.payload]
-            }
+            const { budget } = action.response;
+              const newState = Object.assign({}, state, {
+                inProgress: false,
+                success: 'Got Budget.',
+              });
+              newState.budget = [];
+              if (budget) {
+        newState.budget = Object.keys(budget).map(k => budget[k]);
+      }
+      return newState;
         default:
             return state;
         

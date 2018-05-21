@@ -1,95 +1,106 @@
 import React, {Component} from 'react';
 import {withFirebase} from 'react-redux-firebase'
-
 import SignBox from './SignBox'
+import {auth} from '../../firebase/index'
+//import { withRouter} from 'react-router-dom';
+
+const INITIAL_STATE = {
+             
+                firstName: '',
+                lastName: '',
+                email: '',
+                password: '',
+            submitted: false,
+            error: null
+        };
+        
+const byPropKey = (propertyName, value) => () => ({
+  [propertyName]: value,
+});
+
 class SignUpPage extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            user: {
-                firstName: '',
-                lastName: '',
-                email: '',
-                password: ''
-            },
-            submitted: false
-        };
+        this.state = this.state = { ...INITIAL_STATE };
 
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        //this.handleChange = this.handleChange.bind(this);
+        //this.handleSubmit = this.handleSubmit.bind(this);
     }
-
-    handleChange(event) {
-        const { name, value } = event.target;
-        const { user } = this.state;
-        this.setState({
-            user: {
-                ...user,
-                [name]: value
-            }
-        });
-    }
+    
 
     handleSubmit(event) {
         event.preventDefault();
+        const {
+      firstName,
+      lastName,
+      email,
+      password,
+    } = this.state;
 
-        this.setState({ submitted: true });
-        const { user } = this.state;
-        const { dispatch } = this.props;
-        if (user.firstName && user.lastName && user.email && user.password) {
-           // dispatch(userActions.register(user));
-           const  data = {credentials:user}
-           this.props.firebase.createUser(user).then(
-               auth => console.log(auth)
-               )
-        }
+    auth.doCreateUserWithEmailAndPassword(email, password)
+      .then(authUser => {
+        this.setState(() => ({ ...INITIAL_STATE}));
+      })
+      .catch(error => {
+        this.setState(byPropKey('error', error));
+      });
+
+        
      }
 
     render() {
-        const { registering  } = this.props;
-        const { user, submitted } = this.state;
+        const { firstName, lastName, email, passwordOne,passwordTwo, error} = this.state;
+        const isInvalid =
+              passwordOne !== passwordTwo ||
+              passwordOne === '' ||
+              email === '' ||
+              lastName === ''
+              firstName === '';
+
         return (
             <SignBox>
             <div>
-                <h2>Sign Up</h2>
-                <form name="form" onSubmit={this.handleSubmit}>
-                    <div className={'form-group' + (submitted && !user.firstName ? ' has-error' : '')}>
-                        <label htmlFor="firstName">First Name</label>
-                        <input type="text" className="form-control" name="firstName" value={user.firstName} onChange={this.handleChange} />
-                        {submitted && !user.firstName &&
-                            <div className="help-block">First Name is required</div>
-                        }
-                    </div>
-                    <div className={'form-group' + (submitted && !user.lastName ? ' has-error' : '')}>
-                        <label htmlFor="lastName">Last Name</label>
-                        <input type="text" className="form-control" name="lastName" value={user.lastName} onChange={this.handleChange} />
-                        {submitted && !user.lastName &&
-                            <div className="help-block">Last Name is required</div>
-                        }
-                    </div>
-                    <div className={'form-group' + (submitted && !user.email ? ' has-error' : '')}>
-                        <label htmlFor="username">Email</label>
-                        <input type="text" className="form-control" name="email" value={user.email} onChange={this.handleChange} />
-                        {submitted && !user.email &&
-                            <div className="help-block">Email is required</div>
-                        }
-                    </div>
-                    <div className={'form-group' + (submitted && !user.password ? ' has-error' : '')}>
-                        <label htmlFor="password">Password</label>
-                        <input type="password" className="form-control" name="password" value={user.password} onChange={this.handleChange} />
-                        {submitted && !user.password &&
-                            <div className="help-block">Password is required</div>
-                        }
-                    </div>
-                    <div className="form-group">
-                        <button className="btn btn-primary">Register</button>
-                        
-                        
-                    </div>
-                </form>
-            </div>
-            </SignBox>
+            <h2>Sign Up</h2>
+            <form onSubmit={this.onSubmit}>
+                <input
+                  value={firstName} 
+                  onChange={event => this.setState(byPropKey('firstName', event.target.value))}
+                  type="text"
+                  placeholder="First Name"
+                />
+                <input
+                  value={lastName}
+                  onChange={event => this.setState(byPropKey('lastName', event.target.value))}
+                  type="text"
+                  placeholder="Last Name"
+                />
+                <input
+                  value={email}
+                  onChange={event => this.setState(byPropKey('email', event.target.value))}
+                  type="text"
+                  placeholder="Email Address"
+                />
+                <input
+                  value={passwordOne}
+                  onChange={event => this.setState(byPropKey('passwordOne', event.target.value))}
+                  type="password"
+                  placeholder="Password"
+                />
+                <input
+                  value={passwordTwo}
+                  onChange={event => this.setState(byPropKey('passwordTwo', event.target.value))}
+                  type="password"
+                  placeholder="Confirm Password"
+                />
+                <button disabled={isInvalid} type="submit">
+                  Sign Up
+                </button>
+        
+                { error && <p>{error.message}</p> }
+             </form>
+        </div>
+        </SignBox>
         );
     }
 }
@@ -112,3 +123,14 @@ export default withFirebase(SignUpPage);
 //import { connect } from 'react-redux';
 
 //import { userActions } from '../_actions';
+
+// this.setState({ submitted: true });
+//         const { user } = this.state;
+//         const { dispatch } = this.props;
+//         if (user.firstName && user.lastName && user.email && user.password) {
+//           // dispatch(userActions.register(user));
+//           const  data = {credentials:user}
+//           this.props.firebase.createUser(user).then(
+//               auth => console.log(auth)
+//               )
+//         }
