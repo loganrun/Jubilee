@@ -6,8 +6,8 @@ import Free1 from '../assets/Images/Freedom34.jpeg'
  import Freedom2 from '../assets/Images/Freedom33.jpeg'
  import Woman from '../assets/Images/happyblkwoman.jpg'
  //import Celebration from '../assets/Images/2018celebration.jpg'
- import Balloon from '../assets/Images/balloonsbright.jpg'
- import Beach from '../assets/Images/beach.jpg'
+ import Yeah from '../assets/Images/yeah.jpeg'
+ import Beach from '../assets/Images/Beachjump.jpeg'
  import HappyW from '../assets/Images/womanhappy.jpeg'
  import HappyM from '../assets/Images/happman.jpg'
  import WomanS from '../assets/Images/womanS.jpeg'
@@ -46,11 +46,11 @@ const tileData = [
   
   },
   {
-    img:    Balloon,
+    img:     WomanS,
     
   },
     {
-    img:    WomanS,
+    img:   Yeah,
     
   },
   {

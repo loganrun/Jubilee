@@ -18,7 +18,7 @@ import * as actions from '../store/Actions'
 import Typography from 'material-ui/Typography';
 import IncomeTable from '../Forms/IncomeTable';
 import ExpenseTable from '../Forms/ExpenseTable';
-import {addBudgetItem} from '../store/Actions'
+import {addBudgetItem} from '../store/actions'
 import {getBudget} from '../store/Actions'
 import './MonthlyBudget.css'
 
@@ -26,9 +26,9 @@ import './MonthlyBudget.css'
  
 class Monthlybudget extends Component{
  
- //   componentDidMount() {
- //    this.props.onGetBudget()
- //   }
+   componentDidMount() {
+    this.props.dispatch(getBudget())
+   }
     
  render(){
      const incomeStream = this.props.budget.filter(incomeObject =>{
@@ -46,7 +46,6 @@ class Monthlybudget extends Component{
          <MuiThemeProvider>
          <Aux>
          <Typography className="title" variant="display3" gutterBottom>Budget Creator </Typography>
-         <Typography className="title" variant="subheading" gutterBottom>Use this tool to create your monthly budget.</Typography>
          <div className="Monthlybudget_table">
          <Grid container spacing={24}>
         <IncomeTable    data={incomeStream} 
@@ -115,15 +114,15 @@ function mapStateToProps(state){
     }
 }
 
-const mapDispatchToProps = dispatch =>{
- return{
-  onGetBudget: () => dispatch(getBudget() )
- }
-}
+// const mapDispatchToProps = dispatch =>{
+//  return{
+//   onGetBudget: () => dispatch(getBudget() )
+//  }
+// }
 
  
 
-export default connect(mapStateToProps, mapDispatchToProps)(Monthlybudget);
+export default connect(mapStateToProps)(Monthlybudget);
 
  //<ResponsiveDialog/>
 

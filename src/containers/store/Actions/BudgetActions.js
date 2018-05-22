@@ -6,8 +6,9 @@ import {database} from '../../../config/firebase'
 export const getBudget = () => {
   return dispatch => {
     dispatch(fetchingBudgetRequest());
-    return database.ref('/').once('value', snap => {
-      const budget = snap.val();
+    return database.collection('budget').get().then( snap => {
+      const budget = snap;
+      console.log(snap)
       dispatch(fetchingBudgetSuccess(budget))
     })
     .catch((error) => {

@@ -9,7 +9,7 @@ import * as firebase from 'firebase';
   };
   
   export const firebaseApp = firebase.initializeApp(config);
-  export const database = firebase.database()
+  export const database = firebase.firestore()
   
   export const budgetdb = firebase.database().ref('budget/');
   export const auth = firebase.auth();

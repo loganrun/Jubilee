@@ -71,7 +71,7 @@ class BudgetItem extends Component {
 
     render(){
 
-    const { handleSubmit } = this.props;
+    const { handleSubmit, reset,  } = this.props;
     const lower = value => value && value.toLowerCase()
     
     const renderTextField = ({ input, label, type, meta: { touched, error, warning } }) => (
@@ -113,7 +113,7 @@ class BudgetItem extends Component {
                 </div>
                 <div>
                 <Field
-                    label="category"
+                    label="category - job,debt,housing,etc"
                     name = "category"
                     component={renderTextField}
                     validate={[ required]}
@@ -124,7 +124,7 @@ class BudgetItem extends Component {
                 
                 <div>
                 <Field
-                    label="frequency"
+                    label="frequency - monthly,once"
                     name = "frequency"
                     component={renderTextField}
                     validate={[required]}
@@ -132,7 +132,7 @@ class BudgetItem extends Component {
                 </div>
                 <div>
                 <Field
-                    label="type"
+                    label="type - income/expense"
                     name = "type"
                     component={renderTextField}
                     validate={[ required]}
@@ -142,6 +142,7 @@ class BudgetItem extends Component {
                 </div>
                  <div>
                 <Button variant="raised" color="primary" Primary style = {{styles}} type="submit">Submit</Button>
+                <Button variant="raised" color="secondary" Primary style = {{styles}} onClick={reset}>Reset</Button>
                 </div>
                 </form>
                 </DialogBox>     
@@ -171,6 +172,8 @@ class BudgetItem extends Component {
 //   }
 
 export default withStyles(styles) (BudgetForm)
+
+//disabled={pristine || submitting}
 
 // <div>
 //                 <Field

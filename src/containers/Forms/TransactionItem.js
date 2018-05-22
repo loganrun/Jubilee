@@ -86,7 +86,7 @@ class TransactionItem extends Component {
 
     
         
-    const { handleSubmit } = this.props;
+    const { handleSubmit, reset } = this.props;
         
         return(
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -138,6 +138,7 @@ class TransactionItem extends Component {
                 
                  <div>
                 <Button variant="raised" color="primary" Primary style = {{styles}} type="submit">Submit</Button>
+                <Button variant="raised" color="secondary" Primary style = {{styles}} onClick={reset}>Reset</Button>
                 </div>
                 </form>
                 </DialogBox>
