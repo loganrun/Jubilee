@@ -18,17 +18,17 @@ import * as actions from '../store/Actions'
 import Typography from 'material-ui/Typography';
 import IncomeTable from '../Forms/IncomeTable';
 import ExpenseTable from '../Forms/ExpenseTable';
-import {addBudgetItem} from '../store/actions'
-import {getBudget} from '../store/Actions'
+import {addBudgetItem} from '../store/Actions'
+import {fetchBudget} from '../store/Actions'
 import './MonthlyBudget.css'
 
 
  
 class Monthlybudget extends Component{
  
-   componentDidMount() {
-    this.props.dispatch(getBudget())
-   }
+  componentDidMount() {
+    this.props.dispatch(fetchBudget())
+  }
     
  render(){
      const incomeStream = this.props.budget.filter(incomeObject =>{

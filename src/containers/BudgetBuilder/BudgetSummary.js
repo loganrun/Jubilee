@@ -5,7 +5,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {connect} from 'react-redux'
 import SummaryTable from '../Forms/SummaryTable';
 import Typography from 'material-ui/Typography';
-import {fetchBudget} from '../store/actions'
+//import {fetchBudget} from '../store/actions'
 import ActualTable from '../Forms/ActualTable'
 //import './MonthlyBudget.css'
 import BudgetChart from '../Charts/BudgetChart.js'
@@ -16,10 +16,10 @@ import Expenses from '../Charts/Expenses'
  
 class BudgetSummary extends Component{
  
-  componentDidMount () {
+  // componentWillMount () {
        
-        this.props.fetchBudget();
-    }
+  //       this.props.dispatch(fetchBudget());
+  //   }
     
  render(){
      
@@ -91,7 +91,7 @@ function mapStateToProps(state){
 }
  
 
-export default connect(mapStateToProps, {fetchBudget})(BudgetSummary);
+export default connect(mapStateToProps)(BudgetSummary);
 
 
  // axios.get( 'https://jsonplaceholder.typicode.com/posts' )

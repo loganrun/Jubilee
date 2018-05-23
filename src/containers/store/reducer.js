@@ -222,7 +222,8 @@ const reducer = (state = initialState, action) => {
                 ...state, errorMessage: action.payload
             }
         case actionTypes.FETCHING_BUDGET_SUCCESS:
-            const { budget } = action.response;
+            const { budget } = action.payload;
+            console.log(budget)
               const newState = Object.assign({}, state, {
                 inProgress: false,
                 success: 'Got Budget.',

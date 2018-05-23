@@ -1,20 +1,33 @@
 import *  as actionTypes from './ActionTypes'
 //import axios from 'axios';
 import {database} from '../../../config/firebase'
+import firebase from 'firebase'
 
 
-export const getBudget = () => {
+// export const getBudget = () => {
+//   return dispatch => {
+//     dispatch(fetchingBudgetRequest());
+//     return database.collection('budget').get().then( snap => {
+//       const budget = snap;
+//       console.log(snap)
+//       dispatch(fetchingBudgetSuccess(budget))
+//     })
+//     .catch((error) => {
+//       console.log(error);
+//       dispatch(fetchingBudgetFailure(error));
+//     });
+//   }
+// }
+
+export const fetchBudget = () =>{
   return dispatch => {
-    dispatch(fetchingBudgetRequest());
-    return database.collection('budget').get().then( snap => {
-      const budget = snap;
-      console.log(snap)
-      dispatch(fetchingBudgetSuccess(budget))
+     database.on('value', snapshot => {
+      console.log(snapshot.val())
+      // dispatch({
+      //   type: actionTypes.FETCHING_BUDGET_SUCCESS,
+      //   payload: snapshot.val()
+      //})
     })
-    .catch((error) => {
-      console.log(error);
-      dispatch(fetchingBudgetFailure(error));
-    });
   }
 }
 
@@ -78,3 +91,17 @@ export const fetchingBudgetFailure = (error) => ({
 //     .catch (error => {
 //       dispatch(fetchingBudgetFailure ());
 //     });
+
+// dispatch(fetchingBudgetRequest());
+//     try{
+//       const budgets = firebase.database().ref('budgets').once('value').then(snapshot => {
+//         snapshot.forEach(snap => {
+//           budgets.push(snap.val())
+
+//         })
+//       }) 
+//       dispatch(fetchingBudgetSuccess(budgets));
+//     } catch (error){
+//       dispatch(fetchingBudgetFailure(error));
+//     }
+//database.on('value', snapshot

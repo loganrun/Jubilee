@@ -1,4 +1,4 @@
-import * as firebase from 'firebase';
+ import * as firebase from 'firebase';
   const config = {
     apiKey: "AIzaSyBW_sPqfpdIw_B0cJXhYhVxhFAmA2-_DrM",
     authDomain: "jubilee2018-34a0a.firebaseapp.com",
@@ -8,9 +8,9 @@ import * as firebase from 'firebase';
     messagingSenderId: "471910822129"
   };
   
-  export const firebaseApp = firebase.initializeApp(config);
-  export const database = firebase.firestore()
+  firebase.initializeApp(config);
+   export const database = firebase.database().ref('budget');
   
-  export const budgetdb = firebase.database().ref('budget/');
-  export const auth = firebase.auth();
-  export const storage = firebase.storage().ref();
+//   export const budgetdb = firebase.database().ref('budget/');
+//   export const auth = firebase.auth();
+//   export const storage = firebase.storage().ref();
