@@ -38,7 +38,7 @@ function HousingCard(props) {
         <TableBody>
           {props.data.map((n,i) => {
             return (
-              <TableRow key={n.i}>
+              <TableRow key={n.id}>
                 <TableCell>{n.name}</TableCell>
                 <TableCell numeric>${n.amount}</TableCell>
                 <TableCell>{Moment(n.date).format("MM/DD/YY")}</TableCell>

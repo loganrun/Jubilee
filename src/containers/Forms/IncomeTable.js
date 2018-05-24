@@ -65,7 +65,7 @@ const row = (x, i, header) =>
               <TableBody>
                 {data.map((n,i) => {
                   return (
-                      <TableRow key={n.i}>
+                      <TableRow key={n.id}>
                         <CustomTableCell>{n.category}</CustomTableCell>
                         <CustomTableCell>{n.name}</CustomTableCell>
                         <CustomTableCell>{n.type}</CustomTableCell>

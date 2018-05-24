@@ -5,7 +5,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {connect} from 'react-redux'
 import SummaryTable from '../Forms/SummaryTable';
 import Typography from 'material-ui/Typography';
-//import {fetchBudget} from '../store/actions'
+import {fetchBudget} from '../store/Actions'
 import ActualTable from '../Forms/ActualTable'
 //import './MonthlyBudget.css'
 import BudgetChart from '../Charts/BudgetChart.js'
@@ -16,10 +16,10 @@ import Expenses from '../Charts/Expenses'
  
 class BudgetSummary extends Component{
  
-  // componentWillMount () {
+  componentWillMount () {
        
-  //       this.props.dispatch(fetchBudget());
-  //   }
+        this.props.dispatch(fetchBudget());
+    }
     
  render(){
      

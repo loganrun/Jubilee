@@ -1,10 +1,10 @@
 import React, { Component} from 'react'
-import Paper from 'material-ui/Paper'
+//import Paper from 'material-ui/Paper'
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button'
 import Grid from 'material-ui/Grid'
-import {connect} from 'react-redux'
-import * as actionTypes from '../store/actions'
+//import {connect} from 'react-redux'
+//import * as actionTypes from '../store/actions'
 //import InputLabel  from 'material-ui/Input';
 //import { MenuItem } from 'material-ui/Menu';
 //import FormHelperText from 'material-ui/Form'

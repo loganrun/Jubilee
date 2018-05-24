@@ -1,4 +1,4 @@
-import axios from 'axios'
+//import axios from 'axios'
 export const ADD_TRANSACTION = 'ADD_TRANSACTION';
 export const ADD_BUDGET_ITEM = 'ADD_BUDGET_ITEM';
 export const REMOVE_TRANSACTION = 'REMOVE_TRANSACTION';
@@ -30,15 +30,15 @@ export const fetchingBudgetFailure = (error) => ({
   payload: error
 })
 
-export const fetchBudget = () =>{
-  return async dispatch => {
-    dispatch(fetchingBudgetRequest());
-    try{
-      let response = await axios.get( 'https://jubilee2018-34a0a.firebaseio.com' );
-      let json = await response.json();
-      dispatch(fetchingBudgetSuccess(json.results));
-    } catch (error){
-      dispatch(fetchingBudgetFailure(error));
-    }
-  }
-}
+// export const fetchBudget = () =>{
+//   return async dispatch => {
+//     dispatch(fetchingBudgetRequest());
+//     try{
+//       let response = await axios.get( 'https://jubilee2018-34a0a.firebaseio.com' );
+//       let json = await response.json();
+//       dispatch(fetchingBudgetSuccess(json.results));
+//     } catch (error){
+//       dispatch(fetchingBudgetFailure(error));
+//     }
+//   }
+// }

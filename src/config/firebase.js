@@ -9,7 +9,7 @@
   };
   
   firebase.initializeApp(config);
-   export const database = firebase.database().ref('budget');
+   export const database = firebase.firestore();
   
 //   export const budgetdb = firebase.database().ref('budget/');
 //   export const auth = firebase.auth();

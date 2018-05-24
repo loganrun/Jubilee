@@ -21,40 +21,26 @@ import firebase from 'firebase'
 
 export const fetchBudget = () =>{
   return dispatch => {
-     database.on('value', snapshot => {
-      console.log(snapshot.val())
-      // dispatch({
-      //   type: actionTypes.FETCHING_BUDGET_SUCCESS,
-      //   payload: snapshot.val()
-      //})
+      dispatch(fetchingBudgetRequest())
+     database.collection('budget').onSnapshot(snapshot => {
+      const budget = snapshot.docs.map(doc => {
+        return Object.assign(doc.data(), {id: doc.id})
+      })
+      dispatch({
+        type: actionTypes.FETCHING_BUDGET_SUCCESS,
+        payload: budget
+      })
     })
   }
 }
 
 
-// function getInviteRequestedAction() {
-//   return {
-//     type: actionTypes.GetInviteRequested
-//   };
-// }
-
-// function getInviteRejectedAction() {
-//   return {
-//     type: actionTypes.GetInviteRejected
-//   }
-// }
-
-// function getInviteFulfilledAction(invite) {
-//   return {
-//     type: actionTypes.GetInviteFulfilled,
-//     invite
-//   };
-// }
-
-export const addBudgetItem = (newItem) => ({
-  type: actionTypes.ADD_BUDGET_ITEM,
-  newItem
-});
+export const addBudgetItem = (newItem) => {
+  return dispatch => {
+    database.collection('budget').add(newItem)
+  
+};
+}
 
 export const removeBudgetItem = (newItem) => ({
   type: actionTypes.REMOVE_BUDGET_ITEM,
@@ -75,33 +61,3 @@ export const fetchingBudgetFailure = (error) => ({
   payload: error
 })
 
-// export const fetchingBudgetRequest = () => dispatch=>{
-//   database.on("value", snapshot => {
-//     dispatch({
-//       type: actionTypes.FETCHING_BUDGET_SUCCESS,
-//       payload: snapshot.val()
-//     });
-//   });
-// }
-
-// axios.get( 'https://jubilee2018-34a0a.firebaseio.com/budget' )
-//       .then( response => {
-//       dispatch(fetchingBudgetSuccess(response.data));
-//     }) 
-//     .catch (error => {
-//       dispatch(fetchingBudgetFailure ());
-//     });
-
-// dispatch(fetchingBudgetRequest());
-//     try{
-//       const budgets = firebase.database().ref('budgets').once('value').then(snapshot => {
-//         snapshot.forEach(snap => {
-//           budgets.push(snap.val())
-
-//         })
-//       }) 
-//       dispatch(fetchingBudgetSuccess(budgets));
-//     } catch (error){
-//       dispatch(fetchingBudgetFailure(error));
-//     }
-//database.on('value', snapshot

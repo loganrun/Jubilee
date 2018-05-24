@@ -32,11 +32,14 @@ class Monthlybudget extends Component{
     
  render(){
      const incomeStream = this.props.budget.filter(incomeObject =>{
-        return incomeObject.type === 'income'
+        return incomeObject.type === "income"
     })
     
-  
-  
+    const income = incomeStream.sort((a,b) =>{
+      return (a.name > b.name )  
+    })
+    
+    console.log(income)
     
      const expenseStream = this.props.budget.filter(incomeObject =>{
         return incomeObject.type === 'expense' 
@@ -52,12 +55,12 @@ class Monthlybudget extends Component{
                         
                         header={[
                             {
-                            name: "Category",
-                            prop: "category"
-                            },
-                            {
                             name:   "name",
                             prop:   "name"
+                            },
+                            {
+                            name: "Category",
+                            prop: "category"
                             },
                             {
                             name:   "Type",
