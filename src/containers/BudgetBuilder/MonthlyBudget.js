@@ -21,6 +21,7 @@ import ExpenseTable from '../Forms/ExpenseTable';
 import {addBudgetItem} from '../store/Actions'
 import {fetchBudget} from '../store/Actions'
 import './MonthlyBudget.css'
+import Spinner from '../../components/layouts/Spinner/Spinner'
 
 
  
@@ -31,7 +32,8 @@ class Monthlybudget extends Component{
   }
     
  render(){
-     const incomeStream = this.props.budget.filter(incomeObject =>{
+     let incomeStream = <Spinner/>
+     if(!this.props.loading) { incomeStream = this.props.budget.filter(incomeObject =>{
         return incomeObject.type === "income"
     })
     
@@ -40,10 +42,14 @@ class Monthlybudget extends Component{
     })
     
     console.log(income)
-    
-     const expenseStream = this.props.budget.filter(incomeObject =>{
+     }
+     
+     let expenseStream = <Spinner/>
+     if(!this.props.loading) { expenseStream = this.props.budget.filter(incomeObject =>{
         return incomeObject.type === 'expense' 
     })
+    
+     }
     
      return(
          <MuiThemeProvider>
@@ -113,7 +119,8 @@ class Monthlybudget extends Component{
 }
 function mapStateToProps(state){
     return {
-        budget: state.budget.budget
+        budget: state.budget.budget,
+        loading: state.loading
     }
 }
 

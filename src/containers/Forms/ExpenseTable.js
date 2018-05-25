@@ -5,7 +5,7 @@ import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Ta
 import Paper from 'material-ui/Paper';
 import Grid from 'material-ui/Grid'
 import red from 'material-ui/colors/red';
-import ExpenseFooter from './ExpenseFooter'
+//import ExpenseFooter from './ExpenseFooter'
 
 const CustomTableCell = withStyles(theme => ({
   head: {
@@ -80,7 +80,7 @@ const row = (x, i, header) =>
         <TableBody>
           {data.map((x,i)=> row(x,i, header))}
         </TableBody>
-        <ExpenseFooter/>
+        
       </Table>
     </Paper>
     </Grid>
@@ -92,3 +92,4 @@ const row = (x, i, header) =>
 // };
 
 export default withStyles(styles)(ExpenseTable);
+//<ExpenseFooter/>

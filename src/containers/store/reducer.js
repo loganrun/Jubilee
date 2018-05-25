@@ -3,6 +3,7 @@ import * as actionTypes from './Actions/ActionTypes';
 
 const initialState = {
     errorMessage: "",
+    loading: false,
     budgetItem : {
         name: '',
         category: '',
@@ -10,26 +11,10 @@ const initialState = {
         frequency: '',
         amount: 0,
         date: '',
-        loading: false
+        
     },
     
-    budget:[{
-        id: '1232',
-        name: 'Westside',
-        category: 'income', //Debts, Housing, Food, Transportation
-        type: 'income', //income,expense
-        date: '5/12/18',
-        amount: 5000//how much
-    },
-    
-    {
-        id: '34534534',
-        name: 'Student Loan',
-        category: 'debt', //Debts, Housing, Food, Transportation
-        type: 'expense', //income,expense
-         date: '5/12/18', //monthly income or expense yes or no
-        amount: 600
-    }],
+    budget:[],
     transaction: [
         {
         id: '1232',
@@ -152,26 +137,10 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case actionTypes.ADD_BUDGET_ITEM:
-            return{
-                ...state,
-                budget: [...state.budget, action.payload]
-                
-            };
-            
-        case actionTypes.ADD_TRANSACTION:
-            return{
-                ...state,
-                transaction: [...state.transaction, action.newItem]
-                
-            };
+        
         case actionTypes.FETCHING_BUDGET_REQUEST:
             
             return{ ...state, loading: true
-            }
-        case actionTypes.FETCHING_BUDGET_FAILURE:
-            return{
-                ...state, errorMessage: action.payload
             }
         case actionTypes.FETCHING_BUDGET_SUCCESS:
             const budget  = action.payload;
@@ -183,6 +152,42 @@ const reducer = (state = initialState, action) => {
                 loading: false
               });
               return newState
+              
+        case actionTypes.ADD_BUDGET_ITEM:
+            return{
+                ...state,
+                budget: [...state.budget, action.payload]
+                
+            };
+        case actionTypes.FETCHING_BUDGET_FAILURE:
+            return{
+                ...state, errorMessage: action.payload
+            }
+            
+         case actionTypes.FETCHING_TRANSACTION_REQUEST:
+            
+            return{ ...state, loading: true
+            }    
+        
+        case actionTypes.FETCHING_TRANSACTION_SUCCESS:
+            const transactions  = action.payload;
+              const tranState = Object.assign({}, state, {
+                inProgress: false,
+                success: 'Got TransActions.',
+                transaction: transactions,
+                loading: false
+              });
+              return tranState
+              
+        case actionTypes.ADD_TRANSACTION:
+            return{
+                ...state,
+                transaction: [...state.transaction, action.newItem]
+                
+            };
+        
+        
+        
         default:
             return state;
         

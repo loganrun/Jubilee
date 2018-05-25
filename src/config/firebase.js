@@ -12,5 +12,5 @@
    export const database = firebase.firestore();
   
 //   export const budgetdb = firebase.database().ref('budget/');
-//   export const auth = firebase.auth();
+  export const auth = firebase.auth();
 //   export const storage = firebase.storage().ref();

@@ -1,22 +1,30 @@
-import React from 'react'
+import * as actionTypes from './Actions/ActionTypes';
 
 
-const INITIAL_STATE = {
-  users: {},
-};
-
-const applySetUsers = (state, action) => ({
-  ...state,
-  users: action.users
-});
-
-function userReducer(state = INITIAL_STATE, action) {
-  switch(action.type) {
-    case 'USERS_SET' : {
-      return applySetUsers(state, action);
-    }
-    default : return state;
-  }
+const initialState = {
+    loggingIn: false,
+    loggedIn: false,
+    signingIn: false,
+    loggingOut: false,
 }
 
-export default userReducer;
+const userReducer = (state = initialState, action) => {
+    // switch (action.type) {
+        
+    //     case actionTypes.LOGIN_USER_SUCCESS:
+    //         const userId = action.user.uid;
+    //         return { ...state, loggedIn: true, userId  }
+    //     case actionTypes.LOGIN_USER_FAIL:
+    //         return { ...state, loggedIn: false }
+    //     case('LOG_OUT'):
+    //         return {loggingOut: true}
+    //     case(actionTypes.CREATE_USER_SUCCESS):
+    //         return { ...state }
+    //     case(actionTypes.CREATE_USER_FAIL):
+    //         return { ...state}
+    //     default:
+    //         return state;
+    // }
+}
+
+export default userReducer();

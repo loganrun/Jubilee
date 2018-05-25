@@ -1,8 +1,52 @@
 import React, {Component} from 'react';
-import {withFirebase} from 'react-redux-firebase'
+import firebase from 'react-redux-firebase'
 import SignBox from './SignBox'
-import {auth} from '../../firebase/index'
-//import { withRouter} from 'react-router-dom';
+import {auth} from '../../config/firebase'
+import './Signup.css'
+//import PropTypes from 'prop-types';
+//import TextField from '@material-ui/core/TextField';
+//import { withStyles, createMuiTheme} from '@material-ui/core/styles';
+import { withRouter} from 'react-router-dom';
+
+
+const styles = theme => ({
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  margin: {
+    margin: theme.spacing.unit,
+  },
+  bootstrapRoot: {
+    padding: 0,
+    'label + &': {
+      marginTop: theme.spacing.unit * 3,
+    },
+  },
+  input: {
+    borderRadius: 4,
+    backgroundColor: theme.palette.common.white,
+    border: '1px solid #ced4da',
+    fontSize: 16,
+    padding: '10px 12px',
+    width: 'calc(100% - 24px)',
+    transition: theme.transitions.create(['border-color', 'box-shadow']),
+    fontFamily: [
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+    ].join(','),
+    '&:focus': {
+      borderColor: '#80bdff',
+      boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
+    },
+  },
+  bootstrapFormLabel: {
+    fontSize: 18,
+  },
+});
+
 
 const INITIAL_STATE = {
              
@@ -30,40 +74,45 @@ class SignUpPage extends Component {
     
 
     handleSubmit(event) {
-        event.preventDefault();
+       event.preventDefault(); 
+        const {history}= this.props
         const {
-      firstName,
-      lastName,
       email,
       password,
     } = this.state;
+    console.log(password)
 
-    auth.doCreateUserWithEmailAndPassword(email, password)
+    auth.auth().createUserWithEmailAndPassword(email, password)
       .then(authUser => {
         this.setState(() => ({ ...INITIAL_STATE}));
+        history.push('/dashboard');
       })
       .catch(error => {
         this.setState(byPropKey('error', error));
       });
 
-        
+       
      }
 
-    render() {
+    render(props) {
         const { firstName, lastName, email, passwordOne,passwordTwo, error} = this.state;
+        
         const isInvalid =
               passwordOne !== passwordTwo ||
               passwordOne === '' ||
               email === '' ||
-              lastName === ''
+              lastName === '' ||
               firstName === '';
+              
+        // const { classes } = props;
+
 
         return (
             <SignBox>
             <div>
             <h2>Sign Up</h2>
-            <form onSubmit={this.onSubmit}>
-                <input
+            <form name = "form" onSubmit={this.onSubmit} className="bootstrapRoot">
+                 <input style={{styles}} className="form-input"
                   value={firstName} 
                   onChange={event => this.setState(byPropKey('firstName', event.target.value))}
                   type="text"
@@ -112,8 +161,13 @@ class SignUpPage extends Component {
 //     };
 // }
 
+// SignUpPage.propTypes = {
+//   classes: PropTypes.object.isRequired,
+// };
 
-export default withFirebase(SignUpPage);
+
+
+export default withRouter(SignUpPage);
 //const connectedRegisterPage = connect(mapStateToProps)(RegisterPage);
 //<Link to="/login" className="btn btn-link">Cancel</Link>
 //{registering &&<img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />

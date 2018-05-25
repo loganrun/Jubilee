@@ -8,11 +8,12 @@ import { Select, TextField } from 'redux-form-material-ui';
 import DialogBox from './DialogBox'
 import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider';
 import DateFnsUtils from 'material-ui-pickers/utils/date-fns-utils';
-import { DatePicker } from 'material-ui-pickers';
+//import { DatePicker } from 'material-ui-pickers';
 import DateTimePicker from 'react-widgets/lib/DateTimePicker'
 import moment from 'moment'
 import momentLocaliser from 'react-widgets-moment'
 import Typography from 'material-ui/Typography';
+
 
 import 'react-widgets/dist/css/react-widgets.css'
 
@@ -38,31 +39,13 @@ const number = value => value && isNaN(Number(value)) ? 'Must be a number' : und
   //value && value < min ? `Must be at least ${min}` : undefined
 
 class TransactionItem extends Component {
+    
+   
 
-// state = {
-//     selectedDate: new Date(),
-//   }
-
-//   handleDateChange = (date) => {
-//     this.setState({ selectedDate: date });
-//   }
 
     render(){
         
-    //     const { classes } = this.props;
-    //   const { selectedDate } = this.state;
-    
-    // const renderDatePicker = ({input, label}) =>(
-    //     <DatePicker
-    //                 label="date"
-    //                 showTodayButton
-    //                 disableFuture
-    //                 maxDateMessage="Date must be less than today"
-    //                 value={selectedDate}
-    //                 onChange={this.handleDateChange}
-    //                 animateYearScrolling={false}
-    //               />
-    //  );
+   
      
      const renderDateTimePicker = ({ input: { onChange, value }, showTime }) =>(
           <DateTimePicker

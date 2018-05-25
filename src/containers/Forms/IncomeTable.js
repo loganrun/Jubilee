@@ -5,7 +5,7 @@ import Table, { TableBody, TableCell, TableHead, TableRow} from 'material-ui/Tab
 import Paper from 'material-ui/Paper';
 import Grid from 'material-ui/Grid'
 import blue from 'material-ui/colors/blue'
-import IncomeFooter from './IncomeFooter'
+//import IncomeFooter from './IncomeFooter'
 
 const CustomTableCell = withStyles(theme => ({
   head: {
@@ -74,9 +74,9 @@ const row = (x, i, header) =>
                       </TableRow>
                   );
                 })}
-                
+                         
               </TableBody>
-             <IncomeFooter/>
+              
       </Table>
     </Paper>
     </Grid>
@@ -86,5 +86,7 @@ const row = (x, i, header) =>
 
 
 export default withStyles(styles)(IncomeTable);
+ //<IncomeFooter/>  
 
  //<TableFooter>Total {footerTotal}</TableFooter>
+ 

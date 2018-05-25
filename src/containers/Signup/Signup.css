@@ -1,7 +1,29 @@
-.signup-button{
-    /*top: 10px;*/
-    /*right: 40px;*/
-    /*position: absolute;*/
-    /*z-index: 300000*/
+
+
+.bootstrapRoot: {
+    padding: 0;
     
-}
+  }
+  
+  .form-input: {
+    border-radius:  4 !important;
+    background-color:  white;
+    display: block !important;
+    border: 1px solid #ced4da !important;
+    font-size:  16px !important;
+    padding: 10px 12px !important;
+    width: calc(100% - 24px) !important;
+    transition: border-color, box-shadow !important;
+    font-family:  
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif'
+  !important}
+  :focus {
+      border-color:  #80bdff;
+      box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25)
+  }
+  
+ 
+ 

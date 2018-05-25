@@ -17,8 +17,14 @@ import {connect} from 'react-redux'
 import {addTransactionItem} from '../store/Actions'
 import Typography from 'material-ui/Typography';
 import './Transaction.css'
+import {fetchTransactions} from '../store/Actions'
 
 class Transaction extends Component {
+    
+     componentDidMount() {
+    this.props.dispatch(fetchTransactions())
+  }
+
     
 
     render(){
