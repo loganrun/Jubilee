@@ -3,6 +3,7 @@ import { TableFooter, TableCell, TableRow} from 'material-ui/Table';
 //import { withStyles } from 'material-ui/styles';
 import {connect} from 'react-redux'
 import './IncomeFooter.css'
+import Spinner from '../../components/layouts/Spinner/Spinner'
 
 class expenseFooter extends Component {
     
@@ -13,9 +14,8 @@ class expenseFooter extends Component {
         const expenseStream = this.props.budget.filter(expenseObject =>{
         return expenseObject.type === 'expense'
     })
-   let expenseTotal = null 
-    if(!this.props.loading){ 
-    //expenseTotal = expenseStream.map(function(b){return b.amount}).reduce(function(p,c){return p + c})
+   let expenseTotal = <Spinner/>
+    if(Object.keys(expenseStream).length !== 0){expenseTotal = expenseStream.map(function(b){return b.amount}).reduce(function(p,c){return p + c})}
        
     return(
         <TableFooter className="incomeTableFooter"><TableRow><TableCell colSpan = {5} className="incomeFooterCell">Total = {expenseTotal}</TableCell> </TableRow></TableFooter>
@@ -23,7 +23,7 @@ class expenseFooter extends Component {
     )
     }
     }
-}
+
 
 function mapStateToProps(state){
     return {

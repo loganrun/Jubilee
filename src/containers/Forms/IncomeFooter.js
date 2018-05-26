@@ -15,8 +15,8 @@ class incomeFooter extends Component {
         return incomeObject.type === 'income'
     })
 
-    
-    const incomeTotal = incomeStream.map(function(b){return b.amount}).reduce(function(p,c){return p + c})
+    let incomeTotal = <Spinner/>
+    if(Object.keys(incomeStream).length !== 0){incomeTotal = incomeStream.map(function(b){return b.amount}).reduce(function(p,c){return p + c})}
     
        
     return(

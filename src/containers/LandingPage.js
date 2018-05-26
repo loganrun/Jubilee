@@ -9,6 +9,9 @@ import Aux from '../hoc/Aux'
 import Overlay from '../components/LandingPage/overlay'
 import LoginPage from './LogIn/LoginPage'
 import SignUp from './Signup/SignupPage'
+import {createUser} from './store/Actions'
+import {connect} from 'react-redux'
+import {compose} from 'redux'
 
 const styles = theme => ({
   root: {
@@ -44,7 +47,7 @@ function LandingPage(props) {
         ))}
       </GridList>
       <LoginPage/>
-      <SignUp/>
+      <SignUp onSubmit={values => props.dispatch(createUser(values.email, values.password))}/>
     </div>
    
     </Aux>
@@ -55,7 +58,38 @@ LandingPage.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(LandingPage);
+function mapStateToProps(state){
+  return{
+    loggedIn: state.loggedIn
+  }
+}
+
+const styledComponent = withStyles(styles)
+
+export default compose(styledComponent, connect(mapStateToProps,null))(LandingPage);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//onSubmit={values => this.props.dispatch(createUser(values))}
 //  <div className={classes.root} >
 //     <div className= {classes.overlay}>
 //       <GridList cellHeight={260} className={classes.gridList} cols={3}>

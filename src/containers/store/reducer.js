@@ -3,6 +3,10 @@ import * as actionTypes from './Actions/ActionTypes';
 
 const initialState = {
     errorMessage: "",
+    loggingIn: false,
+    loggedIn: false,
+    signingIn: false,
+    loggingOut: false,
     loading: false,
     budgetItem : {
         name: '',
@@ -183,11 +187,13 @@ const reducer = (state = initialState, action) => {
             return{
                 ...state,
                 transaction: [...state.transaction, action.newItem]
-                
             };
-        
-        
-        
+        case actionTypes.CREATE_USER_SUCCESS:
+            const { user: { uid: userId} } = action;
+            return { ...state, loggedIn: true, userId }
+        case(actionTypes.CREATE_USER_FAIL):
+            const { error } = action;
+            return { ...state, loggedIn: false, error }
         default:
             return state;
         

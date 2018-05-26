@@ -5,8 +5,8 @@ import firebase from 'firebase'
 
 
 //sign up
-export const createUser = (email, pass) => dispatch => {
-    firebase.auth().createUserWithEmailAndPassword(email, pass)
+export const createUser = (email, password) => dispatch => {
+    firebase.auth().createUserWithEmailAndPassword(email, password)
     .then((resp) => {
         return dispatch(createUserSuccess(resp));
     }) 

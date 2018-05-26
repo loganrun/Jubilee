@@ -1,5 +1,6 @@
 import React from 'react';
 import {Doughnut} from 'react-chartjs-2';
+import Spinner from '../../components/layouts/Spinner/Spinner'
 
 
 
@@ -9,19 +10,23 @@ const ActualChart = (props)=> {
 const actualIncome = props.data.filter(incomeObject =>{
         return incomeObject.category === 'income'
     })
- const incomeTotal = actualIncome.map(function(b){return b.amount}).reduce(function(p,c){return p + c}
+    
+    let incomeTotal = <Spinner/>
+    if(Object.keys(actualIncome).length !== 0){incomeTotal = actualIncome.map(function(b){return b.amount}).reduce(function(p,c){return p + c}
     
     )
-    
-const actualExpense = props.data.filter(expenseObject =>{
+    }
+    const actualExpense = props.data.filter(expenseObject =>{
         return expenseObject.category !== 'income'
     })
+    
     console.log(actualExpense)
     
-    const expenseTotal = actualExpense.map(function(b){return b.amount}).reduce(function(p,c){return p + c}
+    let expenseTotal = <Spinner/>
+    if(Object.keys(actualExpense).length !== 0){expenseTotal = actualExpense.map(function(b){return b.amount}).reduce(function(p,c){return p + c}
     
     )
-        
+    }
 
 const data = {
 	labels: [

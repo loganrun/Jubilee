@@ -16,16 +16,7 @@ import SessionReducer from './containers/store/sessionReducer'
 
 import {reactReduxFirebase,firebaseReducer} from 'react-redux-firebase'
 import firebase from 'firebase'
-//import {firebaseApp} from './config/firebase'
 
-// const firebaseConfig = { apiKey: "AIzaSyBW_sPqfpdIw_B0cJXhYhVxhFAmA2-_DrM",
-//     authDomain: "jubilee2018-34a0a.firebaseapp.com",
-//     databaseURL: "https://jubilee2018-34a0a.firebaseio.com",
-//     projectId: "jubilee2018-34a0a",
-//     storageBucket: "jubilee2018-34a0a.appspot.com",
-//     messagingSenderId: "471910822129"}
-    
-//     firebase.initializeApp(firebaseConfig)
 
 const rrconfig = {
     userProfile: 'users'

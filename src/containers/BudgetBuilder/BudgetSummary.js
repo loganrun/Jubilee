@@ -16,7 +16,7 @@ import Expenses from '../Charts/Expenses'
  
 class BudgetSummary extends Component{
  
-  componentWillMount () {
+  componentDidMount () {
        
         this.props.dispatch(fetchBudget());
     }

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Doughnut} from 'react-chartjs-2';
-
+import Spinner from '../../components/layouts/Spinner/Spinner'
 
 
 
@@ -12,57 +12,73 @@ const actualExpense = props.data.filter(expenseObject =>{
     })
     console.log(actualExpense)
     
-    const expenseTotal = actualExpense.map(function(b){return b.amount}).reduce(function(p,c){return p + c}
+    let expenseTotal = <Spinner/>
+    if(Object.keys(actualExpense).length !== 0){ expenseTotal = actualExpense.map(function(b){return b.amount}).reduce(function(p,c){return p + c}
     
     )
+    }
 
 const debt = props.data.filter(expenseObject =>{
         return expenseObject.category === 'debt'
     })
-    
-const debtExpense= debt.map(function(b){return b.amount}).reduce(function(p,c){return p + c}
+    let debtExpense = <Spinner/>
+    if(Object.keys(debt).length !== 0){debtExpense= debt.map(function(b){return b.amount}).reduce(function(p,c){return p + c}
     )
+    }
 const housing = props.data.filter(expenseObject =>{
         return expenseObject.category === 'housing'
     })
-const housingExpense= housing.map(function(b){return b.amount}).reduce(function(p,c){return p + c}
+    
+    let housingExpense = <Spinner/>
+    if(Object.keys(housing).length !== 0){housingExpense= housing.map(function(b){return b.amount}).reduce(function(p,c){return p + c}
     )
+    }
 
 const transportation = props.data.filter(expenseObject =>{
         return expenseObject.category === 'transportation'
     })
-const transportationExpense= transportation.map(function(b){return b.amount}).reduce(function(p,c){return p + c}
+    let transportationExpense= <Spinner/>
+    if(Object.keys(transportation).length !== 0){transportationExpense= transportation.map(function(b){return b.amount}).reduce(function(p,c){return p + c}
     )
-    
+    }
 const groceries = props.data.filter(expenseObject =>{
         return expenseObject.category === 'groceries'
     })
-const groceriesExpense= groceries.map(function(b){return b.amount}).reduce(function(p,c){return p + c}
+    
+    let groceriesExpense = <Spinner/>
+    if(Object.keys(groceries).length !== 0){groceriesExpense= groceries.map(function(b){return b.amount}).reduce(function(p,c){return p + c}
     )
+    }
 
 const shopping = props.data.filter(expenseObject =>{
         return expenseObject.category === 'shopping'
     })
-const shoppingExpense= shopping.map(function(b){return b.amount}).reduce(function(p,c){return p + c}
-    )
+    let shoppingExpense = <Spinner/>
+    if(Object.keys(shopping).length !== 0){shoppingExpense= shopping.map(function(b){return b.amount}).reduce(function(p,c){return p + c}
+    )}
 
 const dining = props.data.filter(expenseObject =>{
         return expenseObject.category === 'dining'
     })
-const diningExpense= dining.map(function(b){return b.amount}).reduce(function(p,c){return p + c}
-    )
+    let diningExpense = <Spinner/>
+    if(Object.keys(dining).length !== 0) {diningExpense= dining.map(function(b){return b.amount}).reduce(function(p,c){return p + c}
+    )}
     
 const utilities = props.data.filter(expenseObject =>{
         return expenseObject.category === 'utilities'
     })
-const utilitiesExpense= utilities.map(function(b){return b.amount}).reduce(function(p,c){return p + c}
-    )
+    
+    let utilitiesExpense = <Spinner/>
+    if(Object.keys(utilities).length !== 0){utilitiesExpense= utilities.map(function(b){return b.amount}).reduce(function(p,c){return p + c}
+    )}
     
 const entertainment = props.data.filter(expenseObject =>{
         return expenseObject.category === 'entertainment'
-    })    
-const entertainmentExpense= entertainment.map(function(b){return b.amount}).reduce(function(p,c){return p + c}
-    )
+    })
+    
+    let entertainmentExpense = <Spinner/>
+    if(Object.keys(groceries).length !== 0){entertainmentExpense= entertainment.map(function(b){return b.amount}).reduce(function(p,c){return p + c}
+    )}
 
 const data = {
 	labels: [
