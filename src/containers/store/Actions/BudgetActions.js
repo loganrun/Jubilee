@@ -42,10 +42,11 @@ export const addBudgetItem = (newItem) => {
 };
 }
 
-export const removeBudgetItem = (newItem) => ({
-  type: actionTypes.REMOVE_BUDGET_ITEM,
-  newItem
-});
+export const removeBudgetItem = (newItem) => {
+  return dispatch => {
+    database.collection('budget').doc(".id")
+  };
+};
 
 
 

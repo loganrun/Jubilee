@@ -6,6 +6,8 @@ import Paper from 'material-ui/Paper';
 import Grid from 'material-ui/Grid'
 import blue from 'material-ui/colors/blue'
 import IncomeFooter from './IncomeFooter'
+import DeleteIcon from './Delete'
+
 
 const CustomTableCell = withStyles(theme => ({
   head: {
@@ -33,7 +35,7 @@ const styles = theme => ({
   },
 });
 
-//const footerTotal = this.props.incomeTotal
+
 
 const row = (x, i, header) =>
             <TableRow key={`tr-${i}`}>
@@ -46,7 +48,7 @@ const row = (x, i, header) =>
               }
               </TableRow>;
 
-    const IncomeTable = ({data,header}) => {
+    const IncomeTable = ({data,header,removeItem}) => {
    
 
   return (
@@ -71,6 +73,7 @@ const row = (x, i, header) =>
                         <CustomTableCell>{n.type}</CustomTableCell>
                         <CustomTableCell>{n.frequency}</CustomTableCell>
                         <CustomTableCell numeric>{n.amount}</CustomTableCell>
+                        <CustomTableCell><DeleteIcon onClick={(key) => this.props.dispatch(removeItem(key))}/></CustomTableCell>
                       </TableRow>
                   );
                 })}
@@ -88,5 +91,5 @@ const row = (x, i, header) =>
 export default withStyles(styles)(IncomeTable);
    
 
- //<TableFooter>Total {footerTotal}</TableFooter>
+ 
  

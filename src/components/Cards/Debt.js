@@ -8,6 +8,7 @@ import Debt from '../../assets/Images/debt.jpeg'
 //import TransTable from '../../containers/Forms/TransTable'
 import Table, { TableBody, TableCell, TableRow } from 'material-ui/Table';
 import Moment from 'moment'
+import DeleteIcon from '../../containers/Forms/Delete'
 
 const styles = {
   card: {
@@ -42,6 +43,7 @@ function DebtCard(props) {
                 <TableCell>{n.name}</TableCell>
                 <TableCell numeric>${n.amount}</TableCell>
                 <TableCell>{Moment(n.date).format('MM/DD/YY')}</TableCell>
+                <TableCell><DeleteIcon/></TableCell>
               </TableRow>
             );
           })}

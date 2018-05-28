@@ -26,6 +26,7 @@ export const createUserFail = (error) => {
     }
 }
 
+
 //signin
 export const loginUser = (email, password) => dispatch => {
 firebase.auth().signInWithEmailAndPassword(email, password)
@@ -48,6 +49,7 @@ export const loginUserFail = (error) => {
         error
     }
 }
+
 
 //sign out
 

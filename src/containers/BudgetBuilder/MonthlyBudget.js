@@ -22,6 +22,7 @@ import {addBudgetItem} from '../store/Actions'
 import {fetchBudget} from '../store/Actions'
 import './MonthlyBudget.css'
 import Spinner from '../../components/layouts/Spinner/Spinner'
+import {removeBudgetItem} from '../store/Actions'
 
 
  
@@ -58,6 +59,7 @@ class Monthlybudget extends Component{
          <div className="Monthlybudget_table">
          <Grid container spacing={24}>
         <IncomeTable    data={incomeStream} 
+        removeItem = {removeBudgetItem}
                         
                         header={[
                             {
@@ -79,6 +81,10 @@ class Monthlybudget extends Component{
                             {
                             name:   "Amount",
                             prop:   "amount"
+                            },
+                             {
+                            name:   " ",
+                            prop:   " "
                             }
                             ]}
         />
@@ -104,6 +110,9 @@ class Monthlybudget extends Component{
                             {
                             name:   "Amount",
                             prop:   "amount"
+                            },{
+                            name:   " ",
+                            prop:   " "
                             }
                             ]}
         />

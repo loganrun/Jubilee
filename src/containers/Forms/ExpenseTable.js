@@ -6,6 +6,7 @@ import Paper from 'material-ui/Paper';
 import Grid from 'material-ui/Grid'
 import red from 'material-ui/colors/red';
 import ExpenseFooter from './ExpenseFooter'
+import DeleteIcon from './Delete'
 
 const CustomTableCell = withStyles(theme => ({
   head: {
@@ -34,20 +35,6 @@ const styles = theme => ({
 });
 
 
-// const 
-// let id = 0;
-// function createData(name, calories, fat, carbs, protein) {
-//   id += 1;
-//   return { id, name, calories, fat, carbs, protein };
-// }
-
-// const data = [
-//   createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-//   createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-//   createData('Eclair', 262, 16.0, 24, 6.0),
-//   createData('Cupcake', 305, 3.7, 67, 4.3),
-//   createData('Gingerbread', 356, 16.0, 49, 3.9),
-// ];
 
 const row = (x, i, header) =>
             <TableRow key={`tr-${i}`}>
@@ -56,12 +43,13 @@ const row = (x, i, header) =>
             <CustomTableCell key={`trc-${k}`}>
             {x[y.prop]}
             </CustomTableCell>
+            
                       )) 
               }
+              
               </TableRow>;
 
     const ExpenseTable = ({data, header}) => {
-//   const { classes } = props;
 
   return (
     <Grid item xs>  
@@ -78,8 +66,20 @@ const row = (x, i, header) =>
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map((x,i)=> row(x,i, header))}
-        </TableBody>
+                {data.map((n,i) => {
+                  return (
+                      <TableRow key={n.id}>
+                        <CustomTableCell>{n.category}</CustomTableCell>
+                        <CustomTableCell>{n.name}</CustomTableCell>
+                        <CustomTableCell>{n.type}</CustomTableCell>
+                        <CustomTableCell>{n.frequency}</CustomTableCell>
+                        <CustomTableCell numeric>{n.amount}</CustomTableCell>
+                        <CustomTableCell><DeleteIcon/></CustomTableCell>
+                      </TableRow>
+                  );
+                })}
+                         
+              </TableBody>
        <ExpenseFooter/> 
       </Table>
     </Paper>
@@ -87,8 +87,7 @@ const row = (x, i, header) =>
   );
 }
 
-// IncomeTable.propTypes = {
-//   classes: PropTypes.object.isRequired,
-// };
+
+
 
 export default withStyles(styles)(ExpenseTable);

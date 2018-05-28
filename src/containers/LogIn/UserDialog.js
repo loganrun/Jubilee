@@ -2,15 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'material-ui/Button';
 import Dialog, {
-  DialogActions,
   DialogContent,
- // DialogContentText,
   DialogTitle,
   withMobileDialog,
 } from 'material-ui/Dialog';
-//import AddIcon from '@material-ui/icons/Add';
 import './UserDialog.css'
-//import BudgetItem from './BudgetItem'
 
 class ResponsiveDialog extends React.Component {
   state = {
@@ -54,8 +50,3 @@ ResponsiveDialog.propTypes = {
 
 export default withMobileDialog()(ResponsiveDialog);
 
-// <DialogActions>
-//             <Button onClick={this.handleClose} color="primary">
-//               FINISHED
-//             </Button>
-//           </DialogActions>

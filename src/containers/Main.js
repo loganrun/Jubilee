@@ -1,19 +1,31 @@
-import React from 'react'
-import { Route, Switch } from 'react-router-dom';
-//import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import React, {Component} from 'react'
+import { Route, Switch} from 'react-router-dom';
 import LandingPage from './LandingPage'
 import App from './App'
+import PrivateRoute from '../components/PrivateRoutes/PrivateRoute'
 
 
-const Main = (props) => {
+
+class Main extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            user:{},
+        }
+    }
+    
+   
+    render(props){
+        
     return(
+        
         <Switch>
               <Route exact path="/" component={LandingPage}/>
-              <Route path="/dashboard" component={App} />
-           </Switch>
+              <PrivateRoute path="/dashboard" component={App} />
+        </Switch>
         )
     
-    
+}
 }
 
 export default Main

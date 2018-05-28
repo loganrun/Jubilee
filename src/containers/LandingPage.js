@@ -13,6 +13,8 @@ import {createUser} from './store/Actions'
 import {loginUser} from './store/Actions'
 import {connect} from 'react-redux'
 import {compose} from 'redux'
+import firebase from 'firebase'
+import { Redirect } from 'react-router-dom';
 
 const styles = theme => ({
   root: {
@@ -34,7 +36,10 @@ const styles = theme => ({
 
 function LandingPage(props) {
   const { classes } = props;
-
+  
+    if (props.loggedIn) {
+            return <Redirect to = "/dashboard"/> 
+        }
   return (
     <Aux>  
     
@@ -61,7 +66,7 @@ LandingPage.propTypes = {
 
 function mapStateToProps(state){
   return{
-    loggedIn: state.loggedIn
+    loggedIn: state.budget.loggedIn
   }
 }
 
