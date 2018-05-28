@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
-//import firebase from 'react-redux-firebase'
 import SignBox from './SignBox'
-//import {auth} from '../../config/firebase'
 import './Signup.css'
 //import PropTypes from 'prop-types';
 //import TextField from '@material-ui/core/TextField';
@@ -19,25 +17,15 @@ const styles = {
      marginLeft: 250
  }
 
-// const styles = theme => ({
-//   button: {
-//     display: 'block',
-//     marginTop: theme.spacing.unit * 2,
-//   },
-//   formControl: {
-//     margin: theme.spacing.unit,
-//     minWidth: 120,
-//   },
-// });
+
 
 const required = value => value ? undefined : 'Required'
 const maxLength = max => value =>
-   value && value.length > max ? `Must be ${max} characters or less` : undefined
- const maxLength15 = maxLength(15)
-//const number = value => value && isNaN(Number(value)) ? 'Must be a number' : undefined
-// const minValue = min => value =>
-//   value && value < min ? `Must be at least ${min}` : undefined
-// const minValue18 = minValue(18)
+  value && value.length > max ? `Must be ${max} characters or less` : undefined
+const maxLength28 = maxLength(28)
+export const minLength = min => value =>
+  value && value.length < min ? `Must be ${min} characters or more` : undefined
+export const minLength6 = minLength(6)
  const email = value =>
    value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value) ?
    'Invalid email address' : undefined
@@ -120,7 +108,7 @@ class SignUpPage extends Component {
                     name = "password"
                     type= "password"
                     component={renderTextField}
-                    validate={[ required]}
+                    validate={[ required, minLength6, maxLength28]}
                 />
                 </div>
                  <div>

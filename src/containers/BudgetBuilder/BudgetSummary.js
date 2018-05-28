@@ -58,13 +58,13 @@ class BudgetSummary extends Component{
          <Aux>
          <Typography className="title" variant="display3" gutterBottom>Budget vs. Actual </Typography>
          <Grid container spacing={12}>
-         <Grid item xs='4' >
+         <Grid item xs='3' >
          <BudgetChart data={totalBudget}/>
          </Grid>
-         <Grid item xs='4'>
+         <Grid item xs='3'>
          <ActualBudget data ={totalTransactions}/>
          </Grid>
-         <Grid item xs='4' >
+         <Grid item xs='3' >
          <Expenses data={totalTransactions}/>
          </Grid>
          </Grid>

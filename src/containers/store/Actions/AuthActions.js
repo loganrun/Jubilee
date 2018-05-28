@@ -27,8 +27,27 @@ export const createUserFail = (error) => {
 }
 
 //signin
-export const doSignInWithEmailAndPassword = (email, password) =>
-auth.SignInWithEmailAndPassword(email, password);
+export const loginUser = (email, password) => dispatch => {
+firebase.auth().signInWithEmailAndPassword(email, password)
+.then((resp)=>{
+    return dispatch(loginUserSuccess(resp))
+})
+.catch((error) => dispatch(loginUserFail))
+}
+
+export const loginUserSuccess = (resp) => {
+    return {
+        type: actionTypes.LOGIN_USER_SUCCESS,
+        user: resp,
+    }
+}
+
+export const loginUserFail = (error) => {
+    return {
+        type: actionTypes.LOGIN_USER_FAIL,
+        error
+    }
+}
 
 //sign out
 

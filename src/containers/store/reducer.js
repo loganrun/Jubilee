@@ -8,6 +8,9 @@ const initialState = {
     signingIn: false,
     loggingOut: false,
     loading: false,
+    user:{
+        uid: ''
+    },
     budgetItem : {
         name: '',
         category: '',
@@ -19,122 +22,7 @@ const initialState = {
     },
     
     budget:[],
-    transaction: [
-        {
-        id: '1232',
-        name: 'Westside',
-        category: 'income', //Debts, Housing, Food, Transportation
-        type: 'income', //income,expense
-        date: '5/12/18',
-        amount: 5000//how much
-    },
-    
-    {
-        id: '38974732',
-        name: 'Office',
-        category: 'income', //Debts, Housing, Food, Transportation
-        type: 'income', //income,expense
-        date: '5/12/18', //monthly income or expense yes or no
-        amount:8000//how much
-        
-    },
-    {
-        id: '2682362816',
-        name: 'Real Estate',
-        category: 'income', //Debts, Housing, Food, Transportation
-        type: 'income', //income,expense
-         date: '5/12/18', //monthly income or expense yes or no
-        amount: 2000
-    },
-    {
-        id: '4234',
-        name: 'Visa',
-        category: 'debt', //Debts, Housing, Food, Transportation
-        type: 'expense', //income,expense
-         date: '5/12/18', //monthly income or expense yes or no
-        amount: 500
-    },
-    {
-        id: '6755',
-        name: 'Master Card',
-        category: 'debt', //Debts, Housing, Food, Transportation
-        type: 'expense', //income,expense
-         date: '5/12/18', //monthly income or expense yes or no
-        amount: 500
-    },
-    {
-        id: '34534534',
-        name: 'Student Loan',
-        category: 'debt', //Debts, Housing, Food, Transportation
-        type: 'expense', //income,expense
-         date: '5/12/18', //monthly income or expense yes or no
-        amount: 600
-    },
-    {
-        id: '12321321',
-        name: 'Rent',
-        category: 'housing', //Debts, Housing, Food, Transportation
-        type: 'expense', //income,expense
-         date: '5/12/18', //monthly income or expense yes or no
-        amount: 2000
-    },
-    {
-        id: '34324324',
-        name: 'Car Note',
-        category: 'transportation', //Debts, Housing, Food, Transportation
-        type: 'expense', //income,expense
-         date: '5/12/18', //monthly income or expense yes or no
-        amount: 350
-    },
-     {
-        id: '23432423',
-        name: 'Ralphs',
-        category: 'groceries', //Debts, Housing, Food, Transportation
-        type: 'expense', //income,expense
-         date: '5/12/18', //monthly income or expense yes or no
-        amount: 500
-    },
-     {
-        id: '23542343',
-        name: 'Clothes',
-        category: 'shopping', //Debts, Housing, Food, Transportation
-        type: 'expense', //income,expense
-         date: '5/12/18', //monthly income or expense yes or no
-        amount: 100
-    },
-     {
-        id: '3432432434',
-        name: 'fast food',
-        category: 'dining', //Debts, Housing, Food, Transportation
-        type: 'expense', //income,expense
-         date: '5/12/18', //monthly income or expense yes or no
-        amount: 200
-    },
-     {
-        id: '34324uiy324',
-        name: 'Car Insurance',
-        category: 'transportation', //Debts, Housing, Food, Transportation
-        type: 'expense', //income,expense
-         date: '5/12/18', //monthly income or expense yes or no
-        amount: 120
-    },
-     {
-        id: '3432434324324',
-        name: 'Gas Bill',
-        category: 'utilities', //Debts, Housing, Food, Transportation
-        type: 'expense', //income,expense
-         date: '5/12/18', //monthly income or expense yes or no
-        amount: 120
-    },
-     {
-        id: '34324323432424',
-        name: 'Movies',
-        category: 'entertainment', //Debts, Housing, Food, Transportation
-        type: 'expense', //income,expense
-         date: '5/12/18', //monthly income or expense yes or no
-        amount: 300
-    }
-        ]
+    transaction: []
 
 }
 
@@ -193,7 +81,18 @@ const reducer = (state = initialState, action) => {
             return { ...state, loggedIn: true, userId }
         case(actionTypes.CREATE_USER_FAIL):
             const { error } = action;
+            return { ...state, loggedIn: false, error };
+            
+        case actionTypes.LOGIN_USER_SUCCESS:
+            {
+            const { user: { uid: userId} } = action;
+            return { ...state, loggedIn: true, userId }
+            }
+        case(actionTypes.LOGIN_USER_FAIL):
+            {
+            const { error } = action;
             return { ...state, loggedIn: false, error }
+            }
         default:
             return state;
         

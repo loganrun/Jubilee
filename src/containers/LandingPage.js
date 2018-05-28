@@ -10,6 +10,7 @@ import Overlay from '../components/LandingPage/overlay'
 import LoginPage from './LogIn/LoginPage'
 import SignUp from './Signup/SignupPage'
 import {createUser} from './store/Actions'
+import {loginUser} from './store/Actions'
 import {connect} from 'react-redux'
 import {compose} from 'redux'
 
@@ -46,7 +47,7 @@ function LandingPage(props) {
           </GridListTile>
         ))}
       </GridList>
-      <LoginPage/>
+      <LoginPage onSubmit={values => props.dispatch(loginUser(values.email, values.password))}/>
       <SignUp onSubmit={values => props.dispatch(createUser(values.email, values.password))}/>
     </div>
    
