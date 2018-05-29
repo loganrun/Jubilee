@@ -43,7 +43,6 @@ function DebtCard(props) {
                 <TableCell>{n.name}</TableCell>
                 <TableCell numeric>${n.amount}</TableCell>
                 <TableCell>{Moment(n.date).format('MM/DD/YY')}</TableCell>
-                <TableCell><DeleteIcon/></TableCell>
               </TableRow>
             );
           })}

@@ -1,23 +1,8 @@
 import *  as actionTypes from './ActionTypes'
 //import axios from 'axios';
 import {database} from '../../../config/firebase'
-import firebase from 'firebase'
+//import firebase from 'firebase'
 
-
-// export const getBudget = () => {
-//   return dispatch => {
-//     dispatch(fetchingBudgetRequest());
-//     return database.collection('budget').get().then( snap => {
-//       const budget = snap;
-//       console.log(snap)
-//       dispatch(fetchingBudgetSuccess(budget))
-//     })
-//     .catch((error) => {
-//       console.log(error);
-//       dispatch(fetchingBudgetFailure(error));
-//     });
-//   }
-// }
 
 export const fetchBudget = () =>{
   return dispatch => {

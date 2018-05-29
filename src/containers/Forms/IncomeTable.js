@@ -67,13 +67,13 @@ const row = (x, i, header) =>
               <TableBody>
                 {data.map((n,i) => {
                   return (
-                      <TableRow key={n.id}>
+                      <TableRow key={n.id} data-id={n.id}>
                         <CustomTableCell>{n.category}</CustomTableCell>
                         <CustomTableCell>{n.name}</CustomTableCell>
                         <CustomTableCell>{n.type}</CustomTableCell>
                         <CustomTableCell>{n.frequency}</CustomTableCell>
                         <CustomTableCell numeric>{n.amount}</CustomTableCell>
-                        <CustomTableCell><DeleteIcon onClick={(key) => this.props.dispatch(removeItem(key))}/></CustomTableCell>
+                        <CustomTableCell><span onClick={(e)=> {return removeItem(e)}}><DeleteIcon/></span></CustomTableCell>
                       </TableRow>
                   );
                 })}
@@ -92,4 +92,4 @@ export default withStyles(styles)(IncomeTable);
    
 
  
- 
+ //{(key) => this.props.dispatch(removeItem(key))}

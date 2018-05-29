@@ -27,10 +27,18 @@ import {removeBudgetItem} from '../store/Actions'
 
  
 class Monthlybudget extends Component{
+ constructor(props){
+ super(props)
  
+ this.removeListItem=this.removeListItem.bind(this)
+ }
   componentDidMount() {
     this.props.dispatch(fetchBudget())
   }
+ removeListItem (e) {
+    this.props.dispatch(removeBudgetItem(e.currentTarget.parentNode.parentNode.getAttribute("data-id")))
+     console.log(e.currentTarget.parentNode.parentNode.getAttribute("data-id"))
+ }
     
  render(){
      let incomeStream = <Spinner/>
@@ -59,7 +67,7 @@ class Monthlybudget extends Component{
          <div className="Monthlybudget_table">
          <Grid container spacing={24}>
         <IncomeTable    data={incomeStream} 
-        removeItem = {removeBudgetItem}
+        removeItem = {this.removeListItem}
                         
                         header={[
                             {
