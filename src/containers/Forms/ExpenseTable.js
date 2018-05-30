@@ -49,7 +49,7 @@ const row = (x, i, header) =>
               
               </TableRow>;
 
-    const ExpenseTable = ({data, header}) => {
+    const ExpenseTable = ({data, header, removeItem}) => {
 
   return (
     <Grid item xs>  
@@ -68,13 +68,13 @@ const row = (x, i, header) =>
         <TableBody>
                 {data.map((n,i) => {
                   return (
-                      <TableRow key={n.id}>
+                      <TableRow key={n.id} data-id={n.id}>
                         <CustomTableCell>{n.category}</CustomTableCell>
                         <CustomTableCell>{n.name}</CustomTableCell>
                         <CustomTableCell>{n.type}</CustomTableCell>
                         <CustomTableCell>{n.frequency}</CustomTableCell>
                         <CustomTableCell numeric>{n.amount}</CustomTableCell>
-                        <CustomTableCell><DeleteIcon/></CustomTableCell>
+                        <CustomTableCell><span onClick={(e)=> {return removeItem(e)}}><DeleteIcon/></span></CustomTableCell>
                       </TableRow>
                   );
                 })}

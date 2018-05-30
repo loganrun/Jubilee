@@ -28,7 +28,8 @@ class Monthlybudget extends Component{
   }
  removeListItem (e) {
      const value = e.currentTarget.parentNode.parentNode.getAttribute("data-id")
-    this.props.dispatch(removeBudgetItem(value))
+     const userId = this.props.uid
+    this.props.dispatch(removeBudgetItem(value,userId))
      console.log(value)
  }
  
@@ -94,7 +95,7 @@ class Monthlybudget extends Component{
                             ]}
         />
         <ExpenseTable    data={expenseStream}
-                        
+                        removeItem= {this.removeListItem}
                         header={[
                             {
                             name: "Name",

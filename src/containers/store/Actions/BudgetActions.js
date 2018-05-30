@@ -27,9 +27,9 @@ export const addBudgetItem = (newItem, userId) => {
 };
 }
 
-export const removeBudgetItem = (newItem) => {
+export const removeBudgetItem = (value,userId) => {
   return dispatch => {
-    database.collection('budget').doc(".id")
+     database.collection("user").doc(userId).collection("budget").doc(value).delete()
   };
 };
 

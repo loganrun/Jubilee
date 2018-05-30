@@ -105,6 +105,10 @@ class BudgetSummary extends Component{
                             prop:   "name"
                             },
                             {
+                            name:   "Date",
+                            prop:   "date"
+                            },
+                            {
                             name: "Category",
                             prop: "category"
                             },

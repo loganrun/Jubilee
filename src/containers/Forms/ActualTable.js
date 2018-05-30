@@ -5,6 +5,7 @@ import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Ta
 import Paper from 'material-ui/Paper';
 import Grid from 'material-ui/Grid'
 import Indigo from 'material-ui/colors/indigo'
+import Moment from 'moment'
 
 const CustomTableCell = withStyles(theme => ({
   head: {
@@ -32,6 +33,16 @@ const styles = theme => ({
   },
 });
 
+const row = (x, i, header) =>
+            <TableRow key={`tr-${i}`}>
+              {
+                  header.map((y,k) =>(
+            <CustomTableCell key={`trc-${k}`}>
+            {x[y.prop]}
+            </CustomTableCell>
+                      )) 
+              }
+              </TableRow>;
 
 function ActualTable(props) {
   const { classes } = props;
@@ -44,6 +55,7 @@ function ActualTable(props) {
           <TableRow>
             <CustomTableCell>Name</CustomTableCell>
             <CustomTableCell>Category</CustomTableCell>
+            <CustomTableCell>Date</CustomTableCell>
             <CustomTableCell>Actual Amount</CustomTableCell>
           </TableRow>
         </TableHead>
@@ -51,10 +63,9 @@ function ActualTable(props) {
           {props.data.map(n => {
             return (
               <TableRow key={n.id}>
-                <CustomTableCell >
-                  {n.name}
-                </CustomTableCell>
-                <CustomTableCell numeric>{n.category}</CustomTableCell>
+                <CustomTableCell>{n.name}</CustomTableCell>
+                <CustomTableCell>{n.category}</CustomTableCell>
+                <CustomTableCell>{Moment(n.date).format("MM/DD/YY")}</CustomTableCell>
                 <CustomTableCell numeric>{n.amount}</CustomTableCell>
               </TableRow>
             );
