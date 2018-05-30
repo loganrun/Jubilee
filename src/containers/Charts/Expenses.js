@@ -77,7 +77,7 @@ const entertainment = props.data.filter(expenseObject =>{
     })
     
     let entertainmentExpense = <Spinner/>
-    if(Object.keys(groceries).length !== 0){entertainmentExpense= entertainment.map(function(b){return b.amount}).reduce(function(p,c){return p + c}
+    if(Object.keys(entertainment).length !== 0){entertainmentExpense= entertainment.map(function(b){return b.amount}).reduce(function(p,c){return p + c}
     )}
 
 const data = {

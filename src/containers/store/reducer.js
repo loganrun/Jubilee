@@ -30,6 +30,7 @@ const initialState = {
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         
+        //Budget Reducers
         case actionTypes.FETCHING_BUDGET_REQUEST:
             
             return{ ...state, loading: true
@@ -56,6 +57,7 @@ const reducer = (state = initialState, action) => {
                 ...state, errorMessage: action.payload
             }
             
+        //Transaction Reducers    
          case actionTypes.FETCHING_TRANSACTION_REQUEST:
             
             return{ ...state, loading: true
@@ -76,13 +78,16 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 transaction: [...state.transaction, action.newItem]
             };
+        
+        //Create User
         case actionTypes.CREATE_USER_SUCCESS:
             const { user: { uid: userId} } = action;
             return { ...state, loggedIn: true, userId }
         case(actionTypes.CREATE_USER_FAIL):
             const { error } = action;
             return { ...state, loggedIn: false, error };
-            
+        
+        //Login User    
         case actionTypes.LOGIN_USER_SUCCESS:
             {
             const { user: { uid: userId} } = action;

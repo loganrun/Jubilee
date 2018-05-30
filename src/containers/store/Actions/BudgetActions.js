@@ -1,13 +1,12 @@
 import *  as actionTypes from './ActionTypes'
-//import axios from 'axios';
 import {database} from '../../../config/firebase'
-//import firebase from 'firebase'
 
 
-export const fetchBudget = () =>{
+export const fetchBudget = (userId) =>{
   return dispatch => {
-      dispatch(fetchingBudgetRequest())
-     database.collection('budget').onSnapshot(snapshot => {
+      dispatch(fetchingBudgetRequest(userId))
+       console.log(userId)
+     database.collection("user").doc(userId).collection("budget").onSnapshot(snapshot => {
       const budget = snapshot.docs.map(doc => {
         return Object.assign(doc.data(), {id: doc.id})
       })
@@ -20,9 +19,10 @@ export const fetchBudget = () =>{
 }
 
 
-export const addBudgetItem = (newItem) => {
+export const addBudgetItem = (newItem, userId) => {
+ 
   return dispatch => {
-    database.collection('budget').add(newItem)
+     database.collection("user").doc(userId).collection("budget").add(newItem)
   
 };
 }

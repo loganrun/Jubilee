@@ -14,15 +14,16 @@ import TransactionItem from '../Forms/TransactionItem'
 
 import Grid from 'material-ui/Grid'
 import {connect} from 'react-redux'
-import {addTransactionItem} from '../store/Actions'
+import {addTransactionItem, fetchTransactions} from '../store/Actions'
 import Typography from 'material-ui/Typography';
 import './Transaction.css'
-import {fetchTransactions} from '../store/Actions'
+
 
 class Transaction extends Component {
     
      componentDidMount() {
-    this.props.dispatch(fetchTransactions())
+     const userId = this.props.uid    
+    this.props.dispatch(fetchTransactions(userId))
   }
 
     
@@ -58,6 +59,7 @@ class Transaction extends Component {
     const debtStream = this.props.transaction.filter(debtObject =>{
         return debtObject.category === 'debt'
     })
+    const userId = this.props.uid
         
         
         return(
@@ -78,7 +80,7 @@ class Transaction extends Component {
              <FastFoodCard data={fastfoodStream}/>
              </Grid>
              <Grid item xs>
-                 <HousingCard data={housingStream}/>
+            <HousingCard data={housingStream}/>
              </Grid>
              <Grid item xs>
             <TransportationCard data={transportStream}/>
@@ -94,7 +96,7 @@ class Transaction extends Component {
             </Grid>
             
             
-            <TransactionItem onSubmit={values => this.props.dispatch(addTransactionItem(values))}/>
+            <TransactionItem onSubmit={values => this.props.dispatch(addTransactionItem(values, userId))}/>
             </Grid>
             </Aux>
             </MuiThemeProvider>
@@ -105,7 +107,8 @@ class Transaction extends Component {
 
 function mapStateToProps(state){
     return{
-        transaction: state.budget.transaction
+        transaction: state.budget.transaction,
+         uid: state.firebase.auth.uid
     }
 }
 

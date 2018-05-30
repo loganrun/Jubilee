@@ -1,29 +1,17 @@
 import React, {Component} from 'react';
-//import axios from 'axios'
 import Grid from 'material-ui/Grid'
 import Aux from '../../hoc/Aux';
 import BudetItem from '../Forms/BudgetItem'
-//import Dialog from '../Forms/DialogBox'
-//import Header from '../../components/layouts/Header/header'
-//import NewLayout from '../NewLayout';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-//import ExpenseStream from '../../components/layouts/Main/ExpenseStream'
-//import IncomeStream from '../../components/layouts/Main/IncomeStream'
-
-//import * as actionTypes from '../store/actions'
 import {connect} from 'react-redux'
-import * as actions from '../store/Actions'
-//import {bindactionCreators} from 'redux'
-//import IncomeFooter from '../Forms/IncomeFooter'
 import Typography from 'material-ui/Typography';
 import IncomeTable from '../Forms/IncomeTable';
 import ExpenseTable from '../Forms/ExpenseTable';
-import {addBudgetItem} from '../store/Actions'
-import {fetchBudget} from '../store/Actions'
+import {addBudgetItem, fetchBudget, removeBudgetItem} from '../store/Actions'
 import './MonthlyBudget.css'
 import Spinner from '../../components/layouts/Spinner/Spinner'
-import {removeBudgetItem} from '../store/Actions'
 
+       
 
  
 class Monthlybudget extends Component{
@@ -32,15 +20,24 @@ class Monthlybudget extends Component{
  
  this.removeListItem=this.removeListItem.bind(this)
  }
+ 
   componentDidMount() {
-    this.props.dispatch(fetchBudget())
+    const userId = this.props.uid
+   
+    this.props.dispatch(fetchBudget(userId))
   }
  removeListItem (e) {
-    this.props.dispatch(removeBudgetItem(e.currentTarget.parentNode.parentNode.getAttribute("data-id")))
-     console.log(e.currentTarget.parentNode.parentNode.getAttribute("data-id"))
+     const value = e.currentTarget.parentNode.parentNode.getAttribute("data-id")
+    this.props.dispatch(removeBudgetItem(value))
+     console.log(value)
  }
+ 
     
  render(){
+  
+    const userId = this.props.uid
+    console.log(userId)
+  
      let incomeStream = <Spinner/>
      if(!this.props.loading) { incomeStream = this.props.budget.filter(incomeObject =>{
         return incomeObject.type === "income"
@@ -71,7 +68,7 @@ class Monthlybudget extends Component{
                         
                         header={[
                             {
-                            name:   "name",
+                            name:   "Name",
                             prop:   "name"
                             },
                             {
@@ -100,12 +97,12 @@ class Monthlybudget extends Component{
                         
                         header={[
                             {
-                            name: "Category",
-                            prop: "category"
+                            name: "Name",
+                            prop: "name"
                             },
                             {
-                            name:   "Name",
-                            prop:   "name"
+                            name:   "Category",
+                            prop:   "category"
                             },
                             {
                             name:   "Type",
@@ -124,7 +121,7 @@ class Monthlybudget extends Component{
                             }
                             ]}
         />
-        <BudetItem onSubmit={values => this.props.dispatch(addBudgetItem(values))}/>
+        <BudetItem onSubmit={values => this.props.dispatch(addBudgetItem(values, userId))}/>
         </Grid>
         </div>
         </Aux>
@@ -137,64 +134,12 @@ class Monthlybudget extends Component{
 function mapStateToProps(state){
     return {
         budget: state.budget.budget,
-        loading: state.loading
+        loading: state.loading,
+        uid: state.firebase.auth.uid
     }
 }
 
-// const mapDispatchToProps = dispatch =>{
-//  return{
-//   onGetBudget: () => dispatch(getBudget() )
-//  }
-// }
-
- 
 
 export default connect(mapStateToProps)(Monthlybudget);
 
- //<ResponsiveDialog/>
-
  
-//<Header/>
-
-//
-
-
-
-
-
-
-
-
-
-
-
-
-
-//<BudgetCategories categories = {categories} budget = {budget} />
-
-// this.state.categories.reduce((categories, category) =>{
-//             const {type} = category
-            
-//             categories[type] = categories[type]
-//             ? [...categories[type], category] : [type]
-            
-//             return categories
-//         }, {})
-//     )
-//     } 
-
-// const styles = {
-//      grid: {marginLeft: '270px'}
-//  }
-
-// const LayoutBudget = () => (
-// <Grid container style={styles} spacing={8}>
-//         <Grid item sm >
-//         <BudgetMonth/>
-//         </Grid>
-//         <Grid item sm>
-//         <ActualMonth/>
-//         </Grid>
-// </Grid>
-// )
-//<Grid item sm >

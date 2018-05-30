@@ -5,7 +5,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {connect} from 'react-redux'
 import SummaryTable from '../Forms/SummaryTable';
 import Typography from 'material-ui/Typography';
-import {fetchBudget} from '../store/Actions'
+import {fetchBudget, fetchTransactions} from '../store/Actions'
 import ActualTable from '../Forms/ActualTable'
 //import './MonthlyBudget.css'
 import BudgetChart from '../Charts/BudgetChart.js'
@@ -17,18 +17,21 @@ import Expenses from '../Charts/Expenses'
 class BudgetSummary extends Component{
  
   componentDidMount () {
-       
-        this.props.dispatch(fetchBudget());
+       const userId = this.props.uid
+       console.log(userId)
+        this.props.dispatch(fetchBudget(userId));
+        this.props.dispatch(fetchTransactions(userId))
     }
     
+    
+    
  render(){
-     
-    //  const budgetProjection = totalBudget
-    //  const actualSpending = totalTransactions
      
      const incomeStream = this.props.budget.filter(incomeObject =>{
          return incomeObject.type === 'income'
      })
+     const userId = this.props.uid
+     console.log(userId)
      
      console.log(incomeStream)
      
@@ -57,23 +60,59 @@ class BudgetSummary extends Component{
          <MuiThemeProvider>
          <Aux>
          <Typography className="title" variant="display3" gutterBottom>Budget vs. Actual </Typography>
-         <Grid container spacing={12}>
-         <Grid item xs='3' >
+         <Grid container spacing={24}>
+         <Grid item xs >
          <BudgetChart data={totalBudget}/>
          </Grid>
-         <Grid item xs='3'>
+         <Grid item xs>
          <ActualBudget data ={totalTransactions}/>
          </Grid>
-         <Grid item xs='3' >
+         <Grid item xs>
          <Expenses data={totalTransactions}/>
          </Grid>
          </Grid>
          <Grid container spacing={24}>
          <Grid item xs>
-        <SummaryTable data={totalBudget}/>
+        <SummaryTable data={totalBudget}
+        header={[
+                            {
+                            name:   "Name",
+                            prop:   "name"
+                            },
+                            {
+                            name: "Type",
+                            prop: "type"
+                            },
+                            {
+                            name:   "Category",
+                            prop:   "category"
+                            },
+                            {
+                            name:   "Frequency", 
+                            prop:   "frequency"
+                            },
+                            {
+                            name:   "Budgeted Amount",
+                            prop:   "amount"
+                            }
+                            ]}/>
         </Grid>
         <Grid item xs>
-        <ActualTable data={totalTransactions}/>
+        <ActualTable data={totalTransactions}
+                           header={[
+                            {
+                            name:   "Name",
+                            prop:   "name"
+                            },
+                            {
+                            name: "Category",
+                            prop: "category"
+                            },
+                            {
+                            name:   "Actual Amount",
+                            prop:   "amount"
+                            },
+                            ]}/>
         </Grid>
         </Grid>
         </Aux>
@@ -86,7 +125,8 @@ class BudgetSummary extends Component{
 function mapStateToProps(state){
     return{
         transaction: state.budget.transaction,
-        budget: state.budget.budget
+        budget: state.budget.budget,
+        uid: state.firebase.auth.uid
     }
 }
  
@@ -94,19 +134,4 @@ function mapStateToProps(state){
 export default connect(mapStateToProps)(BudgetSummary);
 
 
- // axios.get( 'https://jsonplaceholder.typicode.com/posts' )
-        //     .then( response => {
-        //         const posts = response.data.slice(0, 4);
-        //         const updatedPosts = posts.map(post => {
-        //             return {
-        //                 ...post,
-        //                 author: 'Max'
-        //             }
-        //         });
-        //         this.setState({posts: updatedPosts});
-        //         // console.log( response );
-        //     } )
-        //     .catch(error => {
-        //         // console.log(error);
-        //         this.setState({error: true});
-        //     });
+ 

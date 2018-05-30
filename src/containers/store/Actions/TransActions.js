@@ -1,12 +1,12 @@
 import *  as actionTypes from './ActionTypes'
 import {database} from '../../../config/firebase'
-import firebase from 'firebase'
+//import firebase from 'firebase'
 
 
-export const fetchTransactions = () =>{
+export const fetchTransactions = (userId) =>{
   return dispatch => {
-      dispatch(fetchingTransactionRequest())
-     database.collection('transactions').onSnapshot(snapshot => {
+      dispatch(fetchingTransactionRequest(userId))
+     database.collection("user").doc(userId).collection("transaction").onSnapshot(snapshot => {
       const transactions = snapshot.docs.map(doc => {
         return Object.assign(doc.data(), {id: doc.id})
       })
@@ -18,9 +18,9 @@ export const fetchTransactions = () =>{
   }
 }
 
-export const addTransactionItem = (newItem) => {
+export const addTransactionItem = (newItem,userId) => {
   return dispatch => {
-    database.collection('transactions').add(newItem)
+    database.collection("user").doc(userId).collection("transaction").add(newItem)
   
 };
 }
