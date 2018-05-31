@@ -24,21 +24,37 @@
 
 .landing-title{
    position: relative;    
-   font-size: 70px;
+   font-size: 80px;
    color: white;
-   text-align: center
+   text-align: center;
+   margin-top: 15px
 }
 
 .slogan{
   position: relative;
-  font-size: 50px;
+  font-size: 40px;
   color: white;
-  margin-top: 50px;
+  margin-top: 109px;
 }
 
 .invite{
   position: relative;
-  font-size: 35px;
+  font-size: 30px;
   color: white;
-  margin-top: 50px;    
+  margin-top: 260px;    
+}
+
+@media screen and (max-width: 750px) {
+  .landing-title {
+    font-size: 20px;
+    margin-top: 15px
+  }
+  .slogan{
+    font-size: 25px;
+    margin-top: 90px;
+  }
+  .invite{
+    font-size: 25px;
+    margin-top: 10px;
+  }
 }

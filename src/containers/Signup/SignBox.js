@@ -41,7 +41,8 @@ class ResponsiveDialog extends React.Component {
           <DialogContent>
             {this.props.children}
           </DialogContent>
-          
+          <h2>demo account- garybrown@hotmail.com</h2>
+          <h2>password: 1234567</h2>
         </Dialog>
       </div>
     );

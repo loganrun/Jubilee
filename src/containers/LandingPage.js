@@ -13,7 +13,6 @@ import {createUser} from './store/Actions'
 import {loginUser} from './store/Actions'
 import {connect} from 'react-redux'
 import {compose} from 'redux'
-import firebase from 'firebase'
 import { Redirect } from 'react-router-dom';
 
 const styles = theme => ({

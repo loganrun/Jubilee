@@ -85,7 +85,9 @@ const reducer = (state = initialState, action) => {
             return { ...state, loggedIn: true, userId }
         case(actionTypes.CREATE_USER_FAIL):
             const { error } = action;
+        
             return { ...state, loggedIn: false, error };
+            
         
         //Login User    
         case actionTypes.LOGIN_USER_SUCCESS:
@@ -97,6 +99,19 @@ const reducer = (state = initialState, action) => {
             {
             const { error } = action;
             return { ...state, loggedIn: false, error }
+            }
+            
+        //Logout User
+        
+        case actionTypes.LOGOUT_USER_SUCCESS:
+            {
+            
+            return { ...state, loggedIn: false, userId: null }
+            }
+        case(actionTypes.LOGOUT_USER_FAIL):
+            {
+            const { error } = action;
+            return { ...state, error }
             }
         default:
             return state;

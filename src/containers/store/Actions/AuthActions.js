@@ -53,7 +53,25 @@ export const loginUserFail = (error) => {
 
 //sign out
 
-export const doSignOut = ()=> auth.signOut();
+export const logOutUser = ()=> dispatch =>firebase.auth().signOut()
+.then((resp) =>{
+    return dispatch(logoutUserSuccess(resp))
+})
+.catch((error)=> dispatch(logoutUserFail))
+
+export const logoutUserSuccess = (resp) =>{
+    return{
+        type: actionTypes.LOGOUT_USER_SUCCESS,
+        user: resp
+    }
+}
+
+export const logoutUserFail = (resp) => {
+    return{
+        type: actionTypes.LOGOUT_USER_FAIL
+    }
+}
+
 
 //password reset
 

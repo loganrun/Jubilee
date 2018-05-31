@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
-//import Header from '../components/layouts/Header/header';
-//import Layout from '../components/layouts/Layout';
 import Monthlybudget from './BudgetBuilder/MonthlyBudget';
 import Transaction from './BudgetBuilder/Transaction'
 import BudgetSummary from './BudgetBuilder/BudgetSummary'
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import NewLayout from './NewLayout';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-//import Transaction from './BudgetBuilder/Transaction';
-//import LayoutBudget from '../components/layouts/LayoutBudget'
+import {connect} from 'react-redux'
+
 import './App.css';
 
 class App extends Component {
   render() {
+    if (!this.props.loggedIn) {
+            return <Redirect to = "/"/> 
+        }
     const { match } = this.props
     return (
       <div>
@@ -31,4 +32,11 @@ class App extends Component {
   }
 }
 
-export default App;
+function mapStateToProps(state){
+  return{
+    loggedIn: state.budget.loggedIn
+  }
+}
+
+
+export default connect(mapStateToProps)(App);

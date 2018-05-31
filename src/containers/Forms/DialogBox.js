@@ -30,7 +30,7 @@ class ResponsiveDialog extends React.Component {
 
     return (
       <div className="dialog-button">
-        <Button variant="fab" color="primary" onClick={this.handleClickOpen}><AddIcon /></Button>
+        <Button variant="fab" color="secondary" onClick={this.handleClickOpen}><AddIcon /></Button>
         <Dialog
           fullScreen={fullScreen}
           open={this.state.open}

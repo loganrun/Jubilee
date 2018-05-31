@@ -10,6 +10,7 @@ import ExpenseTable from '../Forms/ExpenseTable';
 import {addBudgetItem, fetchBudget, removeBudgetItem} from '../store/Actions'
 import './MonthlyBudget.css'
 import Spinner from '../../components/layouts/Spinner/Spinner'
+import ProposedBudget from '../Charts/ProposeBudget'
 
        
 
@@ -37,31 +38,32 @@ class Monthlybudget extends Component{
  render(){
   
     const userId = this.props.uid
-    console.log(userId)
+  
   
      let incomeStream = <Spinner/>
      if(!this.props.loading) { incomeStream = this.props.budget.filter(incomeObject =>{
         return incomeObject.type === "income"
     })
-    
-    const income = incomeStream.sort((a,b) =>{
-      return (a.name > b.name )  
-    })
-    
-    console.log(income)
      }
      
      let expenseStream = <Spinner/>
      if(!this.props.loading) { expenseStream = this.props.budget.filter(incomeObject =>{
         return incomeObject.type === 'expense' 
     })
-    
      }
+     
+     const totalBudget = incomeStream.concat(expenseStream)
+    console.log(totalBudget)
     
      return(
          <MuiThemeProvider>
          <Aux>
          <Typography className="title" variant="display3" gutterBottom>Budget Creator </Typography>
+         <Grid container spacing={24}>
+         <Grid item xs>
+         <ProposedBudget data = {totalBudget}/>
+         </Grid>
+         </Grid>
          <div className="Monthlybudget_table">
          <Grid container spacing={24}>
         <IncomeTable    data={incomeStream} 

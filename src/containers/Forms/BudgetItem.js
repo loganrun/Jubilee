@@ -1,6 +1,6 @@
 import React, { Component} from 'react'
 //import Paper from 'material-ui/Paper'
-import TextField from 'material-ui/TextField';
+import { Select, TextField } from 'redux-form-material-ui';
 import Button from 'material-ui/Button'
 import Grid from 'material-ui/Grid'
 //import {connect} from 'react-redux'
@@ -11,6 +11,8 @@ import Grid from 'material-ui/Grid'
 //import Select from 'material-ui/Select'
 import { withStyles } from 'material-ui/styles';
 import { Field, reduxForm} from 'redux-form'
+import MenuItem from 'material-ui/Menu/MenuItem';
+import Typography from 'material-ui/Typography';
 //import Modal from './Modal'
 import DialogBox from './DialogBox'
 import aux from '../../hoc/Aux'
@@ -112,14 +114,20 @@ class BudgetItem extends Component {
                
                 </div>
                 <div>
-                <Field
-                    label="category - job,debt,housing,etc"
-                    name = "category"
-                    component={renderTextField}
-                    validate={[ required]}
-                />
-                  
-                </div>
+                 <Field name="category" label="category" component={Select} placeholder="Pick a Category" validate={[ required]}>
+                   <MenuItem value="income">Income</MenuItem>
+                    <MenuItem value="debt">Debt</MenuItem>
+                   <MenuItem value="groceries">Groceries</MenuItem>
+                   <MenuItem value="dining">Dining Out</MenuItem>
+                   <MenuItem value="housing">Housing</MenuItem>
+                   <MenuItem value="transportation">Transportation</MenuItem>
+                   <MenuItem value="utilities">Utilities</MenuItem>
+                   <MenuItem value="shopping">Shopping</MenuItem>
+                   <MenuItem value="entertainment">Entertainment</MenuItem>
+                 </Field>
+                  <Typography variant="subheading" gutterBottom>Categories</Typography>
+                 </div>
+                
                 
                 
                 <div>
@@ -172,6 +180,15 @@ class BudgetItem extends Component {
 //   }
 
 export default withStyles(styles) (BudgetForm)
+
+// <Field
+//                     label="category - job,debt,housing,etc"
+//                     name = "category"
+//                     component={renderTextField}
+//                     validate={[ required]}
+//                 />
+                  
+//                 </div>
 
 //disabled={pristine || submitting}
 

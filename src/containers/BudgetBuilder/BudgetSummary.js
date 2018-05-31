@@ -18,9 +18,11 @@ class BudgetSummary extends Component{
  
   componentDidMount () {
        const userId = this.props.uid
-       console.log(userId)
+   
+       if (userId){
         this.props.dispatch(fetchBudget(userId));
         this.props.dispatch(fetchTransactions(userId))
+       }
     }
     
     
@@ -30,38 +32,29 @@ class BudgetSummary extends Component{
      const incomeStream = this.props.budget.filter(incomeObject =>{
          return incomeObject.type === 'income'
      })
-     const userId = this.props.uid
-     console.log(userId)
-     
-     console.log(incomeStream)
      
       const expenseStream = this.props.budget.filter(incomeObject =>{
           return incomeObject.type === 'expense'
       })
     
     const totalBudget = incomeStream.concat(expenseStream)
-    console.log(totalBudget)
     
     const incomeTransaction = this.props.transaction.filter(incomeObject =>{
         return incomeObject.category ==='income'
     })
     
-    console.log(incomeTransaction)
-    
     const expenseTransaction = this.props.transaction.filter(incomeObject =>{
           return incomeObject.category !== 'income'
       })
-      console.log(expenseTransaction)
       
     const totalTransactions = incomeTransaction.concat(expenseTransaction)
-    console.log(totalTransactions)
     
      return(
          <MuiThemeProvider>
          <Aux>
          <Typography className="title" variant="display3" gutterBottom>Budget vs. Actual </Typography>
          <Grid container spacing={24}>
-         <Grid item xs >
+         <Grid item xs>
          <BudgetChart data={totalBudget}/>
          </Grid>
          <Grid item xs>
