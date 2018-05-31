@@ -1,7 +1,7 @@
 import React from 'react';
 import {Bar} from 'react-chartjs-2';
 import Spinner from '../../components/layouts/Spinner/Spinner'
-
+import Grid from 'material-ui/Grid'
 
 
 const ProposedBudget = (props)=> {
@@ -121,6 +121,7 @@ const data = {
 };
 
 return (
+     <Grid item xs={12}>
       <div>
         <h2>Projected Budget</h2>
         <Bar data={data}
@@ -136,6 +137,7 @@ return (
           
         />
       </div>
+      </Grid>
     );
 }
 

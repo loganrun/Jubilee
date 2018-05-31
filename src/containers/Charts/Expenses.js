@@ -1,8 +1,8 @@
 import React from 'react';
 import {Doughnut} from 'react-chartjs-2';
 import Spinner from '../../components/layouts/Spinner/Spinner'
-
-
+import Grid from 'material-ui/Grid'
+import './Chart.css'
 
 const ExpenseChart = (props)=> {
 
@@ -114,8 +114,9 @@ const data = {
 return (
       <div>
         <h2>Expenses</h2>
-        <Doughnut data={data} />
+        <Doughnut className='chart' data={data} />
       </div>
+
     );
 }
 

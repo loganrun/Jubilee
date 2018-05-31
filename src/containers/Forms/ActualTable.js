@@ -48,7 +48,7 @@ function ActualTable(props) {
   const { classes } = props;
 
   return (
-    <Grid item xs>
+    <Grid item sm>
     <Paper className={classes.root}>
       <Table className={classes.table}>
         <TableHead>

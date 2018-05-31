@@ -17,14 +17,14 @@ const tileData = [
     featured: true,
   },
   {
-    img: Free1,
+    img: Free4,
   },
   {
-    img: ManJ,
+    img: Beach,
   },
   
   {
-    img: Free4,
+    img: Free1,
     featured: true,
   },
   {
@@ -36,7 +36,7 @@ const tileData = [
     
   },
   {
-    img: Beach,
+    img: ManJ,
   },
 
    {

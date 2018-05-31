@@ -1,7 +1,8 @@
 import React from 'react';
 import {Doughnut} from 'react-chartjs-2';
 import Spinner from '../../components/layouts/Spinner/Spinner'
-
+import Grid from 'material-ui/Grid'
+import './Chart.css'
 
 
 
@@ -52,7 +53,7 @@ const data = {
 return (
       <div>
         <h2>Budgeted Income/ Expense</h2>
-        <Doughnut data={data} options={options} />
+        <Doughnut className='chart' data={data} options={options} style={{maxWidth:'400px'}}/>
       </div>
     );
 }

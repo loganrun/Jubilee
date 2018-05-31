@@ -24,7 +24,7 @@ const styles = theme => ({
     overflowX: 'auto',
   },
   table: {
-    minWidth: 700,
+    maxWidth: 500,
   },
   row: {
     '&:nth-of-type(odd)': {
@@ -51,7 +51,7 @@ const row = (x, i, header) =>
     const ExpenseTable = ({data, header, removeItem}) => {
 
   return (
-    <Grid item xs>  
+    <Grid item xs={12} sm={6}>  
     <Paper>
       <Table>
       <TableHead>Expense</TableHead>

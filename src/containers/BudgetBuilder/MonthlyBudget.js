@@ -58,14 +58,18 @@ class Monthlybudget extends Component{
      return(
          <MuiThemeProvider>
          <Aux>
-         <Typography className="title" variant="display3" gutterBottom>Budget Creator </Typography>
-         <Grid container spacing={24}>
-         <Grid item xs>
+         <Grid container spacing={24} direction={'row'}>
+         <Grid item xs={6} sm={6} lg={12}>
+         <Typography className="title" variant="display3" gutterBottom>Budget Creator</Typography>
+        </Grid>
+        </Grid>
+         <Grid container spacing={12}>
+         <Grid item xs={12} sm={6}>
          <ProposedBudget data = {totalBudget}/>
          </Grid>
          </Grid>
          <div className="Monthlybudget_table">
-         <Grid container spacing={24}>
+         <Grid container spacing={12}>
         <IncomeTable    data={incomeStream} 
         removeItem = {this.removeListItem}
                         

@@ -11,7 +11,8 @@ import ActualTable from '../Forms/ActualTable'
 import BudgetChart from '../Charts/BudgetChart.js'
 import ActualBudget from '../Charts/ActualBudget.js'
 import Expenses from '../Charts/Expenses'
-
+import '../Charts/Chart.css'
+import Spinner from '../../components/layouts/Spinner/Spinner'
 
  
 class BudgetSummary extends Component{
@@ -28,14 +29,19 @@ class BudgetSummary extends Component{
     
     
  render(){
+  
+    let incomeStream = <Spinner/>
+     if(!this.props.loading) { incomeStream = this.props.budget.filter(incomeObject =>{
+        return incomeObject.type === "income"
+    })
+     }
      
-     const incomeStream = this.props.budget.filter(incomeObject =>{
-         return incomeObject.type === 'income'
-     })
+     let expenseStream = <Spinner/>
+     if(!this.props.loading) { expenseStream = this.props.budget.filter(incomeObject =>{
+        return incomeObject.type === 'expense' 
+    })
+     }
      
-      const expenseStream = this.props.budget.filter(incomeObject =>{
-          return incomeObject.type === 'expense'
-      })
     
     const totalBudget = incomeStream.concat(expenseStream)
     
@@ -52,20 +58,24 @@ class BudgetSummary extends Component{
      return(
          <MuiThemeProvider>
          <Aux>
+         <Grid container spacing={24} direction={'row'}>
+         <Grid item xs={6} sm={6} lg={12}>
          <Typography className="title" variant="display3" gutterBottom>Budget vs. Actual </Typography>
-         <Grid container spacing={24}>
-         <Grid item xs>
-         <BudgetChart data={totalBudget}/>
+        </Grid>
+        </Grid>
+        <Grid container spacing={24} direction={'row'}>
+         <Grid item xs={12} sm={6} lg={4}>
+         <BudgetChart className='chart'style={{maxWidth:'400px'}} data={totalBudget}/>
          </Grid>
-         <Grid item xs>
-         <ActualBudget data ={totalTransactions}/>
+         <Grid item xs={12} sm={6} lg={4}>
+         <ActualBudget className='chart' data ={totalTransactions}/>
          </Grid>
-         <Grid item xs>
-         <Expenses data={totalTransactions}/>
+         <Grid item xs={12} sm={6} lg={4}>
+         <Expenses className='chart' data={totalTransactions}/>
          </Grid>
          </Grid>
-         <Grid container spacing={24}>
-         <Grid item xs>
+         <Grid container direction={'row'} spacing={24}>
+         <Grid item xs={12} sm={6} lg={6}>
         <SummaryTable data={totalBudget}
         header={[
                             {
@@ -90,7 +100,7 @@ class BudgetSummary extends Component{
                             }
                             ]}/>
         </Grid>
-        <Grid item xs>
+        <Grid item sm>
         <ActualTable data={totalTransactions}
                            header={[
                             {
