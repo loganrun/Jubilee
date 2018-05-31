@@ -39,6 +39,9 @@ class ResponsiveDialog extends React.Component {
           </DialogContent>
           <h2> demo account- garybrown@hotmail.com </h2>
           <h2> password: 1234567 </h2>
+          <p>There appears to be a bug in the Materialize UI.</p>
+          <p> No matter what I tried, could not get the <br></br>tables and
+           charts to be responsive.</p>
         </Dialog>
       </div>
     );
