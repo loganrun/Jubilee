@@ -7,7 +7,7 @@ import SummaryTable from '../Forms/SummaryTable';
 import Typography from 'material-ui/Typography';
 import {fetchBudget, fetchTransactions} from '../store/Actions'
 import ActualTable from '../Forms/ActualTable'
-//import './MonthlyBudget.css'
+
 import BudgetChart from '../Charts/BudgetChart.js'
 import ActualBudget from '../Charts/ActualBudget.js'
 import Expenses from '../Charts/Expenses'
