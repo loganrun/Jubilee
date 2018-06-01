@@ -11,6 +11,9 @@ import Divider from 'material-ui/Divider';
 import MenuIcon from '@material-ui/icons/Menu';
 import deepOrange from 'material-ui/colors/deepOrange'
 import Navigation from '../components/layouts/Navigation/Navigation'
+import {logOutUser} from './store/Actions/index'
+import {connect} from 'react-redux'
+import {compose} from 'redux'
 
 const drawerWidth = 240;
 
@@ -70,7 +73,7 @@ class ResponsiveDrawer extends React.Component {
 
     const drawer = (
       <div>
-      <Navigation/>  
+      <Navigation logOut={()=> this.props.dispatch(logOutUser())}/>  
       </div>
     );
 
@@ -139,5 +142,14 @@ ResponsiveDrawer.propTypes = {
   theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(ResponsiveDrawer);
+function mapStateToProps(state){
+    return {
+        budget: state.budget.budget,
+        loading: state.loading,
+        uid: state.firebase.auth.uid
+    }
+}
 
+const styledComponent = withStyles(styles, { withTheme: true })
+
+export default compose(styledComponent, connect(mapStateToProps,null))(ResponsiveDrawer);

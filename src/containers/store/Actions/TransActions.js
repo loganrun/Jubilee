@@ -1,6 +1,6 @@
 import *  as actionTypes from './ActionTypes'
 import {database} from '../../../config/firebase'
-//import firebase from 'firebase'
+
 
 
 export const fetchTransactions = (userId) =>{
@@ -47,13 +47,3 @@ export const fetchingTransactionFailure = (error) => ({
 
 
 
-// export const fetchTransactions = () =>{
-//   return dispatch => {
-//     axios.get( 'https://jubilee2018-34a0a.firebaseio.com/' )
-//       .then( response => {
-//       dispatch(fetchingTransactionSuccess(response.data));
-//     }) 
-//     .catch (error => {
-//       dispatch(fetchingTransactionFailure ());
-//     });
-//   }

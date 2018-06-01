@@ -36,6 +36,7 @@ const styles = theme => ({
 function LandingPage(props) {
   const { classes } = props;
   
+
     if (props.loggedIn) {
             return <Redirect to = "/dashboard"/> 
         }
@@ -62,6 +63,7 @@ function LandingPage(props) {
 LandingPage.propTypes = {
   classes: PropTypes.object.isRequired,
 };
+
 
 function mapStateToProps(state){
   return{

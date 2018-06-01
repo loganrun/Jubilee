@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import { TableFooter, TableCell, TableRow} from 'material-ui/Table';
-//import { withStyles } from 'material-ui/styles';
 import {connect} from 'react-redux'
 import './IncomeFooter.css'
 import Spinner from '../../components/layouts/Spinner/Spinner'

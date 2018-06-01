@@ -5,7 +5,7 @@ import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Ta
 import Paper from 'material-ui/Paper';
 import Grid from 'material-ui/Grid'
 import indigo from 'material-ui/colors/indigo'
-//import {connect} from 'react-redux'
+
 
 const CustomTableCell = withStyles(theme => ({
   head: {

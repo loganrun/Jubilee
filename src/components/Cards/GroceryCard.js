@@ -61,13 +61,6 @@ GroceryCard.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-// function mapStateToProps(state){
-//     return{
-//         transaction: state.budget.transaction
-//     }
-// }
 
 export default withStyles(styles) (GroceryCard);
 
-//<img src={Grocery} alt={''} style={styles}/>
-//connect(mapStateToProps)

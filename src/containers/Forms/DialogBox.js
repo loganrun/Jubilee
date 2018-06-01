@@ -4,13 +4,13 @@ import Button from 'material-ui/Button';
 import Dialog, {
   DialogActions,
   DialogContent,
- // DialogContentText,
+ 
   DialogTitle,
   withMobileDialog,
 } from 'material-ui/Dialog';
 import AddIcon from '@material-ui/icons/Add';
 import './DialogBox.css'
-//import BudgetItem from './BudgetItem'
+
 
 class ResponsiveDialog extends React.Component {
   state = {
@@ -58,7 +58,3 @@ ResponsiveDialog.propTypes = {
 
 export default withMobileDialog()(ResponsiveDialog);
 
-// <DialogContentText>
-//               Let Google help apps determine location. This means sending anonymous location data to
-//               Google, even when no apps are running.
-//             </DialogContentText>
