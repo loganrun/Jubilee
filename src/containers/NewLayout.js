@@ -4,17 +4,13 @@ import { withStyles } from 'material-ui/styles';
 import Drawer from 'material-ui/Drawer';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
-//import List from 'material-ui/List';
 import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
 import Hidden from 'material-ui/Hidden';
 import Divider from 'material-ui/Divider';
 import MenuIcon from '@material-ui/icons/Menu';
-//import purple from 'material-ui/colors/purple'
 import deepOrange from 'material-ui/colors/deepOrange'
-//import grey from 'material-ui/colors/grey'
 import Navigation from '../components/layouts/Navigation/Navigation'
-//import { mailFolderListItems, otherMailFolderListItems } from './tileData';
 
 const drawerWidth = 240;
 
@@ -145,15 +141,3 @@ ResponsiveDrawer.propTypes = {
 
 export default withStyles(styles, { withTheme: true })(ResponsiveDrawer);
 
-//theme.palette.background.default
-// <nav>
-//         <div className={classes.toolbar} />
-//         <Divider />
-//         <NavLink to="/">Monthly Budget</NavLink>
-//         <Divider />
-//         <NavLink to="/budgetitems">BreakDown</NavLink>
-//         <Divider />
-//       <NavLink to="/spending">Daily Transactions</NavLink>
-//         <Divider />
-//         <List></List>
-//         </nav>
