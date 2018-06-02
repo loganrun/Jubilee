@@ -33,36 +33,35 @@ const styles = theme => ({
   },
 });
 
-const row = (x, i, header) =>
-            <TableRow key={`tr-${i}`}>
-              {
-                  header.map((y,k) =>(
-            <CustomTableCell key={`trc-${k}`}>
-            {x[y.prop]}
-            </CustomTableCell>
-                      )) 
-              }
-              </TableRow>;
+// const row = (x, i, header) =>
+//             <TableRow key={`tr-${i}`}>
+//               {
+//                   header.map((y,k) =>(
+//             <CustomTableCell key={`trc-${k}`}>
+//             {x[y.prop]}
+//             </CustomTableCell>
+//                       )) 
+//               }
+//               </TableRow>;
 
 function ActualTable(props) {
   const { classes } = props;
 
   return (
-    <Grid item sm>
+    <Grid item xs={6} sm={6} md={6} lg={12}>
     <Paper className={classes.root}>
       <Table className={classes.table}>
-        <TableHead>
+      <TableHead>
           <TableRow>
-            <CustomTableCell>Name</CustomTableCell>
-            <CustomTableCell>Category</CustomTableCell>
-            <CustomTableCell>Date</CustomTableCell>
-            <CustomTableCell>Actual Amount</CustomTableCell>
+            {props.header.map((x,i) => 
+              <CustomTableCell key={`thc-${i}`}>{x.name} </CustomTableCell>      
+            )}
           </TableRow>
         </TableHead>
         <TableBody>
           {props.data.map(n => {
             return (
-              <TableRow key={n.id}>
+              <TableRow ClassName={classes.row} key={n.id}>
                 <CustomTableCell>{n.name}</CustomTableCell>
                 <CustomTableCell>{n.category}</CustomTableCell>
                 <CustomTableCell>{Moment(n.date).format("MM/DD/YY")}</CustomTableCell>
@@ -84,3 +83,11 @@ ActualTable.propTypes = {
 
 export default withStyles(styles)(ActualTable);
 //className={classes.row}component="th" scope="row"
+// <TableHead>
+//           <TableRow>
+//             <CustomTableCell>Name</CustomTableCell>
+//             <CustomTableCell>Category</CustomTableCell>
+//             <CustomTableCell>Date</CustomTableCell>
+//             <CustomTableCell>Actual Amount</CustomTableCell>
+//           </TableRow>
+//         </TableHead>

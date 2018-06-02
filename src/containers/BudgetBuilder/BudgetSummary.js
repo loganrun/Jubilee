@@ -17,6 +17,7 @@ import Spinner from '../../components/layouts/Spinner/Spinner'
  
 class BudgetSummary extends Component{
  
+   
   componentDidMount () {
        const userId = this.props.uid
    
@@ -64,15 +65,9 @@ class BudgetSummary extends Component{
         </Grid>
         </Grid>
         <Grid container spacing={24} direction={'row'}>
-         <Grid item xs={12} sm={6} lg={4}>
          <BudgetChart className='chart'style={{maxWidth:'400px'}} data={totalBudget}/>
-         </Grid>
-         <Grid item xs={12} sm={6} lg={4}>
          <ActualBudget className='chart' data ={totalTransactions}/>
-         </Grid>
-         <Grid item xs={12} sm={6} lg={4}>
          <Expenses className='chart' data={totalTransactions}/>
-         </Grid>
          </Grid>
          <Grid container direction={'row'} spacing={24}>
          <Grid item xs={12} sm={6} lg={6}>
@@ -99,8 +94,7 @@ class BudgetSummary extends Component{
                             prop:   "amount"
                             }
                             ]}/>
-        </Grid>
-        <Grid item sm>
+                            </Grid>
         <ActualTable data={totalTransactions}
                            header={[
                             {
@@ -120,7 +114,6 @@ class BudgetSummary extends Component{
                             prop:   "amount"
                             },
                             ]}/>
-        </Grid>
         </Grid>
         </Aux>
         </MuiThemeProvider>

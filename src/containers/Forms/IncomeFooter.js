@@ -3,6 +3,7 @@ import { TableFooter, TableCell, TableRow} from 'material-ui/Table';
 import {connect} from 'react-redux'
 import './IncomeFooter.css'
 import Spinner from '../../components/layouts/Spinner/Spinner'
+import Grid from 'material-ui/Grid'
 
 class incomeFooter extends Component {
     
@@ -20,7 +21,7 @@ class incomeFooter extends Component {
        
     return(
       <TableFooter className="incomeTableFooter"><TableRow><TableCell colSpan = {5} className="incomeFooterCell">Total = {incomeTotal}</TableCell> </TableRow></TableFooter>
-        
+      
     )
     }
     }

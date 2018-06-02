@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Table, { TableBody, TableCell, TableHead, TableRow} from 'material-ui/Table';
 import Paper from 'material-ui/Paper';
@@ -48,13 +48,12 @@ const row = (x, i, header) =>
               }
               </TableRow>;
 
-    const IncomeTable = ({data,header,removeItem}) => {
-   
+    const IncomeTable = ({data,header,removeItem, classes}) => {
 
   return (
-    <Grid item xs={12} sm={6}>  
-    <Paper>
-      <Table>
+    <Grid item xs={6} sm={6} md={8}lg={6}>
+    <Paper className={classes.root}>
+      <Table className={classes.table}>
       <TableHead>Income</TableHead>
               <TableHead>
                 <TableRow>
@@ -79,16 +78,19 @@ const row = (x, i, header) =>
                 })}
                          
               </TableBody>
-           <IncomeFooter/>   
+              <IncomeFooter/>
       </Table>
     </Paper>
     </Grid>
+
   );
 }
 
-
+IncomeTable.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 
 export default withStyles(styles)(IncomeTable);
-   
+  
 
  

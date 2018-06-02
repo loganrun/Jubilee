@@ -3,8 +3,23 @@ import {Doughnut} from 'react-chartjs-2';
 import Spinner from '../../components/layouts/Spinner/Spinner'
 import Grid from 'material-ui/Grid'
 import './Chart.css'
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+
+const styles = {
+  card: {
+    minWidth: 415,
+  },
+  
+  pos: {
+    marginBottom: 12,
+  },
+};
 
 const ExpenseChart = (props)=> {
+    const { classes } = props;
 
     
 const actualExpense = props.data.filter(expenseObject =>{
@@ -113,11 +128,21 @@ const data = {
 
 return (
       <div>
+      <Grid item item xs={6} sm={6} lg={3}>
+       <Card className={classes.card}>
+        <CardContent>
         <h2>Expenses</h2>
         <Doughnut className='chart' data={data} />
+        </CardContent>
+        </Card>
+        </Grid>
       </div>
 
     );
 }
 
-export default ExpenseChart
+ExpenseChart.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(ExpenseChart)

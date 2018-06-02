@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Aux from '../../hoc/Aux';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import GroceryCard from '../../components/Cards/GroceryCard'
 import FastFoodCard from '../../components/Cards/FastFoodCard'
 import TransportationCard from '../../components/Cards/Transportation'
@@ -12,10 +12,10 @@ import IncomeCard from '../../components/Cards/Income'
 import DebtCard from '../../components/Cards/Debt'
 import TransactionItem from '../Forms/TransactionItem'
 
-import Grid from 'material-ui/Grid'
+import Grid from '@material-ui/core/Grid'
 import {connect} from 'react-redux'
 import {addTransactionItem, fetchTransactions} from '../store/Actions'
-import Typography from 'material-ui/Typography';
+import Typography from '@material-ui/core/Typography';
 import './Transaction.css'
 
 

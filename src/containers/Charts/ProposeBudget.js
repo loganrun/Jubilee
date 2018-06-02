@@ -2,10 +2,24 @@ import React from 'react';
 import {Bar} from 'react-chartjs-2';
 import Spinner from '../../components/layouts/Spinner/Spinner'
 import Grid from 'material-ui/Grid'
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+
+const styles = {
+  card: {
+    minWidth: 275,
+  },
+  
+  pos: {
+    marginBottom: 12,
+  },
+};
 
 
 const ProposedBudget = (props)=> {
-
+const { classes } = props;
 const projectedIncome = props.data.filter(incomeObject =>{
         return incomeObject.type === 'income'
     }) 
@@ -121,14 +135,17 @@ const data = {
 };
 
 return (
-     <Grid item xs={12}>
       <div>
+     <Grid item item xs={6} sm={6} lg={12}>
+       <Card className={classes.card}>
+        <CardContent>
         <h2>Projected Budget</h2>
         <Bar data={data}
          height= {500}
          width={800}
           options={{
-            responsive: false,
+            responsive: true,
+            maintainAspectRatio: true,
            
             legend: {
             display: false
@@ -136,9 +153,15 @@ return (
           }}
           
         />
+        </CardContent>
+        </Card>
+        </Grid>
       </div>
-      </Grid>
     );
 }
 
-export default ProposedBudget
+ProposedBudget.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles) (ProposedBudget)

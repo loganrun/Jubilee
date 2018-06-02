@@ -31,6 +31,7 @@ export const createUserFail = (error) => {
 export const loginUser = (email, password) => dispatch => {
 firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
   .then(function() {
+      console.log("arg:", arguments)
 return firebase.auth().signInWithEmailAndPassword(email, password)})
 .then((resp)=>{
     return dispatch(loginUserSuccess(resp))
