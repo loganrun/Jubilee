@@ -28,11 +28,8 @@ const styles = theme => ({
     width: '100%',
   },
   appBar: {
-    position: 'absolute',
-    marginLeft: drawerWidth,
-    [theme.breakpoints.up('md')]: {
-      width: `calc(100% - ${drawerWidth}px)`,
-    },
+   zIndex: theme.zIndex.drawer + 1,
+    
   },
   navIconHide: {
     [theme.breakpoints.up('md')]: {
@@ -45,7 +42,7 @@ const styles = theme => ({
     backgroundColor: deepOrange[500],
     color: 'fff',
     [theme.breakpoints.up('md')]: {
-      position: 'relative',
+      position: 'fixed',
     },
   },
   content: {
@@ -54,7 +51,7 @@ const styles = theme => ({
     padding: theme.spacing.unit * 3,
   },
   drawer: {
-    
+    position: "absolute"
   
   }
 });
@@ -79,7 +76,7 @@ class ResponsiveDrawer extends React.Component {
 
     return (
       <div className={classes.root}>
-        <AppBar className={classes.appBar}>
+        <AppBar position='fixed' className={classes.appBar}>
           <Toolbar>
             <IconButton
               color="inherit"
@@ -94,11 +91,14 @@ class ResponsiveDrawer extends React.Component {
             </Typography>
           </Toolbar>
         </AppBar>
+        <Hidden smDown>
+        <div className={classes.toolbar} >
+        </div>
+        </Hidden>
         <div >
         <Hidden mdUp>
           <Drawer
             variant="temporary"
-            anchor={theme.direction === 'rtl' ? 'right' : 'left'}
             open={this.state.mobileOpen}
             onClose={this.handleDrawerToggle}
             style={{styles}}
@@ -117,6 +117,7 @@ class ResponsiveDrawer extends React.Component {
           <div >
           <Drawer
             variant="permanent"
+            position="fixed"
             open
             classes={{
               paper: classes.drawerPaper,
