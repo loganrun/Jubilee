@@ -63,11 +63,14 @@ class Monthlybudget extends Component{
          <Typography className="title" variant="display3" gutterBottom>Budget Creator</Typography>
         </Grid>
         </Grid>
+         <div className={'container'}>
          <Grid container direction={'row'} spacing={24}>
          <Grid item xs={12} sm={6} lg={6}>
          <ProposedBudget data = {totalBudget}/>
          </Grid>
          </Grid>
+      
+         
          <Grid container direction={'row'} spacing={24}>
          <Grid item xs={12} sm={6} lg={12}>
         <IncomeTable    data={incomeStream} 
@@ -133,6 +136,7 @@ class Monthlybudget extends Component{
         </Grid>
         <BudetItem onSubmit={values => this.props.dispatch(addBudgetItem(values, userId))}/>
        </Grid>
+       </div>
         </Aux>
         </MuiThemeProvider>
          

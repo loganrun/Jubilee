@@ -66,6 +66,7 @@ class Transaction extends Component {
             <MuiThemeProvider>
             <Aux>
             <Typography className="title" variant="display3" gutterBottom>Daily Spending / Income </Typography>
+             <div className={'container'}>
             <Grid container spacing={24}>
             <Grid item xs>
              <IncomeCard data={incomeStream}/>
@@ -98,6 +99,7 @@ class Transaction extends Component {
             
             <TransactionItem onSubmit={values => this.props.dispatch(addTransactionItem(values, userId))}/>
             </Grid>
+            </div>
             </Aux>
             </MuiThemeProvider>
              );

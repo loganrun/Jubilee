@@ -14,8 +14,9 @@ import Navigation from '../components/layouts/Navigation/Navigation'
 import {logOutUser} from './store/Actions/index'
 import {connect} from 'react-redux'
 import {compose} from 'redux'
+import blueGrey from '@material-ui/core/colors/blueGrey';
 
-const drawerWidth = 240;
+const drawerWidth = 200;
 
 const styles = theme => ({
   root: {
@@ -29,6 +30,7 @@ const styles = theme => ({
   },
   appBar: {
    zIndex: theme.zIndex.drawer + 1,
+   color: 'default'
     
   },
   navIconHide: {
@@ -38,8 +40,9 @@ const styles = theme => ({
   },
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
+    marginTop: '60px',
     width: drawerWidth,
-    backgroundColor: deepOrange[500],
+    backgroundColor: blueGrey[900],
     color: 'fff',
     [theme.breakpoints.up('md')]: {
       position: 'fixed',
@@ -76,7 +79,7 @@ class ResponsiveDrawer extends React.Component {
 
     return (
       <div className={classes.root}>
-        <AppBar position='fixed' className={classes.appBar}>
+        <AppBar position='fixed' className={classes.appBar} color='#ffffff'>
           <Toolbar>
             <IconButton
               color="inherit"

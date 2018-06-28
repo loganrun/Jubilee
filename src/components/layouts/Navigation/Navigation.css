@@ -1,20 +1,20 @@
 .NavLink{
     margin: 10px 15px 0;
-      border-radius: 30px;
+      border-radius: 5px;
       color: #FFFFFF;
       display: block;
       text-decoration: none;
       position: relative;
       text-transform: uppercase;
       cursor: pointer;
-      font-size: 1em;
+      font-size: .8em;
       padding: 10px 8px;
       line-height: 1.625rem; 
 }
 
 .active-link{
-    background-color: #FFFFFF;
-    color: #f96332;
+    background-color: #43ACC1;
+    /*color: #f96332;*/
       -webkit-box-shadow: 0 1px 15px 1px rgba(39, 39, 39, 0.1);
               box-shadow: 0 1px 15px 1px rgba(39, 39, 39, 0.1); 
 }
