@@ -57,10 +57,10 @@ class BudgetSummary extends Component{
       
     const totalTransactions = incomeTransaction.concat(expenseTransaction)
     
+    if(window.innerWidth >= 950){
      return(
          <MuiThemeProvider>
          <Aux>
-        
          <Grid container spacing={24} direction={'row'}>
          <Grid item xs={6} sm={6} lg={12}>
          <Typography className="title" variant="display3" gutterBottom>Budget vs. Actual </Typography>
@@ -123,9 +123,75 @@ class BudgetSummary extends Component{
         </MuiThemeProvider>
          
          );
-    
+    }else{
+     return(
+         <MuiThemeProvider>
+         <Aux>
+         <Grid container spacing={24} direction={'row'}>
+         <Grid item xs={6} sm={6} lg={12}>
+         <Typography className="title" variant="display3" gutterBottom>Budget vs. Actual </Typography>
+        </Grid>
+        </Grid>
+        <Grid container spacing={24} direction={'row'}>
+         <BudgetChart className='chart'style={{maxWidth:'400px'}} data={totalBudget}/>
+         <ActualBudget className='chart' data ={totalTransactions}/>
+         <Expenses className='chart' data={totalTransactions}/>
+         </Grid>
+         <Grid container direction={'row'} spacing={24}>
+         <Grid item xs={12} sm={6} lg={6}>
+        <SummaryTable data={totalBudget}
+        header={[
+                            {
+                            name:   "Name",
+                            prop:   "name"
+                            },
+                            {
+                            name: "Type",
+                            prop: "type"
+                            },
+                            {
+                            name:   "Category",
+                            prop:   "category"
+                            },
+                            {
+                            name:   "Frequency", 
+                            prop:   "frequency"
+                            },
+                            {
+                            name:   "Budgeted Amount",
+                            prop:   "amount"
+                            }
+                            ]}/>
+                            </Grid>
+        <ActualTable data={totalTransactions}
+                           header={[
+                            {
+                            name:   "Name",
+                            prop:   "name"
+                            },
+                            {
+                            name:   "Date",
+                            prop:   "date"
+                            },
+                            {
+                            name: "Category",
+                            prop: "category"
+                            },
+                            {
+                            name:   "Actual Amount",
+                            prop:   "amount"
+                            },
+                            ]}/>
+        </Grid>
+        </Aux>
+        </MuiThemeProvider>
+         
+         );
+    }
+     
+    }
  }   
-}
+
 function mapStateToProps(state){
     return{
         transaction: state.budget.transaction,
