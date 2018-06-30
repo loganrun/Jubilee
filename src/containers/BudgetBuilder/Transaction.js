@@ -61,7 +61,7 @@ class Transaction extends Component {
     })
     const userId = this.props.uid
         
-        
+    if(window.innerWidth >= 950){    
         return(
             <MuiThemeProvider>
             <Aux>
@@ -103,7 +103,47 @@ class Transaction extends Component {
             </Aux>
             </MuiThemeProvider>
              );
-        
+    }else{
+        return(
+            <MuiThemeProvider>
+            <Aux>
+            <Typography className="title" variant="display3" gutterBottom>Daily Spending / Income </Typography>
+            <Grid container spacing={24}>
+            <Grid item xs>
+             <IncomeCard data={incomeStream}/>
+             </Grid>
+             <Grid item xs>
+            <DebtCard data={debtStream}/>
+            </Grid>
+            <Grid item xs>
+            <GroceryCard data={groceryStream}/>
+            </Grid>
+             <Grid item xs>
+             <FastFoodCard data={fastfoodStream}/>
+             </Grid>
+             <Grid item xs>
+            <HousingCard data={housingStream}/>
+             </Grid>
+             <Grid item xs>
+            <TransportationCard data={transportStream}/>
+            </Grid>
+            <Grid item xs>
+                 <UtilitiesCard data={utilityStream}/>
+             </Grid>
+            <Grid item xs>
+            <ShoppingCard data={shoppingStream}/>
+            </Grid>
+            <Grid item xs>
+            <EntertainmentCard data={entertainmentStream}/>
+            </Grid>
+            
+            
+            <TransactionItem onSubmit={values => this.props.dispatch(addTransactionItem(values, userId))}/>
+            </Grid>
+            </Aux>
+            </MuiThemeProvider>
+             );
+    }
     }
 }
 

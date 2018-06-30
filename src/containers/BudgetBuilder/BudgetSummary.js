@@ -61,11 +61,12 @@ class BudgetSummary extends Component{
      return(
          <MuiThemeProvider>
          <Aux>
-         <Grid container spacing={24} direction={'row'}>
-         <Grid item xs={6} sm={6} lg={12}>
-         <Typography className="title" variant="display3" gutterBottom>Budget vs. Actual </Typography>
-        </Grid>
-        </Grid>
+          <Grid container spacing={24} direction={'row'}>
+          <Grid item xs={6} sm={6} lg={12}>
+          <Typography className="title" variant="display2" gutterBottom>Snapshot</Typography>
+         </Grid>
+         </Grid>
+         
        <div className="container">
         <Grid container spacing={24} direction={'row'}>
          <BudgetChart className='chart'style={{maxWidth:'400px'}} data={totalBudget}/>

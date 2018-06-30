@@ -31,7 +31,6 @@ class Monthlybudget extends Component{
      const value = e.currentTarget.parentNode.parentNode.getAttribute("data-id")
      const userId = this.props.uid
     this.props.dispatch(removeBudgetItem(value,userId))
-     console.log(value)
  }
  
     
@@ -53,8 +52,8 @@ class Monthlybudget extends Component{
      }
      
      const totalBudget = incomeStream.concat(expenseStream)
-    console.log(totalBudget)
     
+     if(window.innerWidth >= 950){
      return(
          <MuiThemeProvider>
          <Aux>
@@ -141,6 +140,92 @@ class Monthlybudget extends Component{
         </MuiThemeProvider>
          
          );
+     }else{
+      return(
+         <MuiThemeProvider>
+         <Aux>
+         <Grid container spacing={24} direction={'row'}>
+         <Grid item xs={6} sm={6} lg={12}>
+         <Typography className="title" variant="display3" gutterBottom>Budget Creator</Typography>
+        </Grid>
+        </Grid>
+         <Grid container direction={'row'} spacing={24}>
+         <Grid item xs={12} sm={6} lg={6}>
+         <ProposedBudget data = {totalBudget}/>
+         </Grid>
+         </Grid>
+      
+         
+         <Grid container direction={'row'} spacing={24}>
+         <Grid item xs={12} sm={6} lg={12}>
+        <IncomeTable    data={incomeStream} 
+        removeItem = {this.removeListItem}
+                        
+                        header={[
+                            {
+                            name:   "Name",
+                            prop:   "name"
+                            },
+                            {
+                            name: "Category",
+                            prop: "category"
+                            },
+                            {
+                            name:   "Type",
+                            prop:   "type"
+                            },
+                            {
+                            name:   "Frequency", 
+                            prop:   "frequency"
+                            },
+                            {
+                            name:   "Amount",
+                            prop:   "amount"
+                            },
+                             {
+                            name:   " ",
+                            prop:   " "
+                            }
+                            ]}
+        />
+        </Grid>
+        <Grid item xs={12} sm={6} lg={12}>
+        <ExpenseTable    data={expenseStream}
+                        removeItem= {this.removeListItem}
+                        header={[
+                            {
+                            name: "Name",
+                            prop: "name"
+                            },
+                            {
+                            name:   "Category",
+                            prop:   "category"
+                            },
+                            {
+                            name:   "Type",
+                            prop:   "type"
+                            },
+                            {
+                            name:   "Frequency", 
+                            prop:   "frequency"
+                            },
+                            {
+                            name:   "Amount",
+                            prop:   "amount"
+                            },{
+                            name:   " ",
+                            prop:   " "
+                            }
+                            ]}
+        />
+        </Grid>
+        <BudetItem onSubmit={values => this.props.dispatch(addBudgetItem(values, userId))}/>
+       </Grid>
+        </Aux>
+        </MuiThemeProvider>
+         
+         );
+     }
     
  }   
 }
