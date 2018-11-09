@@ -107,7 +107,7 @@ class TransactionItem extends Component {
                 </div>
                 
                  <div>
-                <Button variant="raised" color="primary" Primary style = {{styles}} type="submit">Submit</Button>
+                <Button position="fixed" variant="raised" color="primary" Primary style = {{styles}} type="submit">Submit</Button>
                 <Button variant="raised" color="secondary" Primary style = {{styles}} onClick={reset}>Reset</Button>
                 </div>
                 </form>

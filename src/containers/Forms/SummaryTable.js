@@ -37,7 +37,7 @@ function SummaryTable(props) {
   const { classes } = props;
 
   return (
-    <Grid item xs={6} sm={6} md={6}lg={12}>
+  
     <Paper className={classes.root}>
       <Table className={classes.table}>
         <TableHead>
@@ -65,7 +65,6 @@ function SummaryTable(props) {
       </Table>
       
     </Paper>
-    </Grid>
   );
 }
 

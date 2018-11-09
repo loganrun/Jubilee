@@ -48,7 +48,6 @@ function ActualTable(props) {
   const { classes } = props;
 
   return (
-    <Grid item xs={6} sm={6} md={6} lg={12}>
     <Paper className={classes.root}>
       <Table className={classes.table}>
       <TableHead>
@@ -61,7 +60,7 @@ function ActualTable(props) {
         <TableBody>
           {props.data.map(n => {
             return (
-              <TableRow ClassName={classes.row} key={n.id}>
+              <TableRow className={classes.row} key={n.id}>
                 <CustomTableCell>{n.name}</CustomTableCell>
                 <CustomTableCell>{n.category}</CustomTableCell>
                 <CustomTableCell>{Moment(n.date).format("MM/DD/YY")}</CustomTableCell>
@@ -73,7 +72,6 @@ function ActualTable(props) {
       </Table>
       
     </Paper>
-    </Grid>
   );
 }
 

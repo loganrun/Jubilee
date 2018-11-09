@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 //import {Doughnut} from 'react-chartjs-2';
-import {HorizontalBar} from 'react-chartjs-2';
+//import {HorizontalBar} from 'react-chartjs-2';
 import Spinner from '../../components/layouts/Spinner/Spinner'
 //import Grid from 'material-ui/Grid'
 import {connect} from 'react-redux'
@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+
 
 const styles = {
   card: {
@@ -23,17 +24,16 @@ const styles = {
 
 
 
-class ActualChart extends Component{
+class SavingsChart extends Component{
     
     render(){
       const { classes } = this.props;
       
-      let expenseStream = <Spinner/>
-     if(!this.props.loading) { expenseStream = this.props.budget.filter(incomeObject =>{
-        return incomeObject.type === "expense"
+      let monthIncome = <Spinner/>
+     if(!this.props.loading) { monthIncome = this.props.transaction.filter(incomeObject =>{
+        return incomeObject.category === "income"
     })
      }
-     
      console.log(this.props.transaction)
      
      let expenseTrans = <Spinner/>
@@ -43,39 +43,24 @@ class ActualChart extends Component{
      }
      
      
-    let budgetExpense = <Spinner/>
-    if(Object.keys(expenseStream).length !== 0){budgetExpense = expenseStream.map(function(b){return b.amount}).reduce(function(p,c){return p + c})}
+    let monthlyIncome = <Spinner/>
+    if(Object.keys(monthIncome).length !== 0){monthlyIncome = monthIncome.map(function(b){return b.amount}).reduce(function(p,c){return p + c})}
     
     let actualExpense = <Spinner/>
     if(Object.keys(expenseTrans).length !== 0){actualExpense = expenseTrans.map(function(b){return b.amount}).reduce(function(p,c){return p + c})}
     
+    let savings = monthlyIncome - actualExpense
+    console.log(savings)
 
 
-const data = {
-	labels: [
-		'Actual Expenses',
-		'Planned Expenses',
-	],
-	datasets: [{
-		data: [actualExpense, budgetExpense],
-		label: 'Expenses',
-		backgroundColor: [
-		'#334960',
- 		'#F46524'
-		],
-		hoverBackgroundColor: [
-		'#334960',
- 		'#F46524'
-		]
-	}]
-};
+
 
 return (
       <div>
        <Card className={classes.card}>
-        <CardContent>
-        <h2>Planned/Actual Expense</h2>
-        <HorizontalBar className='chart' data={data} />
+        <CardContent className={"positive"}>
+        <h2>Monthly Savings</h2>
+        <h3>You have Saved ${savings} this month!!!</h3>
         </CardContent>
         </Card>
       </div>
@@ -83,7 +68,7 @@ return (
 }
 }
 
-ActualChart.propTypes = {
+SavingsChart.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 const styledComponent = withStyles(styles)
@@ -97,6 +82,5 @@ function mapStateToProps(state){
     
 }
 
-export default compose(styledComponent, connect(mapStateToProps, null))(ActualChart)
-
+export default compose(styledComponent, connect(mapStateToProps, null))(SavingsChart)
 

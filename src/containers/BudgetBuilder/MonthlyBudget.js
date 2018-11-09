@@ -11,6 +11,8 @@ import {addBudgetItem, fetchBudget, removeBudgetItem} from '../store/Actions'
 import './MonthlyBudget.css'
 import Spinner from '../../components/layouts/Spinner/Spinner'
 import ProposedBudget from '../Charts/ProposeBudget'
+import BudgetTable2 from '../Tables/BudgetTable2'
+//import BudgetTable from '../Tables/BudgetTable'
 
        
 
@@ -37,6 +39,23 @@ class Monthlybudget extends Component{
  render(){
   
     const userId = this.props.uid
+    
+    let d = new Date();
+    let month = new Array();
+month[0] = "January";
+month[1] = "February";
+month[2] = "March";
+month[3] = "April";
+month[4] = "May";
+month[5] = "June";
+month[6] = "July";
+month[7] = "August";
+month[8] = "September";
+month[9] = "October";
+month[10] = "November";
+month[11] = "December";
+    let endDate = (month[d.getMonth()]) +" "+ d.getFullYear();
+    console.log(endDate);
   
   
      let incomeStream = <Spinner/>
@@ -57,22 +76,14 @@ class Monthlybudget extends Component{
      return(
          <MuiThemeProvider>
          <Aux>
-         <Grid container spacing={24} direction={'row'}>
-         <Grid item xs={6} sm={6} lg={12}>
-         <Typography className="title" variant="display3" gutterBottom>Budget Creator</Typography>
-        </Grid>
-        </Grid>
-         <div className={'container'}>
-         <Grid container direction={'row'} spacing={24}>
-         <Grid item xs={12} sm={6} lg={6}>
-         <ProposedBudget data = {totalBudget}/>
-         </Grid>
-         </Grid>
-      
          
-         <Grid container direction={'row'} spacing={24}>
-         <Grid item xs={12} sm={6} lg={12}>
-        <IncomeTable    data={incomeStream} 
+         <Typography className="title" variant="display3" gutterBottom>Budget For {endDate}</Typography>
+    
+         <div className={'container'}>
+         
+         <BudgetTable2 data={incomeStream}/>
+    
+         <IncomeTable    data={incomeStream} 
         removeItem = {this.removeListItem}
                         
                         header={[
@@ -102,39 +113,9 @@ class Monthlybudget extends Component{
                             }
                             ]}
         />
-        </Grid>
-        <Grid item xs={12} sm={6} lg={12}>
-        <ExpenseTable    data={expenseStream}
-                        removeItem= {this.removeListItem}
-                        header={[
-                            {
-                            name: "Name",
-                            prop: "name"
-                            },
-                            {
-                            name:   "Category",
-                            prop:   "category"
-                            },
-                            {
-                            name:   "Type",
-                            prop:   "type"
-                            },
-                            {
-                            name:   "Frequency", 
-                            prop:   "frequency"
-                            },
-                            {
-                            name:   "Amount",
-                            prop:   "amount"
-                            },{
-                            name:   " ",
-                            prop:   " "
-                            }
-                            ]}
-        />
-        </Grid>
+        
+        
         <BudetItem onSubmit={values => this.props.dispatch(addBudgetItem(values, userId))}/>
-       </Grid>
        </div>
         </Aux>
         </MuiThemeProvider>
@@ -239,5 +220,65 @@ function mapStateToProps(state){
 
 
 export default connect(mapStateToProps)(Monthlybudget);
+//<BudgetTable2 data={incomeStream}/>
+// <ProposedBudget data = {totalBudget}/>
 
- 
+// <IncomeTable    data={incomeStream} 
+//         removeItem = {this.removeListItem}
+                        
+//                         header={[
+//                             {
+//                             name:   "Name",
+//                             prop:   "name"
+//                             },
+//                             {
+//                             name: "Category",
+//                             prop: "category"
+//                             },
+//                             {
+//                             name:   "Type",
+//                             prop:   "type"
+//                             },
+//                             {
+//                             name:   "Frequency", 
+//                             prop:   "frequency"
+//                             },
+//                             {
+//                             name:   "Amount",
+//                             prop:   "amount"
+//                             },
+//                              {
+//                             name:   " ",
+//                             prop:   " "
+//                             }
+//                             ]}
+//         />
+
+ // <ExpenseTable    data={expenseStream}
+ //                        removeItem= {this.removeListItem}
+ //                        header={[
+ //                            {
+ //                            name: "Name",
+ //                            prop: "name"
+ //                            },
+ //                            {
+ //                            name:   "Category",
+ //                            prop:   "category"
+ //                            },
+ //                            {
+ //                            name:   "Type",
+ //                            prop:   "type"
+ //                            },
+ //                            {
+ //                            name:   "Frequency", 
+ //                            prop:   "frequency"
+ //                            },
+ //                            {
+ //                            name:   "Amount",
+ //                            prop:   "amount"
+ //                            },{
+ //                            name:   " ",
+ //                            prop:   " "
+ //                            }
+ //                            ]}
+ //        />

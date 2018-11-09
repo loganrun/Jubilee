@@ -1,8 +1,19 @@
 
     .container{
     margin-top: 50px;
-    margin-left: 245px; 
-    background-color: #EEEEEE;
+    margin-left: 240px; 
+    /*background: #EEEEEE;*/
     display: grid;
+    grid-gap: 30px;
+    grid-template-columns: repeat(auto-fill, minmax(325px, 1fr) ) ;
+    /*grid-template-columns: 1fr 1fr 1fr;*/
+    /*grid-column-gap: 5px;*/
     
 }
+
+
+/*@media(minWidth : 780px){*/
+/*  .container {*/
+/*    margin-left: 10px;*/
+/*  }*/
+/*}*/

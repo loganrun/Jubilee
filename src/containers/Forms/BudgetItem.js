@@ -36,6 +36,9 @@ class BudgetItem extends Component {
 
 
     render(){
+    
+    let d = new Date();
+    let endDate = d.getFullYear() + "-" + (d.getMonth() + 1);
 
     const { handleSubmit, reset,  } = this.props;
     const lower = value => value && value.toLowerCase()
@@ -57,6 +60,14 @@ class BudgetItem extends Component {
         <DialogBox>
             
                 <form style={{styles}} onSubmit= {handleSubmit}>
+                <div>
+                <Field
+                    label={endDate}
+                    name = "month"
+                    component={renderTextField}
+                    value={endDate}
+                />
+                </div>
                 <div>
                 <Field
                     label="name"

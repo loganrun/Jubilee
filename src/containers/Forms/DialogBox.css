@@ -1,6 +1,6 @@
 .dialog-button{
     top: 30px;
     right: 20px;
-    position: absolute;
+    position: fixed;
     z-index: 2100
 }

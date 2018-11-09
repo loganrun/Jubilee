@@ -1,30 +1,32 @@
-import React from 'react';
-//import {Doughnut} from 'react-chartjs-2';
-import {HorizontalBar} from 'react-chartjs-2';
-//import {Bar} from 'react-chartjs-2';
-import Spinner from '../../components/layouts/Spinner/Spinner'
-//import Grid from 'material-ui/Grid'
-import './Chart.css'
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+import Spinner from '../../components/layouts/Spinner/Spinner'
+import {connect} from 'react-redux'
+import {compose} from 'redux'
 
-const styles = {
-  card: {
-    maxWidth: 450,
+const styles = theme => ({
+  root: {
+    width: '100%',
+    marginTop: theme.spacing.unit * 3,
+    overflowX: 'auto',
   },
-  
-  pos: {
-    marginBottom: 12,
+  table: {
+    minWidth: 700,
   },
-};
+});
 
-const ExpenseChart = (props)=> {
-    const { classes } = props;
+class incomeTable extends Component {
 
-    
-const actualExpense = props.data.filter(expenseObject =>{
+render(){
+  const { classes } = this.props;
+  const actualExpense = this.props.transaction.filter(expenseObject =>{
         return expenseObject.category !== 'income'
     })
     console.log(actualExpense)
@@ -35,7 +37,7 @@ const actualExpense = props.data.filter(expenseObject =>{
     )
     }
 
-const debt = props.data.filter(expenseObject =>{
+const debt =this.props.transaction.filter(expenseObject =>{
         return expenseObject.category === 'debt'
     })
     let debtExpense = <Spinner/>
@@ -97,68 +99,54 @@ const entertainment = props.data.filter(expenseObject =>{
     if(Object.keys(entertainment).length !== 0){entertainmentExpense= entertainment.map(function(b){return b.amount}).reduce(function(p,c){return p + c}
     )}
 
-const data = {
-	labels: [
-		'Debt','Housing','Transportation', 'Groceries', 'Shopping',
-		'Dining', 'Utilities', 'Entertainment'
-	],
-	datasets: [{
-		data: [debtExpense, housingExpense, transportationExpense, groceriesExpense,
-		        shoppingExpense, diningExpense, utilitiesExpense, entertainmentExpense],
-		label: 'Expense Beakdown',
-		backgroundColor: [
-		'#36A2EB',
-		'#FF6384',
-		'#5365A2',
-		'#2E53D5',
-		'#44646F',
-		'#DA9066',
-		'#A23213',
-		'#D7BABB'
-		],
-		hoverBackgroundColor: [
-		'#36A2EB',
-		'#FF6384',
-		'#5365A2',
-		'#2E53D5',
-		'#44646F',
-		'#DA9066',
-		'#A23213',
-		'#D7BABB'
-		]
-	}]
-};
 
-return (
-      <div>
-       <Card className={classes.card}>
-        <CardContent>
-        <h2>Itemized Expenses</h2>
-        <HorizontalBar className='chart' data={data} />
-        
-        </CardContent>
-        </Card>
-      </div>
-
-    );
+  return (
+    <Paper className={classes.root}>
+      <Table className={classes.table}>
+        <TableHead>
+          <TableRow>
+            <TableCell>Dessert (100g serving)</TableCell>
+            <TableCell numeric>Calories</TableCell>
+            <TableCell numeric>Fat (g)</TableCell>
+            <TableCell numeric>Carbs (g)</TableCell>
+            <TableCell numeric>Protein (g)</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {data.map(n => {
+            return (
+              <TableRow key={n.id}>
+                <TableCell component="th" scope="row">
+                  {n.name}
+                </TableCell>
+                <TableCell numeric>{n.calories}</TableCell>
+                <TableCell numeric>{n.fat}</TableCell>
+                <TableCell numeric>{n.carbs}</TableCell>
+                <TableCell numeric>{n.protein}</TableCell>
+              </TableRow>
+            );
+          })}
+        </TableBody>
+      </Table>
+    </Paper>
+  );
+}
 }
 
-ExpenseChart.propTypes = {
+incomeTable.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(ExpenseChart)
-//<Doughnut className='chart' data={data} />
-// <Bar data={data}
-//          height= {200}
-//          width={400}
-//           options={{
-//             responsive: true,
-//             maintainAspectRatio: true,
-           
-//             legend: {
-//             display: false
-//                 },
-//           }}
-          
-//         />
+function mapStateToProps(state){
+    return{
+        transaction: state.budget.transaction,
+        budget: state.budget.budget,
+        uid: state.firebase.auth.uid
+    }
+    
+}
+
+const styledComponent = withStyles(styles)
+
+
+export default compose(styledComponent, connect(mapStateToProps, null))(incomeTable)

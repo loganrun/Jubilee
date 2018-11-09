@@ -1,3 +1,15 @@
+.positive{
+  background-color: #81C784;
+  color: #ffffff;
+  text-align: center;
+}
+
+.negative{
+  background-color: #E57373;
+  color: #ffffff;
+  text-align: center;
+}
+
 @media screen and (max-width: 750px) {
   .chart {
     height:  300px;
@@ -5,3 +17,4 @@
   }
   
 }
+

@@ -4,8 +4,12 @@ import { withStyles } from 'material-ui/styles';
 import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
 import Typography from 'material-ui/Typography';
 import Debt from '../../assets/Images/debt.jpeg'
-import Table, { TableBody, TableCell, TableRow } from 'material-ui/Table';
 import Moment from 'moment'
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableRow from '@material-ui/core/TableRow';
+import './Cards.css'
 
 
 const styles = {
@@ -38,9 +42,9 @@ function DebtCard(props) {
           {props.data.map((n,i) => {
             return (
               <TableRow key={n.id}>
-                <TableCell>{n.name}</TableCell>
-                <TableCell numeric>${n.amount}</TableCell>
-                <TableCell>{Moment(n.date).format('MM/DD/YY')}</TableCell>
+                <TableCell className={'tableCell'}>{n.name}</TableCell>
+                <TableCell className={'tableCell'} numeric>${n.amount}</TableCell>
+                <TableCell className={'tableCell'} >{Moment(n.date).format('MM/DD/YY')}</TableCell>
               </TableRow>
             );
           })}

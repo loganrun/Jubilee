@@ -26,7 +26,7 @@ const styles = theme => ({
     overflowX: 'auto',
   },
   table: {
-    maxWidth: 500,
+    maxWidth: 1000,
   },
   row: {
     '&:nth-of-type(odd)': {
@@ -51,7 +51,6 @@ const row = (x, i, header) =>
     const IncomeTable = ({data,header,removeItem, classes}) => {
 
   return (
-    <Grid item xs={6} sm={6} md={8}lg={6}>
     <Paper className={classes.root}>
       <Table className={classes.table}>
       <TableHead>Income</TableHead>
@@ -81,7 +80,6 @@ const row = (x, i, header) =>
               <IncomeFooter/>
       </Table>
     </Paper>
-    </Grid>
 
   );
 }
